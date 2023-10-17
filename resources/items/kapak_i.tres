@@ -19,8 +19,8 @@ region = Rect2(426, 0, 213, 213)
 
 [sub_resource type="Resource" id="Resource_eev2b"]
 script = ExtResource("2_xao7n")
-Throwable_i = true
-damage_i = 18
+damage_i = 21
+cooldown = 114
 
 [resource]
 script = ExtResource("1_l4jmp")

@@ -1,21 +1,31 @@
-[gd_resource type="Resource" script_class="itemData" load_steps=5 format=3 uid="uid://b3cq20qh5hsdc"]
+[gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://b3cq20qh5hsdc"]
 
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_8enko"]
-[ext_resource type="Texture2D" uid="uid://dv2ryppgebjfn" path="res://resources/item3_atlas.tres" id="1_202s5"]
+[ext_resource type="Texture2D" uid="uid://6vp8bjs6rye" path="res://Texture/inv/tekstur3.png" id="1_76gk7"]
+[ext_resource type="Script" path="res://resources/inventory/ItemType.gd" id="3_2eep3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ri4l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_58x6s"]
 atlas = SubResource("CompressedTexture2D_mm6ba")
 region = Rect2(0, 426, 213, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4f1v"]
+atlas = ExtResource("1_76gk7")
+region = Rect2(0, 426, 213, 213)
+
+[sub_resource type="Resource" id="Resource_faymc"]
+script = ExtResource("3_2eep3")
+cooldown = 60
 
 [resource]
 script = ExtResource("1_8enko")
 name = "Roket"
-icon = SubResource("AtlasTexture_8ri4l")
+icon = SubResource("AtlasTexture_58x6s")
 stack = true
-onhand_texture = ExtResource("1_202s5")
+onhand_texture = SubResource("AtlasTexture_c4f1v")
 onhand_pos = Vector3(0, -0.35, 0.25)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 0.75
+type = SubResource("Resource_faymc")

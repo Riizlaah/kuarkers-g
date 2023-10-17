@@ -1,16 +1,32 @@
-[gd_scene load_steps=14 format=3 uid="uid://yw7vd1w222jo"]
+[gd_scene load_steps=22 format=3 uid="uid://yw7vd1w222jo"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_qhviq"]
-[ext_resource type="Texture2D" uid="uid://7c3ejx1ypj" path="res://Texture/main-menu/play.png" id="2_8bmul"]
-[ext_resource type="Texture2D" uid="uid://cmxswtf81o2n7" path="res://Texture/main-menu/main_background2.jpg" id="2_fenea"]
-[ext_resource type="Texture2D" uid="uid://gfx226cyt26b" path="res://Texture/main-menu/quit.png" id="3_xq4o6"]
-[ext_resource type="Texture2D" uid="uid://c2psrbu4ai55b" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
-[ext_resource type="Texture2D" uid="uid://c5q5104l2u71" path="res://Texture/main-menu/close.png" id="5_hligs"]
-[ext_resource type="AudioStream" uid="uid://b0we3xeeuxahr" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
+[ext_resource type="Texture2D" uid="uid://drssjryeyektw" path="res://Texture/main-menu/play.png" id="2_8bmul"]
+[ext_resource type="Texture2D" uid="uid://bd7mkuuguoip7" path="res://Texture/main-menu/main_bg.jpg" id="2_fenea"]
+[ext_resource type="Texture2D" uid="uid://c14sl0tnpywuc" path="res://Texture/main-menu/quit.png" id="3_xq4o6"]
+[ext_resource type="Texture2D" uid="uid://bxf2c6ehqn45d" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
+[ext_resource type="Texture2D" uid="uid://wbdvfc22ymew" path="res://Texture/main-menu/close.png" id="5_hligs"]
+[ext_resource type="AudioStream" uid="uid://bqjca545raj7e" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
+[ext_resource type="Script" path="res://script/multiplayer/PlayMenu.gd" id="8_n7ply"]
+[ext_resource type="Script" path="res://script/multiplayer/ServerBrowser.gd" id="9_3ey4u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolhe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q8ll"]
+bg_color = Color(0.329412, 0.329412, 0.329412, 0.627451)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmg10"]
+bg_color = Color(0.266667, 0.266667, 0.266667, 0.74902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh65s"]
 content_margin_left = 0.0
@@ -55,6 +71,42 @@ corner_radius_bottom_left = 15
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2t4b"]
 bg_color = Color(0.6, 0.6, 0.6, 0.913725)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnf2n"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk83h"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stuqu"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1npj"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -74,27 +126,42 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -456.5
-offset_top = -264.0
-offset_right = 456.5
-offset_bottom = 264.0
+anchors_preset = -1
+anchor_left = 0.103733
+anchor_top = 0.0925926
+anchor_right = 0.896267
+anchor_bottom = 0.907407
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxC"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxC"]
 layout_mode = 2
-size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="VBoxC/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_lolhe")
 text = "Kuarkers"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxC/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Info" type="Button" parent="VBoxC/HBoxContainer2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q8ll")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gmg10")
+text = "i"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxC"]
 layout_mode = 2
@@ -158,19 +225,20 @@ flat = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.474453
-anchor_right = 0.0484791
-anchor_bottom = 0.556569
-theme_override_font_sizes/font_size = 32
+anchor_top = 0.40146
+anchor_right = 0.0617871
+anchor_bottom = 0.483577
+offset_right = -14.0
+theme_override_font_sizes/font_size = 24
 metadata/_edit_use_anchors_ = true
 
 [node name="FOV" type="HSlider" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.547445
+anchor_top = 0.474453
 anchor_right = 0.617871
-anchor_bottom = 0.605839
+anchor_bottom = 0.532847
 offset_right = -300.0
 offset_bottom = -16.0
 scale = Vector2(2, 2)
@@ -185,19 +253,19 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.656934
+anchor_top = 0.583942
 anchor_right = 0.0484791
-anchor_bottom = 0.739051
-theme_override_font_sizes/font_size = 32
+anchor_bottom = 0.666059
+theme_override_font_sizes/font_size = 24
 metadata/_edit_use_anchors_ = true
 
 [node name="SENV" type="HSlider" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.729927
+anchor_top = 0.656934
 anchor_right = 0.617871
-anchor_bottom = 0.788321
+anchor_bottom = 0.715328
 offset_right = -300.0
 offset_bottom = -16.0
 scale = Vector2(2, 2)
@@ -208,7 +276,7 @@ max_value = 200.0
 value = 25.0
 metadata/_edit_use_anchors_ = true
 
-[node name="TextEdit" type="TextEdit" parent="ColorRect"]
+[node name="TextEdit" type="LineEdit" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
@@ -222,7 +290,6 @@ text = "Test"
 placeholder_text = "Nama Player"
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
-scroll_past_end_of_file = true
 metadata/_edit_use_anchors_ = true
 
 [node name="save" type="Button" parent="ColorRect"]
@@ -241,6 +308,171 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("7_hw44m")
 autoplay = true
 
+[node name="PlayMenu" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0651042
+anchor_top = 0.108025
+anchor_right = 0.934896
+anchor_bottom = 0.91821
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnf2n")
+script = ExtResource("8_n7ply")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 30
+
+[node name="HostMenu" type="VBoxContainer" parent="PlayMenu/MarginContainer"]
+layout_mode = 2
+script = ExtResource("9_3ey4u")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayMenu/MarginContainer/HostMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Quit" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_xk83h")
+text = "Keluar"
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="Label" type="Label" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LineEdit" type="LineEdit" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["host_ui"]]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Room1"
+placeholder_text = "Nama Dunia"
+
+[node name="Buat" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["host_ui"]]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_stuqu")
+text = "Buat"
+
+[node name="Start" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_c1npj")
+text = "Mulai"
+
+[node name="Scroll" type="ScrollContainer" parent="PlayMenu/MarginContainer/HostMenu" groups=["host_ui"]]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ServerList" type="VBoxContainer" parent="PlayMenu/MarginContainer/HostMenu/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Timer" type="Timer" parent="PlayMenu/MarginContainer/HostMenu"]
+
+[node name="Close" type="TextureButton" parent="PlayMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95509
+anchor_right = 1.0
+anchor_bottom = 0.0857143
+grow_horizontal = 0
+texture_normal = ExtResource("5_hligs")
+ignore_texture_size = true
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoMenu" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -226.0
+offset_top = 70.0
+offset_right = 274.0
+offset_bottom = 370.0
+grow_horizontal = 2
+color = Color(0, 0.701961, 0.945098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Control" type="Control" parent="InfoMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Versi : 1.0"
+
+[node name="Label2" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Developer : Naf'an Rizkilah"
+
+[node name="Label3" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.568627)
+layout_mode = 2
+size_flags_vertical = 6
+text = "(klik dimana saja untuk menutup)"
+
+[node name="Label3" type="Label" parent="InfoMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "Dibuat di Godot"
+
+[node name="LinkButton" type="LinkButton" parent="InfoMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Github"
+uri = "https://github.com/Riizlaah"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="VBoxC/HBoxContainer2/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Main" to="." method="_on_main_pressed"]
@@ -249,3 +481,7 @@ autoplay = true
 [connection signal="value_changed" from="ColorRect/SENV" to="." method="_on_senv_value_changed"]
 [connection signal="text_changed" from="ColorRect/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="ColorRect/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Quit" to="PlayMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Buat" to="PlayMenu" method="_on_buat_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Start" to="PlayMenu" method="_on_start_pressed"]
+[connection signal="pressed" from="PlayMenu/Close" to="PlayMenu" method="_on_close_pressed"]
