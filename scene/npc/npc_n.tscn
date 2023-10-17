@@ -1,0 +1,517 @@
+[gd_scene load_steps=41 format=3 uid="uid://bnflgvlmwgmx"]
+
+[ext_resource type="Script" path="res://script/npc/npc_n.gd" id="1_42ogm"]
+[ext_resource type="ArrayMesh" uid="uid://cvm761xsbp83k" path="res://obj/Kuark1.obj" id="1_tsefe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u2jj"]
+albedo_color = Color(0.32549, 0.533333, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88bnu"]
+albedo_color = Color(0.326319, 0.532324, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ds11d"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbb27"]
+albedo_color = Color(0.326319, 0.532324, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0vuvx"]
+radius = 0.08
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjrhb"]
+albedo_color = Color(0.326319, 0.532324, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kncmd"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np1a7"]
+albedo_color = Color(0.854902, 0.654902, 0.568627, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3shiv"]
+radius = 0.08
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ewuv"]
+albedo_color = Color(0.326319, 0.532324, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_d5l44"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7e3q"]
+albedo_color = Color(0.326319, 0.532324, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqkf4"]
+albedo_color = Color(0.326319, 0.532324, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wldh3"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4c4i"]
+albedo_color = Color(0.85527, 0.656425, 0.568332, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb8do"]
+albedo_color = Color(0.219608, 0.219608, 0.219608, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_siaqf"]
+radius = 0.13
+height = 0.26
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_weh6p"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_irjcr"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcxpr"]
+albedo_color = Color(0.0762584, 0.0762584, 0.0762584, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_05uhq"]
+radius = 0.13
+height = 0.26
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we7g5"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rno0p"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edpd4"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3wjt"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13tnt"]
+albedo_color = Color(0.0762584, 0.0762584, 0.0762584, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6kg6"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5urg6"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_811b3"]
+size = Vector3(0.8, 1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qj61"]
+size = Vector3(1.35, 1.3, 0.42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6fdkb"]
+size = Vector3(0.6, 0.45, 0.6)
+
+[sub_resource type="Animation" id="Animation_4nl5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bawah/Kaki_kanan:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bawah/Kaki_kiri:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872664)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872664)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Badan/Bahu_kanan/Lengan/Siku:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Badan/Bahu_kanan:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.45, 0.35, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Badan/Bahu_kiri:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.45, 0.35, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_624br"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(-0.610865, 0.610865, 0.0872665), Vector3(1.0472, -0.261799, 0.0872665)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bahu_kanan/Lengan/Siku:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.785398, -0.872665, 0), Vector3(1.22173, 1.0472, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7whle"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(-0.139626, 0, 0.0872665)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872664), Vector3(-0.139626, 0, -0.0872665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bawah/Kaki_kanan:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0872665, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Badan/Bawah/Kaki_kiri:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0872665, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_52qid"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bahu_kanan:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.45, 0.35, 0), Vector3(0.45, 0.4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bahu_kiri:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.45, 0.35, 0), Vector3(-0.45, 0.4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3gqlc"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bawah/Kaki_kanan:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.610865, 0, 0), Vector3(0.610865, 0, 0), Vector3(-0.610865, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bawah/Kaki_kiri:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.610865, 0, 0), Vector3(-0.610865, 0, 0), Vector3(0.610865, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.610865, 0, 0.0872665), Vector3(-0.610865, 0, 0.0872665), Vector3(0.610865, 0, 0.0872665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.610865, 0, -0.0872665), Vector3(0.610865, 0, -0.0872665), Vector3(-0.610865, 0, -0.0872665)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4g4ld"]
+_data = {
+"RESET": SubResource("Animation_4nl5q"),
+"attack": SubResource("Animation_624br"),
+"death": SubResource("Animation_7whle"),
+"idle": SubResource("Animation_52qid"),
+"move": SubResource("Animation_3gqlc")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5hi1h"]
+radius = 11.0
+
+[node name="NPC_N" type="CharacterBody3D"]
+script = ExtResource("1_42ogm")
+
+[node name="Badan" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6u2jj")
+mesh = ExtResource("1_tsefe")
+
+[node name="Bahu_kanan" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0.45, 0.35, 0)
+material_override = SubResource("StandardMaterial3D_88bnu")
+mesh = SubResource("SphereMesh_ds11d")
+
+[node name="Lengan" type="MeshInstance3D" parent="Badan/Bahu_kanan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_jbb27")
+mesh = SubResource("CapsuleMesh_0vuvx")
+skeleton = NodePath("../..")
+
+[node name="Siku" type="MeshInstance3D" parent="Badan/Bahu_kanan/Lengan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_sjrhb")
+mesh = SubResource("SphereMesh_kncmd")
+skeleton = NodePath("../..")
+
+[node name="Lengan2" type="MeshInstance3D" parent="Badan/Bahu_kanan/Lengan/Siku"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_np1a7")
+mesh = SubResource("CapsuleMesh_3shiv")
+
+[node name="Sprite3D" type="Sprite3D" parent="Badan/Bahu_kanan/Lengan/Siku/Lengan2"]
+transform = Transform3D(4.29904e-15, 9.83506e-08, -2.25, 2.25, -9.83506e-08, 0, -9.83506e-08, -2.25, -9.83506e-08, 0, 0, 0.95)
+centered = false
+offset = Vector2(-100, 0)
+pixel_size = 0.005
+
+[node name="Bahu_kiri" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, -0.45, 0.35, 0)
+material_override = SubResource("StandardMaterial3D_4ewuv")
+mesh = SubResource("SphereMesh_d5l44")
+
+[node name="Lengan" type="MeshInstance3D" parent="Badan/Bahu_kiri"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_t7e3q")
+mesh = SubResource("CapsuleMesh_0vuvx")
+skeleton = NodePath("../..")
+
+[node name="Siku" type="MeshInstance3D" parent="Badan/Bahu_kiri/Lengan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_gqkf4")
+mesh = SubResource("SphereMesh_wldh3")
+skeleton = NodePath("../..")
+
+[node name="Lengan2" type="MeshInstance3D" parent="Badan/Bahu_kiri/Lengan/Siku"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_k4c4i")
+mesh = SubResource("CapsuleMesh_3shiv")
+
+[node name="Bawah" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(1, 0, 0, 0, 0.999648, 0.0265433, 0, -0.0265433, 0.999648, 0, -0.5, 0)
+
+[node name="Kaki_kanan" type="MeshInstance3D" parent="Badan/Bawah"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+material_override = SubResource("StandardMaterial3D_pb8do")
+mesh = SubResource("SphereMesh_siaqf")
+
+[node name="Paha" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kanan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_weh6p")
+mesh = SubResource("CylinderMesh_irjcr")
+
+[node name="Lutut" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kanan/Paha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+material_override = SubResource("StandardMaterial3D_bcxpr")
+mesh = SubResource("SphereMesh_05uhq")
+
+[node name="Betis" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kanan/Paha/Lutut"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+material_override = SubResource("StandardMaterial3D_we7g5")
+mesh = SubResource("CylinderMesh_rno0p")
+
+[node name="Kaki_kiri" type="MeshInstance3D" parent="Badan/Bawah"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+material_override = SubResource("StandardMaterial3D_edpd4")
+mesh = SubResource("SphereMesh_siaqf")
+
+[node name="Paha" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kiri"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_i3wjt")
+mesh = SubResource("CylinderMesh_irjcr")
+
+[node name="Lutut" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kiri/Paha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, -1.49012e-08)
+material_override = SubResource("StandardMaterial3D_13tnt")
+mesh = SubResource("SphereMesh_05uhq")
+
+[node name="Betis" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kiri/Paha/Lutut"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+material_override = SubResource("StandardMaterial3D_c6kg6")
+mesh = SubResource("CylinderMesh_rno0p")
+
+[node name="Kepala" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("SphereMesh_5urg6")
+
+[node name="RayCast3D" type="RayCast3D" parent="Badan/Kepala"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.5)
+target_position = Vector3(0, 0, -3)
+
+[node name="Colls1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0)
+shape = SubResource("BoxShape3D_811b3")
+
+[node name="Colls2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape3D_3qj61")
+
+[node name="Colls3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_6fdkb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4g4ld")
+}
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollsA" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_5hi1h")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="on_body_entered"]

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://nvp3fyi1u2uh"]
+
+[ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_l4jmp"]
+[ext_resource type="Script" path="res://resources/ItemType/script/MeleeType.gd" id="2_xao7n"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
+load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r3q"]
+atlas = SubResource("CompressedTexture2D_mm6ba")
+region = Rect2(426, 0, 213, 213)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bptvd"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mitoy"]
+atlas = SubResource("CompressedTexture2D_bptvd")
+region = Rect2(426, 0, 213, 213)
+
+[sub_resource type="Resource" id="Resource_eev2b"]
+script = ExtResource("2_xao7n")
+Throwable_i = true
+damage_i = 18
+
+[resource]
+script = ExtResource("1_l4jmp")
+name = "Kapak"
+icon = SubResource("AtlasTexture_q6r3q")
+stack = false
+onhand_texture = SubResource("AtlasTexture_mitoy")
+onhand_pos = Vector3(0, -0.15, 0.3)
+onhand_rot = Vector3(0, -90, 100)
+onhand_scale = 1.3
+type = SubResource("Resource_eev2b")

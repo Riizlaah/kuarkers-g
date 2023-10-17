@@ -1,0 +1,1134 @@
+[gd_scene load_steps=88 format=3 uid="uid://ultvhqbrysi5"]
+
+[ext_resource type="Script" path="res://script/char.gd" id="1_kyc15"]
+[ext_resource type="ArrayMesh" uid="uid://cvm761xsbp83k" path="res://obj/Kuark1.obj" id="2_2g7ay"]
+[ext_resource type="Texture2D" uid="uid://ccaxvk866x6ie" path="res://Texture/hud/crosshair.png" id="2_87j2v"]
+[ext_resource type="Script" path="res://resources/inventory/inv_data.gd" id="2_pqpwr"]
+[ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_6lr5c"]
+[ext_resource type="Texture2D" uid="uid://hnr46ouikeft" path="res://Texture/hud/hp_bar_bg.png" id="3_brukk"]
+[ext_resource type="Script" path="res://script/ctrl.gd" id="3_gh06u"]
+[ext_resource type="Texture2D" uid="uid://htyvajxxftyw" path="res://Texture/hud/hp_bar.png" id="4_avfwg"]
+[ext_resource type="Script" path="res://joystick/virtual_joystick.gd" id="10_p834q"]
+[ext_resource type="PackedScene" uid="uid://djjf1mcmsdd00" path="res://scene/inv/inventory.tscn" id="11_8xbgs"]
+[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://joystick/textures/joystick_base_outline.png" id="11_ylpgg"]
+[ext_resource type="Texture2D" uid="uid://brorwatpw4kve" path="res://Texture/ctrl/jump.png" id="12_443dx"]
+[ext_resource type="Texture2D" uid="uid://dt13r06u87fib" path="res://joystick/textures/joystick_tip_arrows.png" id="12_tun1c"]
+[ext_resource type="Texture2D" uid="uid://rv3kjrswcydm" path="res://Texture/ctrl/jump2.png" id="13_1ydqr"]
+[ext_resource type="Script" path="res://script/inv/Inv_player.gd" id="13_vklqo"]
+[ext_resource type="Script" path="res://resources/inventory/main_inv.gd" id="14_1v16x"]
+[ext_resource type="Texture2D" uid="uid://btfe2n03ewnlc" path="res://Texture/pause.png" id="14_idumj"]
+[ext_resource type="Resource" uid="uid://tb41b67a6jkn" path="res://resources/items/golok_i.tres" id="15_3uh3g"]
+[ext_resource type="Texture2D" uid="uid://cu21rod0stbet" path="res://Texture/play.png" id="15_s21i2"]
+[ext_resource type="Texture2D" uid="uid://dxcp0exwn4cw8" path="res://Texture/inv/chest.png" id="16_eeg0a"]
+[ext_resource type="Resource" uid="uid://bsjpm2uecnqh5" path="res://resources/items/botol_i.tres" id="16_kh6sd"]
+[ext_resource type="Resource" uid="uid://so8bhwsf5png" path="res://resources/items/awm_i.tres" id="17_28ur6"]
+[ext_resource type="Resource" uid="uid://nvp3fyi1u2uh" path="res://resources/items/kapak_i.tres" id="18_x76ji"]
+[ext_resource type="PackedScene" uid="uid://ckkh0eieiemoe" path="res://scene/inv/slot.tscn" id="20_qm2vf"]
+[ext_resource type="Texture2D" uid="uid://b46uigpq5nd0" path="res://Texture/inv/trash.png" id="22_qtseg"]
+
+[sub_resource type="Animation" id="Animation_4nl5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bawah/Kaki_kanan:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bawah/Kaki_kiri:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872664)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872664)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Badan/Bahu_kanan/Lengan/Siku:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Badan/Bahu_kanan:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.45, 0.35, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Badan/Bahu_kiri:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.45, 0.35, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Badan/Kepala/Camera3D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0349066)]
+}
+
+[sub_resource type="Animation" id="Animation_624br"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(-0.610865, 0.610865, 0.0872665), Vector3(1.0472, -0.261799, 0.0872665), Vector3(0, 0, 0.0872665)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bahu_kanan/Lengan/Siku:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.785398, -0.872665, 0), Vector3(1.22173, 1.0472, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_20esq"]
+resource_name = "damaged"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Kepala/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.261799), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7whle"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(-0.139626, 0, 0.0872665)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872664), Vector3(-0.139626, 0, -0.0872665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bawah/Kaki_kanan:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0872665, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Badan/Bawah/Kaki_kiri:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0872665, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_52qid"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bahu_kanan:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.45, 0.35, 0), Vector3(0.45, 0.4, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bahu_kiri:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.45, 0.35, 0), Vector3(-0.45, 0.4, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872664)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872664)]
+}
+
+[sub_resource type="Animation" id="Animation_3gqlc"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Badan/Bawah/Kaki_kanan:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.471239, 0, 0), Vector3(0.471239, 0, 0), Vector3(-0.471239, 0, 0), Vector3(0.471239, 0, 0), Vector3(-0.471239, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Badan/Bawah/Kaki_kiri:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.471239, 0, 0), Vector3(-0.471239, 0, 0), Vector3(0.471239, 0, 0), Vector3(-0.471239, 0, 0), Vector3(0.471239, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Badan/Bahu_kanan:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.436332, 0, 0.0872665), Vector3(-0.436332, 0, 0.0872665), Vector3(0.436332, 0, 0.0872665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Badan/Bahu_kiri:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.436332, 0, -0.0872665), Vector3(0.436332, 0, -0.0872665), Vector3(-0.436332, 0, -0.0872665)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Badan/Bahu_kanan/Lengan/Siku:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4g4ld"]
+_data = {
+"RESET": SubResource("Animation_4nl5q"),
+"attack": SubResource("Animation_624br"),
+"damaged": SubResource("Animation_20esq"),
+"death": SubResource("Animation_7whle"),
+"idle": SubResource("Animation_52qid"),
+"move": SubResource("Animation_3gqlc")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5u4w"]
+albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obkj4"]
+albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_apu5g"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53sw0"]
+albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d6doq"]
+radius = 0.08
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnpdi"]
+albedo_color = Color(0.0120271, 0.242452, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ajmbp"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4l44"]
+albedo_color = Color(0.301961, 0.631373, 0.984314, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k1afo"]
+radius = 0.08
+height = 0.6
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fvhyf"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmkww"]
+atlas = SubResource("CompressedTexture2D_fvhyf")
+region = Rect2(1065, 213, 213, 213)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3p5o"]
+albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mhkuw"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qphv"]
+albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ghtv"]
+albedo_color = Color(0.0120271, 0.242452, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mbb35"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxm7k"]
+albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxnci"]
+albedo_color = Color(0.219608, 0.219608, 0.219608, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w4o1x"]
+radius = 0.13
+height = 0.26
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuske"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8e5hy"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocvlq"]
+albedo_color = Color(0.0762584, 0.0762584, 0.0762584, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_j6xym"]
+radius = 0.13
+height = 0.26
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnc5p"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w12nd"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4tcf"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwnwn"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cuhdr"]
+albedo_color = Color(0.0762584, 0.0762584, 0.0762584, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hr5e"]
+albedo_color = Color(0.219474, 0.219474, 0.219474, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0bsif"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8v5u1"]
+size = Vector3(0.8, 1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybe08"]
+size = Vector3(1.35, 1.3, 0.42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0y6to"]
+size = Vector3(0.6, 0.45, 0.6)
+
+[sub_resource type="Resource" id="Resource_1rbtm"]
+script = ExtResource("3_6lr5c")
+item_data = ExtResource("15_3uh3g")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_8vqet"]
+script = ExtResource("3_6lr5c")
+item_data = ExtResource("17_28ur6")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_rwdml"]
+script = ExtResource("3_6lr5c")
+item_data = ExtResource("18_x76ji")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_lkdfs"]
+script = ExtResource("14_1v16x")
+slotDatas = Array[ExtResource("3_6lr5c")]([SubResource("Resource_1rbtm"), SubResource("Resource_8vqet"), SubResource("Resource_rwdml")])
+
+[sub_resource type="Resource" id="Resource_5rgv2"]
+script = ExtResource("3_6lr5c")
+item_data = ExtResource("16_kh6sd")
+quantity = 20
+
+[sub_resource type="Resource" id="Resource_md15c"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_mysnj"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_7kilm"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_nkwus"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_03x56"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_bmvs7"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_3e6od"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_6arna"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_gijwn"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_jxwyt"]
+script = ExtResource("2_pqpwr")
+slotDatas = Array[ExtResource("3_6lr5c")]([SubResource("Resource_5rgv2"), SubResource("Resource_md15c"), SubResource("Resource_mysnj"), SubResource("Resource_7kilm"), SubResource("Resource_nkwus"), SubResource("Resource_03x56"), SubResource("Resource_bmvs7"), SubResource("Resource_3e6od"), SubResource("Resource_6arna"), SubResource("Resource_gijwn")])
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix6xv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e2yo"]
+bg_color = Color(0.666667, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x46rd"]
+bg_color = Color(0.309804, 0.309804, 0.309804, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr08t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q02j"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.368627)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3h3m"]
+bg_color = Color(0.6, 0.6, 0.6, 0.694118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2yx4"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.407843, 0.611765, 1)
+
+[node name="Char" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
+collision_layer = 2
+floor_max_angle = 1.22173
+script = ExtResource("1_kyc15")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4g4ld")
+}
+
+[node name="Badan" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_m5u4w")
+mesh = ExtResource("2_2g7ay")
+
+[node name="Bahu_kanan" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0.45, 0.35, 0)
+material_override = SubResource("StandardMaterial3D_obkj4")
+mesh = SubResource("SphereMesh_apu5g")
+
+[node name="Lengan" type="MeshInstance3D" parent="Badan/Bahu_kanan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_53sw0")
+mesh = SubResource("CapsuleMesh_d6doq")
+skeleton = NodePath("../..")
+
+[node name="Siku" type="MeshInstance3D" parent="Badan/Bahu_kanan/Lengan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_dnpdi")
+mesh = SubResource("SphereMesh_ajmbp")
+skeleton = NodePath("../..")
+
+[node name="Lengan2" type="MeshInstance3D" parent="Badan/Bahu_kanan/Lengan/Siku"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_c4l44")
+mesh = SubResource("CapsuleMesh_k1afo")
+
+[node name="Sprite3D" type="Sprite3D" parent="Badan/Bahu_kanan/Lengan/Siku/Lengan2"]
+transform = Transform3D(4.29904e-15, 9.83506e-08, -2.25, 2.25, -9.83506e-08, 0, -9.83506e-08, -2.25, -9.83506e-08, 0, 0, 0.95)
+centered = false
+offset = Vector2(-100, 0)
+pixel_size = 0.005
+texture = SubResource("AtlasTexture_pmkww")
+
+[node name="Bahu_kiri" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, -0.45, 0.35, 0)
+material_override = SubResource("StandardMaterial3D_y3p5o")
+mesh = SubResource("SphereMesh_mhkuw")
+
+[node name="Lengan" type="MeshInstance3D" parent="Badan/Bahu_kiri"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_3qphv")
+mesh = SubResource("CapsuleMesh_d6doq")
+skeleton = NodePath("../..")
+
+[node name="Siku" type="MeshInstance3D" parent="Badan/Bahu_kiri/Lengan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_3ghtv")
+mesh = SubResource("SphereMesh_mbb35")
+skeleton = NodePath("../..")
+
+[node name="Lengan2" type="MeshInstance3D" parent="Badan/Bahu_kiri/Lengan/Siku"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_kxm7k")
+mesh = SubResource("CapsuleMesh_k1afo")
+
+[node name="Bawah" type="Node3D" parent="Badan"]
+transform = Transform3D(1, 0, 0, 0, 0.999648, 0.0265433, 0, -0.0265433, 0.999648, 0, -0.5, 0)
+
+[node name="Kaki_kanan" type="MeshInstance3D" parent="Badan/Bawah"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+material_override = SubResource("StandardMaterial3D_wxnci")
+mesh = SubResource("SphereMesh_w4o1x")
+
+[node name="Paha" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kanan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_nuske")
+mesh = SubResource("CylinderMesh_8e5hy")
+
+[node name="Lutut" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kanan/Paha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+material_override = SubResource("StandardMaterial3D_ocvlq")
+mesh = SubResource("SphereMesh_j6xym")
+
+[node name="Betis" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kanan/Paha/Lutut"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+material_override = SubResource("StandardMaterial3D_tnc5p")
+mesh = SubResource("CylinderMesh_w12nd")
+
+[node name="Kaki_kiri" type="MeshInstance3D" parent="Badan/Bawah"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+material_override = SubResource("StandardMaterial3D_f4tcf")
+mesh = SubResource("SphereMesh_w4o1x")
+
+[node name="Paha" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kiri"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+material_override = SubResource("StandardMaterial3D_cwnwn")
+mesh = SubResource("CylinderMesh_8e5hy")
+
+[node name="Lutut" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kiri/Paha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, -1.49012e-08)
+material_override = SubResource("StandardMaterial3D_cuhdr")
+mesh = SubResource("SphereMesh_j6xym")
+
+[node name="Betis" type="MeshInstance3D" parent="Badan/Bawah/Kaki_kiri/Paha/Lutut"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+material_override = SubResource("StandardMaterial3D_0hr5e")
+mesh = SubResource("CylinderMesh_w12nd")
+
+[node name="Kepala" type="MeshInstance3D" parent="Badan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("SphereMesh_0bsif")
+
+[node name="Camera3D" type="Camera3D" parent="Badan/Kepala"]
+transform = Transform3D(0.999391, 0.0348995, 0, -0.0348995, 0.999391, 0, 0, 0, 1, 0, 0.1, -0.1)
+
+[node name="RayCast3D" type="RayCast3D" parent="Badan/Kepala/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+target_position = Vector3(0, 0, -3)
+
+[node name="Name" type="Label3D" parent="Badan/Kepala"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
+text = "
+"
+font_size = 36
+
+[node name="Colls1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0)
+shape = SubResource("BoxShape3D_8v5u1")
+
+[node name="Colls2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape3D_ybe08")
+
+[node name="Colls3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_0y6to")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_gh06u")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_87j2v")
+stretch_mode = 3
+
+[node name="HUD" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 80.0
+scale = Vector2(1.1, 1.1)
+color = Color(0.211765, 0.211765, 0.211765, 0.733333)
+
+[node name="hp_bar_bg" type="Sprite2D" parent="Control/HUD"]
+position = Vector2(10, 10)
+scale = Vector2(1.3, 0.5)
+texture = ExtResource("3_brukk")
+centered = false
+
+[node name="hp_bar" type="Sprite2D" parent="Control/HUD"]
+position = Vector2(10, 10)
+scale = Vector2(1.3, 0.5)
+texture = ExtResource("4_avfwg")
+centered = false
+
+[node name="Label" type="Label" parent="Control/HUD"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 7.0
+offset_right = 181.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 15
+
+[node name="JUMP" type="TouchScreenButton" parent="Control"]
+position = Vector2(1250, 500)
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("12_443dx")
+texture_pressed = ExtResource("13_1ydqr")
+action = "jump"
+
+[node name="PAUSE" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_right = 17.0
+offset_bottom = 59.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+action_mode = 0
+icon = ExtResource("14_idumj")
+
+[node name="Joystick" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -248.0
+offset_right = 257.0
+offset_bottom = -27.0
+grow_vertical = 0
+script = ExtResource("10_p834q")
+clampzone_size = 80.0
+visibility_mode = 1
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_back"
+
+[node name="Base" type="TextureRect" parent="Control/Joystick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 100)
+mouse_force_pass_scroll_events = false
+texture = ExtResource("11_ylpgg")
+stretch_mode = 5
+
+[node name="Tip" type="TextureRect" parent="Control/Joystick/Base"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+texture = ExtResource("12_tun1c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Inv_Player" type="Control" parent="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 230.0
+offset_right = 920.0
+offset_bottom = 545.0
+script = ExtResource("13_vklqo")
+main_inv = SubResource("Resource_lkdfs")
+sec_inv = SubResource("Resource_jxwyt")
+
+[node name="MainInventory" parent="Control/Inv_Player" instance=ExtResource("11_8xbgs")]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+
+[node name="SecInventory" parent="Control/Inv_Player" instance=ExtResource("11_8xbgs")]
+visible = false
+layout_mode = 1
+offset_top = 90.0
+offset_right = 80.0
+offset_bottom = 170.0
+
+[node name="Active_hud" type="ColorRect" parent="Control/Inv_Player"]
+visible = false
+layout_mode = 0
+offset_left = 461.0
+offset_right = 601.0
+offset_bottom = 191.0
+color = Color(0.0784314, 0.0784314, 0.0784314, 0.580392)
+
+[node name="Slot" parent="Control/Inv_Player/Active_hud" instance=ExtResource("20_qm2vf")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 90.0
+grow_horizontal = 2
+
+[node name="rm_single" type="Button" parent="Control/Inv_Player/Active_hud"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = -5.0
+grow_vertical = 0
+tooltip_text = "Drop Single"
+focus_mode = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ix6xv")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Inv_Player/Active_hud/rm_single"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_qtseg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="rm_all" type="Button" parent="Control/Inv_Player/Active_hud"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Drop All"
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_0e2yo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x46rd")
+action_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/Inv_Player/Active_hud/rm_all"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_qtseg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Inv_Player/Active_hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -5.5
+offset_right = 20.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="Timer" type="Timer" parent="Control/Inv_Player"]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control"]
+position = Vector2(2, 90)
+shape = SubResource("RectangleShape2D_tr08t")
+shape_centered = false
+shape_visible = false
+
+[node name="ToggleInv" type="Button" parent="Control/TouchScreenButton"]
+offset_right = 60.0
+offset_bottom = 60.0
+focus_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/TouchScreenButton/ToggleInv"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_eeg0a")
+expand_mode = 1
+
+[node name="Right" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.946181
+anchor_top = 0.578704
+anchor_right = 0.996528
+anchor_bottom = 0.67284
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q02j")
+action_mode = 0
+text = "R"
+
+[node name="Left" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.868056
+anchor_top = 0.578704
+anchor_right = 0.918403
+anchor_bottom = 0.67284
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 38
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m3h3m")
+action_mode = 0
+text = "L"
+
+[node name="Button" type="Button" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_right = 22.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "HUD"
+
+[node name="DeathScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Deathsc" type="ColorRect" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180392, 0.180392, 0.180392, 0.898039)
+
+[node name="Label" type="Label" parent="DeathScreen/Deathsc"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -44.0
+offset_right = 62.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Kamu Mati"
+
+[node name="Respawn" type="Button" parent="DeathScreen/Deathsc"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = 59.0
+offset_right = 59.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+text = "Respawn"
+
+[node name="pause_bg" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PAUSE_BG" type="ColorRect" parent="pause_bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.368627)
+
+[node name="RESUME" type="Button" parent="pause_bg/PAUSE_BG"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_right = 17.0
+offset_bottom = 59.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+action_mode = 0
+icon = ExtResource("15_s21i2")
+
+[node name="EXIT" type="Button" parent="pause_bg/PAUSE_BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -41.5
+offset_right = 81.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2yx4")
+text = "Keluar"
+
+[connection signal="pressed" from="Control/PAUSE" to="Control" method="_on_pause_pressed" flags=18]
+[connection signal="visibility_changed" from="Control/Inv_Player/SecInventory" to="Control/Inv_Player" method="_on_sec_inv_visibility_changed"]
+[connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_single" to="Control/Inv_Player" method="_on_rm_single_pressed"]
+[connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_all" to="Control/Inv_Player" method="_on_rm_all_pressed"]
+[connection signal="timeout" from="Control/Inv_Player/Timer" to="Control/Inv_Player" method="_on_timer_timeout"]
+[connection signal="pressed" from="Control/TouchScreenButton/ToggleInv" to="Control/Inv_Player" method="_OnInv_pressed"]
+[connection signal="pressed" from="Control/Right" to="Control/Inv_Player" method="_on_right_pressed"]
+[connection signal="pressed" from="Control/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Control/Left" to="Control/Inv_Player" method="_on_left_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_hud_pressed"]
+[connection signal="pressed" from="DeathScreen/Deathsc/Respawn" to="." method="_on_respawn"]
+[connection signal="pressed" from="pause_bg/PAUSE_BG/RESUME" to="Control" method="_on_play_pressed"]
+[connection signal="pressed" from="pause_bg/PAUSE_BG/EXIT" to="Control" method="_on_keluar_pressed"]

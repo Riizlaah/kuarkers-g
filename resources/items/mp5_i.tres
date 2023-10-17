@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="itemData" load_steps=6 format=3 uid="uid://sm6kq3bnjysg"]
+
+[ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_axyhu"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
+load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw1ye"]
+atlas = SubResource("CompressedTexture2D_mm6ba")
+region = Rect2(852, 213, 213, 213)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bptvd"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejppb"]
+atlas = SubResource("CompressedTexture2D_bptvd")
+region = Rect2(852, 213, 213, 213)
+
+[resource]
+script = ExtResource("1_axyhu")
+name = "MP5"
+icon = SubResource("AtlasTexture_bw1ye")
+stack = false
+onhand_texture = SubResource("AtlasTexture_ejppb")
+onhand_pos = Vector3(0, -0.4, 0.5)
+onhand_rot = Vector3(0, -90, 90)
+onhand_scale = 1.3

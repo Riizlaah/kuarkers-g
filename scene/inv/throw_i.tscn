@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl28x3uh2ytg2"]
+
+[ext_resource type="Script" path="res://script/inv/throw_i.gd" id="1_1vknb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gx2w5"]
+size = Vector3(1, 2.3, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swr3i"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ai4t"]
+atlas = SubResource("CompressedTexture2D_swr3i")
+region = Rect2(0, 0, 213, 213)
+
+[node name="Throw_I" type="RigidBody3D"]
+script = ExtResource("1_1vknb")
+
+[node name="Colls" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gx2w5")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("AtlasTexture_4ai4t")
