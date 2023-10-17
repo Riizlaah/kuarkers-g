@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://tb41b67a6jkn"]
+
+[ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_op60n"]
+[ext_resource type="Script" path="res://resources/ItemType/script/MeleeType.gd" id="2_c0phm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
+load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j76ea"]
+atlas = SubResource("CompressedTexture2D_mm6ba")
+region = Rect2(0, 0, 213, 213)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bptvd"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv5og"]
+atlas = SubResource("CompressedTexture2D_bptvd")
+region = Rect2(0, 0, 213, 213)
+
+[sub_resource type="Resource" id="Resource_1rieg"]
+script = ExtResource("2_c0phm")
+throwable = false
+damage_i = 20
+
+[resource]
+script = ExtResource("1_op60n")
+name = "Golok"
+icon = SubResource("AtlasTexture_j76ea")
+stack = false
+onhand_texture = SubResource("AtlasTexture_jv5og")
+onhand_pos = Vector3(0, -0.15, 0.2)
+onhand_rot = Vector3(0, -90, 90)
+onhand_scale = 1.3
+type = SubResource("Resource_1rieg")

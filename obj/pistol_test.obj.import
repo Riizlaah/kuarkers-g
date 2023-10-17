@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://booqvhih1q7ti"
+path="res://.godot/imported/pistol_test.obj-d9e43cbbf983fc15935810853c11c157.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pistol_test.obj-d9e43cbbf983fc15935810853c11c157.mesh"]
+
+source_file="res://obj/pistol_test.obj"
+dest_files=["res://.godot/imported/pistol_test.obj-d9e43cbbf983fc15935810853c11c157.mesh", "res://.godot/imported/pistol_test.obj-d9e43cbbf983fc15935810853c11c157.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
