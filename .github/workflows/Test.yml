@@ -1,0 +1,30 @@
+on: 
+  push:
+    tags:
+      - "v*"
+
+name: Test
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    name: Testt
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+  
+    - name: Build...
+      uses: firebelley/godot-export@v5.2.0
+      with:
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_linux.x86_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_export_templates.tpz
+        relative_project_path: ./
+

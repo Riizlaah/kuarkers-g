@@ -19,8 +19,8 @@ region = Rect2(0, 0, 213, 213)
 
 [sub_resource type="Resource" id="Resource_1rieg"]
 script = ExtResource("2_c0phm")
-throwable = false
 damage_i = 20
+cooldown = 48
 
 [resource]
 script = ExtResource("1_op60n")

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="itemData" load_steps=6 format=3 uid="uid://cb6oo7enll5s"]
+[gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://cb6oo7enll5s"]
 
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_yc3wr"]
+[ext_resource type="Script" path="res://resources/ItemType/script/FoodType.gd" id="2_a8rof"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
@@ -16,6 +17,11 @@ load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc
 atlas = SubResource("CompressedTexture2D_bptvd")
 region = Rect2(852, 0, 213, 213)
 
+[sub_resource type="Resource" id="Resource_cghuk"]
+script = ExtResource("2_a8rof")
+heal = 30
+cooldown = 60
+
 [resource]
 script = ExtResource("1_yc3wr")
 name = "Donat"
@@ -25,3 +31,4 @@ onhand_texture = SubResource("AtlasTexture_qigqq")
 onhand_pos = Vector3(0, -0.15, 0.05)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 0.6
+type = SubResource("Resource_cghuk")

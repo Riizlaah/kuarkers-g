@@ -3,7 +3,7 @@
 importer="wavefront_obj"
 importer_version=1
 type="Mesh"
-uid="uid://dqfkblo6p0jdk"
+uid="uid://c47xumyskpw7x"
 path="res://.godot/imported/House2.obj-3cc7004e5c6f83596a572a4cfbb33c7b.mesh"
 
 [deps]
@@ -19,3 +19,4 @@ generate_tangents=true
 scale_mesh=Vector3(1, 1, 1)
 offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true
+force_disable_mesh_compression=false
