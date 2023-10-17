@@ -5,9 +5,28 @@ signal inv_updated(inv_d: invData)
 signal inv_interact(inv_d: invData, index: int, btn: int)
 
 @export var slotDatas : Array[slotData]
+var s_index = null
 
 func onSlotClicked(index: int):
 	inv_interact.emit(self, index)
+	pass
+
+func find_name(name: String):
+	var ret = null
+	for i in slotDatas.size():
+		if slotDatas[i].item_data == null:
+			break
+		if slotDatas[i].item_data.name == name:
+			s_index = i
+			ret = slotDatas[i].duplicate(true)
+			return ret
+	return ret
+func set_s_index(slot_d: slotData):
+	if s_index == null:
+		return
+	slotDatas[s_index] = slot_d
+	inv_updated.emit(self)
+	s_index = null
 	pass
 
 func grab_slotD(index: int):
@@ -21,16 +40,6 @@ func grab_slotD(index: int):
 		return slot_d
 	else:
 		return null
-#	var slot_d = slotDatas[index]
-#	if slot_d.item_data != null:
-#		slotDatas[index] = slotData.new()
-#		if slot_d.active == true:
-#			slotDatas[index].active = true
-#			slot_d.active = false
-#		inv_updated.emit(self)
-#		return slot_d
-#	else:
-#		return null
 
 func drop_slotD(g_slotD: slotData, index: int):
 	var slot_d = slotDatas[index]
@@ -81,5 +90,10 @@ func pick_up_slot(slot_d: slotData):
 			return true
 	return false
 
-
+func clear_slot():
+	var slot_size = slotDatas.size()
+	slotDatas.clear()
+	for i in range(slot_size):
+		slotDatas.append(slotData.new())
+	inv_updated.emit(self)
 

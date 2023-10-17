@@ -1,9 +1,37 @@
 [gd_scene load_steps=7 format=3 uid="uid://b25bwypv0264e"]
 
 [ext_resource type="Script" path="res://script/multiplayer/exarea.gd" id="1_av7x8"]
-[ext_resource type="Texture2D" uid="uid://de5iarc5482dx" path="res://Texture/sprite/explode/frame_00009.png" id="9_aj47m"]
+[ext_resource type="Texture2D" uid="uid://d0m37skypyjb8" path="res://Texture/sprite/explode/frame_00009.png" id="9_aj47m"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c52va"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_n2dqc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
 
 [sub_resource type="Animation" id="Animation_svcmw"]
 resource_name = "explode"
@@ -23,29 +51,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite3D:visible")
-tracks/1/interp = 1
+tracks/1/path = NodePath("Sprite3D2:scale")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_n2dqc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1.5153),
 "update": 0,
-"values": [Vector3(0.1, 0.1, 0.1)]
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(3, 3, 3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ow3e0"]
@@ -55,6 +68,8 @@ _data = {
 }
 
 [node name="ExArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_av7x8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -62,7 +77,13 @@ shape = SubResource("SphereShape3D_c52va")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-visible = false
+centered = false
+offset = Vector2(-640, 0)
+pixel_size = 0.005
+texture = ExtResource("9_aj47m")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
 centered = false
 offset = Vector2(-640, 0)
 pixel_size = 0.005

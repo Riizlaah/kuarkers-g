@@ -1,8 +1,11 @@
 extends Control
 
 const pickup = preload("res://scene/inv/pick_up.tscn")
+const throw_i = preload("res://scene/inv/throw_i.tscn")
 var active_slot: slotData
-var mainItem: itemData
+var mainItem
+var toggle_s := false
+#var heal_time
 
 @onready var Minv_data = $MainInventory
 @onready var Sinv_data: PanelContainer = $SecInventory
@@ -10,19 +13,26 @@ var mainItem: itemData
 @onready var act_lb = $Active_hud/Label
 @onready var act_slot = $Active_hud/Slot
 @onready var rt_node = get_tree().get_root()
-@onready var charr = $"../.."
+@onready var charr: Player = $"../.."
 @onready var camera = $"../../Badan/Kepala/Camera3D"
+@onready var r_btn_texture = $"../Right/TextureRect"
+@onready var c_texture = $"../TextureRect"
+@onready var vignette = $"../Vignette"
 
 @export var main_inv : MainInv: set = sMSlot
 @export var sec_inv : invData
+@export var texture_arr: Array[Texture]
+
 
 func _ready():
+	var ctrl = $".."
 	rt_node = rt_node.get_node("/root/World")
 	Minv_data.setup_slot(main_inv)
 	Sinv_data.setup_slot(sec_inv)
 	main_inv.main_slot_change.connect(ch_main_slot)
 	main_inv.inv_interact.connect(on_inv_interact)
 	sec_inv.inv_interact.connect(on_inv_interact)
+	ctrl.right_click.connect(on_right_pressed)
 	#main_inv.set_main_slot(0)
 
 func sMSlot(inv_d: MainInv):
@@ -63,10 +73,21 @@ func pick_up_slot(slot_d: slotData):
 func ch_main_slot(slot: slotData):
 	if slot.item_data == null:
 		charr.reset_onhand_item()
+		mainItem = null
 	else:
 		charr.set_onhand_item(slot)
-		#charr.set_properti(slot.item_data.type)
-	mainItem = main_inv.main_slot.item_data
+		mainItem = main_inv.main_slot.item_data
+		charr.set_properti(slot.item_data.type)
+		if mainItem.type is GunType or mainItem.type is RPGType:
+			charr.update_ammo()
+			r_btn_texture.texture = texture_arr[0]
+		else:
+			charr.ammo_lb.hide()
+			if toggle_s == true:
+				camera.fov = 75
+				c_texture.texture = texture_arr[3]
+				vignette.hide()
+			r_btn_texture.texture = texture_arr[2]
 
 
 func update_active_slot():
@@ -81,7 +102,7 @@ func update_active_slot():
 func _on_rm_single_pressed():
 	var npickup = pickup.instantiate()
 	npickup.slot_d = active_slot.create_single_slot()
-	npickup.position = -charr.global_transform.basis.z + charr.global_position + Vector3(0,0,-1)
+	npickup.position = -charr.global_transform.basis.z + (charr.global_transform * Vector3(0,0,-1))
 	rt_node.add_child(npickup)
 	if active_slot.quantity == 0:
 		active_slot = null
@@ -91,7 +112,7 @@ func _on_rm_single_pressed():
 func _on_rm_all_pressed():
 	var npickup = pickup.instantiate()
 	npickup.slot_d = active_slot
-	npickup.position = -charr.global_transform.basis.z + charr.global_position + Vector3(0,0,-1)
+	npickup.position = -charr.global_transform.basis.z + (charr.global_transform * Vector3(0,0,-1))
 	rt_node.add_child(npickup)
 	active_slot = null
 	update_active_slot()
@@ -100,31 +121,77 @@ func _on_sec_inv_visibility_changed():
 		_on_rm_all_pressed()
 
 
-func _on_left_pressed():
-	pass#main_inv.main_slot.item_data
-func _on_right_pressed():
-	if mainItem.type is MeleeType:
-		print('yes')
-		if mainItem.type.throwable != false:
-			return
-		var throw_i = ThrowItem.new()
-		throw_i.position = -charr.global_transform.basis.z + charr.global_position + Vector3(0,0,-1)
-		throw_i.throw(-camera.global_transform.basis.z + camera.global_position + Vector3(0,0,-1), mainItem)
+func on_right_pressed():
+	if mainItem == null:
+		return
+	if mainItem.type is GunType or mainItem.type is RPGType:
+		toggle_scope()
+	elif mainItem.type is MeleeType:
+		var throwItem: RigidBody3D = throw_i.instantiate()
+		throwItem.position = -camera.global_transform.basis.z + (camera.global_transform * Vector3(0,0,-1))
+		rt_node.add_child(throwItem)
+		var slot_d = main_inv.main_slot
+		slot_d.active = false
+		throwItem.throw(-camera.global_transform.basis.z, slot_d)
 		main_inv.slotDatas[main_inv.main_slot_index] = slotData.new()
 		main_inv.check_main_slot()
-		
-#	match mainItem.type:
-#		ItemType:
+	elif mainItem.type is FoodType:
+		#makan
+		if charr.currentHealth == 100:
+			return
+		charr.anim.play("eat")
+		await get_tree().create_timer(1.5).timeout
+		var data: FoodType = mainItem.type
+		charr.heal(data.heal)
+		#kurangi
+		main_inv.slotDatas[main_inv.main_slot_index].quantity -= 1
+		#print(main_inv.main_slot.quantity, main_inv.slotDatas[main_inv.main_slot_index].quantity)
+		if main_inv.slotDatas[main_inv.main_slot_index].quantity < 0:
+			main_inv.slotDatas[main_inv.main_slot_index] = slotData.new()
+		#update
+		main_inv.check_main_slot()#set_main_slot(main_inv.main_slot_index)
+	elif mainItem.type is DrinkType:
+		#minum & efek
+		charr.anim.play("eat")
+		await get_tree().create_timer(1.5).timeout
+		var data: DrinkType = mainItem.type
+		charr.take_effect(data.spd_tmp, data.dmg_tmp, data.time_eff)
+		#kurangi
+		main_inv.slotDatas[main_inv.main_slot_index].quantity -= 1
+		if main_inv.slotDatas[main_inv.main_slot_index].quantity < 0:
+			main_inv.slotDatas[main_inv.main_slot_index] = slotData.new()
+		#update
+		main_inv.check_main_slot()
+		pass
 
+func toggle_scope():
+	toggle_s = !toggle_s
+	if toggle_s == true:
+		c_texture.texture = texture_arr[1]
+		camera.fov = mainItem.type.cam_fov
+		vignette.show()
+	else:
+		c_texture.texture = texture_arr[3]
+		camera.fov = 75
+		vignette.hide()
 
-#	if main_inv.main_slot.item_data == null:
-#		return
-#	main_inv.main_slot.item_data.type.r_click([
-#		charr, 
-#		main_inv.main_slot.item_data, 
-#		main_inv, 
-#		sec_inv
-#		])
+func search_ammo():
+	var main_r = main_inv.find_name("Ammo")
+	if main_r != null:
+		return main_r
+	else:
+		return sec_inv.find_name("Ammo")
+		#sampai sini
 
-func _on_timer_timeout():
+func update_ammo():
+	main_inv.inv_updated.emit(main_inv)
+	sec_inv.inv_updated.emit(sec_inv)
+	return
+
+func set_main_s():
 	main_inv.set_main_slot(0)
+
+func clear_slot():
+	main_inv.clear_slot()
+	sec_inv.clear_slot()
+	set_main_s()

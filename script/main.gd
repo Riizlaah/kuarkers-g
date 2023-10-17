@@ -5,6 +5,8 @@ extends Control
 @onready var senv_lb = $ColorRect/SENV_LB
 @onready var senv = $ColorRect/SENV
 @onready var text_edit = $ColorRect/TextEdit
+@onready var PlayMenu = $PlayMenu
+@onready var infomenu = $InfoMenu
 
 func _ready():
 	fov_lb.text = "FOV : " + str(Settings.fov)
@@ -12,22 +14,25 @@ func _ready():
 	text_edit.text = "EL_HEKER"
 	fov.value = Settings.fov
 	senv.value = Settings.senv * 100
+	#var hek = get_node_or_null("Elek")
+
 
 func _on_main_pressed():
-	get_tree().change_scene_to_file("res://scene/world.tscn")
-	pass
+	PlayMenu.show()
+#	get_tree().change_scene_to_file("res://scene/world.tscn")
+
 
 func _on_quit_pressed():
 	get_tree().quit()
-	pass
+
 
 func _on_setting_pressed():
 	$ColorRect.show()
-	pass # Replace with function body.
+
 
 func _on_close_pressed():
 	$ColorRect.hide()
-	pass # Replace with function body.
+
 
 func _on_fov_value_changed(value: int):
 	fov_lb.text = "FOV : " + str(value)
@@ -37,11 +42,9 @@ func _on_senv_value_changed(value: float):
 	senv_lb.text = "Sensivitas : " + str(value)
 	Settings.senv = value*0.01
 
-func _on_text_edit_text_changed():
+func _on_text_edit_text_changed(new_text):
 	if check_s_n_t(text_edit.text) == true:
 		text_edit.text = text_set(text_edit.text)
-	#Settings.p_name = text_edit.text
-	#print(Settings.p_name)
 	pass
 
 func text_set(text: String):
@@ -54,4 +57,12 @@ func check_s_n_t(text: String):
 
 func _on_save_pressed():
 	Settings.p_name = text_edit.text
-	#print(Settings.p_name)
+
+
+func _on_info_pressed():
+	infomenu.show()
+
+
+func _on_gui_input(event: InputEvent):
+	if event is InputEventScreenTouch and event.is_pressed():
+		infomenu.hide()
