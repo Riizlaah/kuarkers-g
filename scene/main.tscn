@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://yw7vd1w222jo"]
+[gd_scene load_steps=19 format=3 uid="uid://yw7vd1w222jo"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_qhviq"]
 [ext_resource type="Texture2D" uid="uid://7c3ejx1ypj" path="res://Texture/main-menu/play.png" id="2_8bmul"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2psrbu4ai55b" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
 [ext_resource type="Texture2D" uid="uid://c5q5104l2u71" path="res://Texture/main-menu/close.png" id="5_hligs"]
 [ext_resource type="AudioStream" uid="uid://b0we3xeeuxahr" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
+[ext_resource type="Script" path="res://script/multiplayer/PlayMenu.gd" id="8_n7ply"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolhe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -54,6 +55,26 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2t4b"]
 bg_color = Color(0.6, 0.6, 0.6, 0.913725)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnf2n"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txk34"]
+bg_color = Color(0.180392, 0.345098, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfkmp"]
+bg_color = Color(0.227451, 0.717647, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jd1p"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -158,19 +179,20 @@ flat = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.474453
-anchor_right = 0.0484791
-anchor_bottom = 0.556569
-theme_override_font_sizes/font_size = 32
+anchor_top = 0.40146
+anchor_right = 0.0617871
+anchor_bottom = 0.483577
+offset_right = -14.0
+theme_override_font_sizes/font_size = 24
 metadata/_edit_use_anchors_ = true
 
 [node name="FOV" type="HSlider" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.547445
+anchor_top = 0.474453
 anchor_right = 0.617871
-anchor_bottom = 0.605839
+anchor_bottom = 0.532847
 offset_right = -300.0
 offset_bottom = -16.0
 scale = Vector2(2, 2)
@@ -185,19 +207,19 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.656934
+anchor_top = 0.583942
 anchor_right = 0.0484791
-anchor_bottom = 0.739051
-theme_override_font_sizes/font_size = 32
+anchor_bottom = 0.666059
+theme_override_font_sizes/font_size = 24
 metadata/_edit_use_anchors_ = true
 
 [node name="SENV" type="HSlider" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
-anchor_top = 0.729927
+anchor_top = 0.656934
 anchor_right = 0.617871
-anchor_bottom = 0.788321
+anchor_bottom = 0.715328
 offset_right = -300.0
 offset_bottom = -16.0
 scale = Vector2(2, 2)
@@ -241,6 +263,171 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("7_hw44m")
 autoplay = true
 
+[node name="PlayMenu" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0651042
+anchor_top = 0.108025
+anchor_right = 0.934896
+anchor_bottom = 0.91821
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnf2n")
+script = ExtResource("8_n7ply")
+metadata/_edit_use_anchors_ = true
+
+[node name="TabContainer" type="TabContainer" parent="PlayMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.24381
+offset_bottom = -18.0
+grow_horizontal = 2
+theme_override_constants/side_margin = 20
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/panel = SubResource("StyleBoxFlat_txk34")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_tfkmp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Host" type="Label" parent="PlayMenu/TabContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Host"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Join" type="Label" parent="PlayMenu/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Join"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Close" type="TextureButton" parent="PlayMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95509
+anchor_right = 1.0
+anchor_bottom = 0.0857143
+grow_horizontal = 0
+texture_normal = ExtResource("5_hligs")
+ignore_texture_size = true
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="HostMenu" type="GridContainer" parent="PlayMenu"]
+layout_mode = 0
+anchor_left = 0.0499002
+anchor_top = 0.285714
+anchor_right = 0.9501
+anchor_bottom = 1.0
+theme_override_constants/v_separation = 20
+columns = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Dunia :  "
+horizontal_alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+item_count = 1
+selected = 0
+popup/item_0/text = "Klasik"
+popup/item_0/id = 0
+
+[node name="Label2" type="Label" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Izin Pemain Lain :  "
+horizontal_alignment = 2
+
+[node name="OptionButton2" type="OptionButton" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+item_count = 3
+selected = 1
+popup/item_0/text = "Admin"
+popup/item_0/id = 0
+popup/item_1/text = "User"
+popup/item_1/id = 1
+popup/item_2/text = "Pengunjung"
+popup/item_2/id = 2
+
+[node name="Label3" type="Label" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Waktu Terus Berjalan :  "
+horizontal_alignment = 2
+
+[node name="CheckBox" type="CheckButton" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+button_pressed = true
+
+[node name="Label4" type="Label" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Waktu Saat Memulai :  "
+horizontal_alignment = 2
+
+[node name="OptionButton3" type="OptionButton" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+item_count = 4
+selected = 0
+popup/item_0/text = "Pagi"
+popup/item_0/id = 0
+popup/item_1/text = "Siang"
+popup/item_1/id = 1
+popup/item_2/text = "Sore"
+popup/item_2/id = 2
+popup/item_3/text = "Malam"
+popup/item_3/id = 3
+
+[node name="Buat" type="Button" parent="PlayMenu/HostMenu"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_4jd1p")
+text = "Buat"
+
+[node name="JoinMenu" type="Control" parent="PlayMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 110.0
+offset_right = -0.000183105
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlayMenu/JoinMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Host Yang Tersedia"
+
 [connection signal="pressed" from="VBoxC/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Main" to="." method="_on_main_pressed"]
@@ -249,3 +436,6 @@ autoplay = true
 [connection signal="value_changed" from="ColorRect/SENV" to="." method="_on_senv_value_changed"]
 [connection signal="text_changed" from="ColorRect/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="ColorRect/save" to="." method="_on_save_pressed"]
+[connection signal="tab_changed" from="PlayMenu/TabContainer" to="PlayMenu" method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="PlayMenu/Close" to="PlayMenu" method="_on_close_pressed"]
+[connection signal="pressed" from="PlayMenu/HostMenu/Buat" to="PlayMenu" method="_on_buat_pressed"]

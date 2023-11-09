@@ -9,6 +9,8 @@ func _ready():
 	sprite.texture = slot_d.item_data.icon
 
 func _on_area3d_entered(body: Node3D):
+	if body.has_method("pick_up_slot") == false:
+		return
 	pick_up = body.pick_up_slot(slot_d)
 	match typeof(pick_up):
 		TYPE_BOOL:

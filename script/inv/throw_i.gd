@@ -1,21 +1,36 @@
 extends RigidBody3D
 class_name ThrowItem
 
-var throwForce = 50.0
-var item_data: itemData
+const pickup = preload("res://scene/inv/pick_up.tscn")
+var throwForce = 40.0
+var slot_d: slotData
+var time = 30.0
+var direction_r
 @onready var sprite = $Sprite3D
+@onready var rtw_node = get_node("/root/World")
 
-func throw(direction, item_d: itemData):
-	sprite.texture = item_d.icon
-	item_data = item_d
-	apply_impulse(direction * throwForce)
-#	var camera = $Camera Ganti ini dengan referensi kamera Anda.
-#	var camera_transform = camera.global_transform
-#	var direction = -camera_transform.basis.z  # Arah lemparan adalah ke arah depan kamera.
+func _physics_process(delta):
+	if freeze == true:
+		rotate_y(0)
+		return
+	rotate_y(15 * delta)
+	time -= 0.1
+	if time <= 0:
+		queue_free()
 
+func throw(direction, slot_d2: slotData):
+	sprite.texture = slot_d2.item_data.icon
+	slot_d = slot_d2
+	direction_r = direction
+	apply_impulse(direction_r * throwForce)
 
 func _on_body_entered(body: Node3D):
 	if body.has_method("takeDamage"):
-		body.takeDamage(item_data.type.damage * 1.5)
-	await get_tree().create_timer(1.5).timeout
+		body.takeDamage(slot_d.item_data.type.damage * 1.5)
+	freeze = true
+	await get_tree().create_timer(1).timeout
+	var pickup2 = pickup.instantiate()
+	pickup2.slot_d = slot_d
+	pickup2.position = global_position
+	rtw_node.add_child(pickup2)
 	queue_free()

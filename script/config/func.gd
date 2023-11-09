@@ -1,8 +1,4 @@
-#extends Node
+extends Node
 
-func is_em_slot(arr: Array[slotData]):
-	for inx in arr.size():
-		if arr[inx].item_data == null:
-			return inx
-	return false
-
+func wait(time: float):
+	await get_tree().create_timer(time).timeout

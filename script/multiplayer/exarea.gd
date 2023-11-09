@@ -7,12 +7,13 @@ func _ready():
 	set_physics_process(false)
 
 func explode():
+	anim.play("explode")
+	await get_tree().create_timer(0.25).timeout
 	var bodies = get_overlapping_bodies()
-	await anim.play("explode")
 	if bodies.is_empty() == true:
+		queue_free()
 		return
 	for body in bodies:
-		if body.has_method("takeDamage"):
-			body.takeDamage(50)
+		body.takeDamage(50)
 	queue_free()
 

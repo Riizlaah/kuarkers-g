@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://cq43i5xkvvjpu"]
+[gd_scene load_steps=20 format=3 uid="uid://cq43i5xkvvjpu"]
 
 [ext_resource type="Script" path="res://script/npc/npc_a.gd" id="1_6ketm"]
-[ext_resource type="Texture2D" uid="uid://c63np3i2jcbp0" path="res://Texture/kostum/hand_player.png" id="4_cnsfl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4248"]
 albedo_color = Color(0.537255, 0.188235, 0, 1)
@@ -232,7 +231,6 @@ _data = {
 size = Vector3(1, 1.49, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n22q"]
-albedo_texture = ExtResource("4_cnsfl")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bp48d"]
 material = SubResource("StandardMaterial3D_0n22q")

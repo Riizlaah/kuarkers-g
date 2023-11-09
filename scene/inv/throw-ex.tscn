@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://duus4ibew12l5"]
+
+[ext_resource type="Script" path="res://script/inv/throw-ex.gd" id="1_ljidx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5uqit"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swr3i"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k4b3"]
+atlas = SubResource("CompressedTexture2D_swr3i")
+region = Rect2(213, 426, 213, 213)
+
+[node name="throw-ex" type="RigidBody3D"]
+script = ExtResource("1_ljidx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5uqit")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+texture = SubResource("AtlasTexture_7k4b3")

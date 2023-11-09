@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="itemData" load_steps=6 format=3 uid="uid://bo7dnyc5ahrq7"]
+[gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://bo7dnyc5ahrq7"]
 
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_risu5"]
+[ext_resource type="Script" path="res://resources/ItemType/script/AmmoType.gd" id="2_akbvu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
@@ -16,6 +17,9 @@ load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc
 atlas = SubResource("CompressedTexture2D_bptvd")
 region = Rect2(213, 213, 213, 213)
 
+[sub_resource type="Resource" id="Resource_4spgj"]
+script = ExtResource("2_akbvu")
+
 [resource]
 script = ExtResource("1_risu5")
 name = "Ammo"
@@ -25,3 +29,4 @@ onhand_texture = SubResource("AtlasTexture_iy78l")
 onhand_pos = Vector3(0, -0.15, 0.08)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 0.55
+type = SubResource("Resource_4spgj")

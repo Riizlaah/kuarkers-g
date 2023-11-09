@@ -4,7 +4,6 @@ extends Node3D
 @onready var sun = $SUN
 @onready var moon = $MOON
 @onready var w_env : WorldEnvironment = $W_ENV
-@onready var rigidBody = $RigidBody3D
 @onready var noise = load("res://resources/other/Noise1.tres")
 
 var time : float
@@ -22,12 +21,10 @@ var noise_offset := 0.05
 func _ready():
 	time_rate = 1.0 / day_length
 	time = s_time
-	await get_tree().create_timer(2).timeout
-	rigidBody.apply_impulse(Vector3(0,0,-10) * 5)
 	#var test = PhysicsServer3D.new()
 
 func _process(delta):
-	noise_offset += time * 0.15
+	noise_offset += time * 0.05
 	noise.set("offset", Vector3(noise_offset, 0, 0))
 	time += time_rate * delta
 	if time >= 1.0:
