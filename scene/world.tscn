@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dccslvps7b2f"]
+[gd_scene load_steps=43 format=3 uid="uid://dccslvps7b2f"]
 
 [ext_resource type="Script" path="res://script/world.gd" id="1_xnwai"]
 [ext_resource type="Material" uid="uid://dhv87vduvipxq" path="res://resources/other/Sky1.tres" id="2_hvj5g"]
@@ -8,8 +8,8 @@
 [ext_resource type="ArrayMesh" uid="uid://d0ibfnbnndkmi" path="res://Mesh_Obj/House/House1.obj" id="6_set70"]
 [ext_resource type="ArrayMesh" uid="uid://dqfkblo6p0jdk" path="res://Mesh_Obj/House/House2.obj" id="7_31qwt"]
 [ext_resource type="Texture2D" uid="uid://dis1xiqepfu3b" path="res://Mesh_Obj/House/House2_2.png" id="7_ga2na"]
-[ext_resource type="PackedScene" uid="uid://hx3s3tiv2lt6" path="res://scene/npc/dummy_t.tscn" id="9_qkvsv"]
-[ext_resource type="PackedScene" uid="uid://ultvhqbrysi5" path="res://scene/char.tscn" id="17_7jw71"]
+[ext_resource type="Texture2D" uid="uid://b2csqjefcupda" path="res://Mesh_Obj/House/House2_1.png" id="9_8xxvl"]
+[ext_resource type="Texture2D" uid="uid://dxm4rko5vv0qm" path="res://Mesh_Obj/House/house1_3.png" id="9_q2lre"]
 
 [sub_resource type="Gradient" id="Gradient_y3g1m"]
 offsets = PackedFloat32Array(0.128245, 0.242141, 0.583827, 0.782227)
@@ -114,6 +114,12 @@ data = PackedVector3Array(0.5, 0, -0.6472, -0.5, 0, -0.6472, 0.5, 0, 0.5, 0.5, 0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74qj5"]
 albedo_texture = ExtResource("7_ga2na")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1uxm"]
+albedo_texture = ExtResource("9_8xxvl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wklw4"]
+albedo_texture = ExtResource("9_q2lre")
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_xnwai")
 sun_c = SubResource("Gradient_y3g1m")
@@ -132,9 +138,7 @@ visible = false
 
 [node name="MOON" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0)
-
-[node name="Char" parent="." instance=ExtResource("17_7jw71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
 
 [node name="GColls" type="StaticBody3D" parent="."]
 transform = Transform3D(35, 0, 0, 0, 35, 0, 0, 0, 35, 0, 0, 0)
@@ -216,5 +220,30 @@ material_override = SubResource("StandardMaterial3D_74qj5")
 mesh = ExtResource("7_31qwt")
 skeleton = NodePath("../../Plane")
 
-[node name="DummyTarget" parent="." instance=ExtResource("9_qkvsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2, 19)
+[node name="CollsH4" type="CollisionShape3D" parent="GColls"]
+transform = Transform3D(-9.83506e-09, 0, 0.225, 0, 0.225, 0, -0.225, 0, -9.83506e-09, -1.79723, 0, -3.0311)
+shape = SubResource("ConcavePolygonShape3D_cp360")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GColls/CollsH4"]
+material_override = SubResource("StandardMaterial3D_s1uxm")
+mesh = ExtResource("7_31qwt")
+skeleton = NodePath("../../Plane")
+
+[node name="CollsH5" type="CollisionShape3D" parent="GColls"]
+transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 1.81175, 0, -3.95158)
+shape = SubResource("ConcavePolygonShape3D_cp360")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GColls/CollsH5"]
+material_override = SubResource("StandardMaterial3D_s1uxm")
+mesh = ExtResource("7_31qwt")
+skeleton = NodePath("../../Plane")
+
+[node name="CollsH3" type="CollisionShape3D" parent="GColls"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.19675, 0, 0.57)
+shape = SubResource("ConcavePolygonShape3D_i8wsw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GColls/CollsH3"]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wklw4")
+mesh = ExtResource("6_set70")
+skeleton = NodePath("../../Plane")

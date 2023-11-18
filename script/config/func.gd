@@ -1,4 +1,5 @@
 extends Node
 
-func wait(time: float):
-	await get_tree().create_timer(time).timeout
+func write_deb(text: String):
+	var file = FileAccess.open("res://resources/debug.txt", FileAccess.WRITE)
+	file.store_string(text)

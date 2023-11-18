@@ -5,6 +5,7 @@ const JUMP_VELOCITY = 6
 const bullet_s = preload("res://scene/bullet.tscn")
 const grn_s = preload("res://scene/inv/throw-ex.tscn")
 const rocket_s = preload("res://scene/rocket.tscn")
+const pickup_s = preload("res://scene/inv/pick_up.tscn")
 
 var SPEED = 10.0
 var senv = 0.25
@@ -15,18 +16,22 @@ var ground = null
 var maxHealth = 100.00
 var sn = 1.3
 var die = false
-var cam_pos = null
+var cam_pos: Vector3 = Vector3.ZERO
 var gravity = 10
 var paused = false
 var currentHealth = 100.00
 var damage = 5
-var cooldown := 0.0
+var cooldown := 0
 var cd_template := 60
 var RoF := 1
 var is_reloading := false
 var is_reloading2 := false
 var time_eff := 0
-#var gun_property: GunType
+var effect := {}
+var sec_inv: invData
+var main_inv: MainInv
+@export var syncPos : Vector3
+@export var syncRot : Vector3
 
 
 @onready var hpbar = $Control/HUD/hp_bar
@@ -36,12 +41,12 @@ var time_eff := 0
 @onready var rayc : RayCast3D = $Badan/Kepala/Camera3D/RayCast3D
 @onready var dscreen = $DeathScreen
 @onready var ctrl_ui = $Control
-@onready var cam = $Badan/Kepala/Camera3D
+@onready var cam: Camera3D = $Badan/Kepala/Camera3D
 @onready var inv_player = $Control/Inv_Player
 @onready var sprite = $Badan/Bahu_kanan/Lengan/Siku/Lengan2/Sprite3D
 @onready var lb_name = $Badan/Kepala/Name
 @onready var joystick_l: VirtualJoystick = $Control/Joystick
-@onready var world_node = get_tree().get_root().get_node("/root/World")
+@onready var world_node = get_tree().root.get_node("/root/World")
 @onready var ammo_lb = $Control/HUD/Ammo
 @onready var chat = $Control/Chat
 @onready var chat_btn = $"Control/Chat-Btn"
@@ -52,69 +57,74 @@ func _ready():
 	lb_hpbar.text = str(currentHealth)
 	senv = Settings.senv
 	cam.fov = Settings.fov
-	lb_name.text = Settings.p_name
+	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
+	await get_tree().create_timer(0.2).timeout
+	main_inv = inv_player.main_inv
+	sec_inv = inv_player.sec_inv
 
 func _physics_process(delta):
-	if Input.is_action_pressed("left_click"):
-		on_left_pressed()
-	if cooldown != 0:
-		cooldown -= 1
-	if time_eff != 0 and time_eff > 0:
-		time_eff -= 1
-		#print(damage, SPEED, time_eff)
-	if time_eff == 0:
-		reset_effect()
-	if currentHealth == 0:
-		if cam_pos == null:
-			cam_pos = cam.global_position
-		anim.play("death")
-		dscreen.visible = true
-		ctrl_ui.visible = false
-		visible = false
-		currentHealth = -1
-		die = true
-		position.y = -33
-	if die == true:
-		if cam.global_position != cam_pos:
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		if cooldown != 0:
+			cooldown -= 1
+		if Input.is_action_pressed("left_click"):
+			on_left_pressed()
+		if time_eff != 0 and time_eff > 0:
+			time_eff -= 1
+		if time_eff == 0:
+			reset_effect()
+		if currentHealth == 0 and die == false:
+			if cam_pos == Vector3.ZERO:
+				cam_pos = cam.global_position
+			anim.play("death")
+			dscreen.show()
+			ctrl_ui.hide()
+			hide()
+			set_collision_layer_value(2, false)
+			set_collision_layer_value(3, false)
+			currentHealth = -1
+			position.y = -33
 			cam.global_position = cam_pos
-		cam.fov -= 0.025
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	if is_on_floor() and Input.is_action_pressed("jump"):
-		velocity.y = JUMP_VELOCITY
-	if !is_on_floor() and die == false:
-		if s_fall == 0:
-			s_fall = floor(position.y)
-		velocity.y -= gravity * delta
-	elif !is_on_floor() and die == true:
-		velocity.y = 0
-		pass
+			die = true
+			death()
+		if is_on_floor() and Input.is_action_pressed("jump"):
+			velocity.y = JUMP_VELOCITY
+		if !is_on_floor() and die == false:
+			if s_fall == 0:
+				s_fall = floor(position.y)
+			velocity.y -= gravity * delta
+		elif !is_on_floor() and die == true:
+			velocity.y = 0
+			pass
+		else:
+			if ground == null:
+				ground = position.y
+			if s_fall - ground > min_h:
+				takeDamage(s_fall - ground)
+			s_fall = 0
+			ground = null
+		var input_dir = joystick_l.output
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+		if input_dir != Vector2.ZERO and is_on_floor():
+			anim.play("move")
+		elif anim.is_playing() and anim.current_animation != 'move':
+			pass
+		else:
+			anim.play("idle")
+		if head.rotation_degrees.y != 0 and velocity != Vector3.ZERO:
+			rotate_y(head.rotation.y)
+			head.rotation.y = 0
+		syncPos = global_position
+		syncRot = rotation_degrees
+		move_and_slide()
 	else:
-		if ground == null:
-			ground = position.y
-		if s_fall - ground > min_h:
-			takeDamage(s_fall - ground)
-		s_fall = 0
-		ground = null
-	var input_dir = joystick_l.output
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-	if input_dir != Vector2.ZERO and is_on_floor():
-		anim.play("move")
-	elif anim.is_playing() and anim.current_animation != 'move':
-		pass
-	else:
-		anim.play("idle")
-	if head.rotation_degrees.y != 0 and velocity != Vector3.ZERO:
-		rotate_y(head.rotation.y)
-		head.rotation.y = 0
-	move_and_slide()
+		global_position = global_position.lerp(syncPos, 0.5)
+		rotation_degrees = rotation_degrees.lerp(syncRot, 0.5)
 
 func _input(event):
 	if event is InputEventScreenDrag and die == false and paused == false:
@@ -122,8 +132,6 @@ func _input(event):
 		head.rotation.y = clamp(head.rotation.y, deg_to_rad(-81), deg_to_rad(81))
 		if head.rotation_degrees.y >= 70 or head.rotation_degrees.y <= -70:
 			rotate_y(deg_to_rad(-event.relative.x))
-			
-		#if head.rotation.y >= 80 or head.rotation.y == deg_to_rad(-89):
 		cam.rotate_x(deg_to_rad(-event.relative.y * senv))
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-60), deg_to_rad(89))
 
@@ -154,26 +162,51 @@ func reset_onhand_item():
 	sprite.hide()
 	damage = 1
 	SPEED = 10
+	if not effect.is_empty() and time_eff > 0:
+		eff()
 func pick_up_slot(slot_d: slotData):
 	return inv_player.pick_up_slot(slot_d)
 func set_properti(data: ItemType):
-	damage = 5
-	#SPEED = data.speed
-	damage += data.damage
+	damage = data.damage
 	cd_template = data.cooldown
+	if not effect.is_empty() and time_eff > 0:
+		eff()
 
+func death(free_obj : bool = false):
+	for slot in main_inv.slotDatas:
+		if slot.item_data != null:
+			var pickup = pickup_s.instantiate()
+			pickup.slot_d = slot
+			pickup.slot_d.active = false
+			pickup.position = cam.global_position
+			world_node.add_child(pickup)
+	for slot in sec_inv.slotDatas:
+		if slot.item_data != null:
+			var pickup = pickup_s.instantiate()
+			pickup.slot_d = slot
+			pickup.slot_d.active = false
+			pickup.position = cam.global_position
+			world_node.add_child(pickup)
+	inv_player.clear_slot()
+	reset_onhand_item()
+	if free_obj == true:
+		queue_free()
 
 func _on_respawn():
 	position = Vector3(0, 5, 0)
-	visible = true
+	show()
 	anim.play("RESET")
 	rotation.x = 0
-	currentHealth = 100
+	currentHealth = maxHealth
 	update_health_bar()
-	dscreen.visible = false
-	ctrl_ui.visible = true
+	dscreen.hide()
+	ctrl_ui.show()
+	setRandomWeapon()
 	die = false
+	cam_pos = Vector3.ZERO
 	cam.position = Vector3(0, 0.1, 0.1)
+	set_collision_layer_value(2, true)
+	set_collision_layer_value(3, true)
 
 func pause():
 	paused = !paused
@@ -181,13 +214,10 @@ func pause():
 func interact_left():
 	anim.play("attack")
 	if rayc.is_colliding() and rayc.get_collider().has_method("player_interact"):
-#		var obj_unk = rayc.get_collider().player_interact()
-#		if obj_unk == null:
-#			pass
-#		elif obj_unk is invData:
 		pass
 	elif rayc.is_colliding() and rayc.get_collider().has_method("takeDamage"):
 		rayc.get_collider().takeDamage(damage)
+
 
 func on_left_pressed():
 	if cooldown == 0:
@@ -203,7 +233,6 @@ func on_left_pressed():
 	elif inv_player.mainItem.type is RPGType:
 		shoot_rocket()
 	else:
-		#print('yes')
 		interact_left()
 
 func _on_hud_pressed():
@@ -264,9 +293,7 @@ func reload_rocket():
 func reload():
 	is_reloading = true
 	#cari item peluru
-	#print('yes')
 	var ammo = inv_player.search_ammo()
-	#print(ammo)
 	if ammo == null:
 		return
 	
@@ -310,15 +337,42 @@ func shoot_bullet():
 	pass
 
 func take_effect(spd: float, dmg: int, time: int):
-	SPEED += spd
-	damage += dmg
+	effect["speed"] = spd
+	effect["damage"] = dmg
 	time_eff = time
-	print(time_eff)
+func eff():
+	SPEED += effect["speed"]
+	damage += effect["damage"]
 func reset_effect():
 	SPEED = 10.0
 	damage = 5
 	time_eff = -1
+	effect.clear()
 
 func _on_chat_btn_pressed():
 	chat_btn.hide()
 	chat.show()
+
+func setRandomItem():
+	var RandItemArr = []
+	var ResItemArr : Array = world_node.ResItemArr
+	for i in range(7):
+		RandItemArr.append(ResItemArr.pick_random())
+	for i in range(3):
+		inv_player.main_inv.slotDatas[i].item_data = RandItemArr[i]
+		inv_player.main_inv.slotDatas[i].quantity = randi_range(1, 21)
+	RandItemArr = RandItemArr.slice(3)
+	for i in range(4):
+		inv_player.sec_inv.slotDatas[i].item_data = RandItemArr[i]
+		inv_player.sec_inv.slotDatas[i].quantity = randi_range(1, 21)
+	inv_player.update_ammo()
+	await get_tree().create_timer(0.02).timeout
+	inv_player.set_main_s()
+
+#ketika respawn
+func setRandomWeapon():
+	var RandItem: Array = world_node.WpItemArr
+	main_inv.slotDatas[0].item_data = RandItem.pick_random()
+	main_inv.slotDatas[0].quantity = randi_range(1, 15)
+	inv_player.update_ammo()
+	inv_player.set_main_s()

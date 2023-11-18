@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://yw7vd1w222jo"]
+[gd_scene load_steps=20 format=3 uid="uid://yw7vd1w222jo"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_qhviq"]
 [ext_resource type="Texture2D" uid="uid://7c3ejx1ypj" path="res://Texture/main-menu/play.png" id="2_8bmul"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c5q5104l2u71" path="res://Texture/main-menu/close.png" id="5_hligs"]
 [ext_resource type="AudioStream" uid="uid://b0we3xeeuxahr" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
 [ext_resource type="Script" path="res://script/multiplayer/PlayMenu.gd" id="8_n7ply"]
+[ext_resource type="Script" path="res://script/multiplayer/ServerBrowser.gd" id="9_3ey4u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolhe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -59,13 +60,29 @@ bg_color = Color(0.6, 0.6, 0.6, 0.913725)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnf2n"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txk34"]
-bg_color = Color(0.180392, 0.345098, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xk83h"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfkmp"]
-bg_color = Color(0.227451, 0.717647, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stuqu"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jd1p"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1npj"]
 content_margin_left = 10.0
 content_margin_top = 5.0
 content_margin_right = 10.0
@@ -95,27 +112,38 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -456.5
-offset_top = -264.0
-offset_right = 456.5
-offset_bottom = 264.0
+anchors_preset = -1
+anchor_left = 0.103733
+anchor_top = 0.0925926
+anchor_right = 0.896267
+anchor_bottom = 0.907407
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxC"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxC"]
 layout_mode = 2
-size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="VBoxC/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_lolhe")
 text = "Kuarkers"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxC/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Info" type="Button" parent="VBoxC/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "i"
+flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxC"]
 layout_mode = 2
@@ -230,7 +258,7 @@ max_value = 200.0
 value = 25.0
 metadata/_edit_use_anchors_ = true
 
-[node name="TextEdit" type="TextEdit" parent="ColorRect"]
+[node name="TextEdit" type="LineEdit" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0475285
@@ -244,7 +272,6 @@ text = "Test"
 placeholder_text = "Nama Player"
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
-scroll_past_end_of_file = true
 metadata/_edit_use_anchors_ = true
 
 [node name="save" type="Button" parent="ColorRect"]
@@ -277,36 +304,78 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lnf2n")
 script = ExtResource("8_n7ply")
 metadata/_edit_use_anchors_ = true
 
-[node name="TabContainer" type="TabContainer" parent="PlayMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayMenu"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.24381
-offset_bottom = -18.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_constants/side_margin = 20
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 30
-theme_override_styles/panel = SubResource("StyleBoxFlat_txk34")
-theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_tfkmp")
-metadata/_edit_use_anchors_ = true
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 30
 
-[node name="Host" type="Label" parent="PlayMenu/TabContainer"]
+[node name="HostMenu" type="VBoxContainer" parent="PlayMenu/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Host"
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("9_3ey4u")
 metadata/_edit_use_anchors_ = true
 
-[node name="Join" type="Label" parent="PlayMenu/TabContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayMenu/MarginContainer/HostMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Quit" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Join"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_xk83h")
+text = "Keluar"
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="Label" type="Label" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LineEdit" type="LineEdit" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["host_ui"]]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 20
+text = "Room1"
+placeholder_text = "Nama Dunia"
+
+[node name="Buat" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["host_ui"]]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_stuqu")
+text = "Buat"
+
+[node name="Start" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_c1npj")
+text = "Mulai"
+
+[node name="Scroll" type="ScrollContainer" parent="PlayMenu/MarginContainer/HostMenu" groups=["host_ui"]]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ServerList" type="VBoxContainer" parent="PlayMenu/MarginContainer/HostMenu/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Timer" type="Timer" parent="PlayMenu/MarginContainer/HostMenu"]
 
 [node name="Close" type="TextureButton" parent="PlayMenu"]
 layout_mode = 1
@@ -320,114 +389,7 @@ ignore_texture_size = true
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="HostMenu" type="GridContainer" parent="PlayMenu"]
-layout_mode = 0
-anchor_left = 0.0499002
-anchor_top = 0.285714
-anchor_right = 0.9501
-anchor_bottom = 1.0
-theme_override_constants/v_separation = 20
-columns = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 24
-text = "Dunia :  "
-horizontal_alignment = 2
-
-[node name="OptionButton" type="OptionButton" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
-item_count = 1
-selected = 0
-popup/item_0/text = "Klasik"
-popup/item_0/id = 0
-
-[node name="Label2" type="Label" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Izin Pemain Lain :  "
-horizontal_alignment = 2
-
-[node name="OptionButton2" type="OptionButton" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-item_count = 3
-selected = 1
-popup/item_0/text = "Admin"
-popup/item_0/id = 0
-popup/item_1/text = "User"
-popup/item_1/id = 1
-popup/item_2/text = "Pengunjung"
-popup/item_2/id = 2
-
-[node name="Label3" type="Label" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Waktu Terus Berjalan :  "
-horizontal_alignment = 2
-
-[node name="CheckBox" type="CheckButton" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-size_flags_horizontal = 0
-focus_mode = 0
-button_pressed = true
-
-[node name="Label4" type="Label" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Waktu Saat Memulai :  "
-horizontal_alignment = 2
-
-[node name="OptionButton3" type="OptionButton" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-item_count = 4
-selected = 0
-popup/item_0/text = "Pagi"
-popup/item_0/id = 0
-popup/item_1/text = "Siang"
-popup/item_1/id = 1
-popup/item_2/text = "Sore"
-popup/item_2/id = 2
-popup/item_3/text = "Malam"
-popup/item_3/id = 3
-
-[node name="Buat" type="Button" parent="PlayMenu/HostMenu"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_4jd1p")
-text = "Buat"
-
-[node name="JoinMenu" type="Control" parent="PlayMenu"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 110.0
-offset_right = -0.000183105
-offset_bottom = 6.10352e-05
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="PlayMenu/JoinMenu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 43.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 25
-text = "Host Yang Tersedia"
-
+[connection signal="pressed" from="VBoxC/HBoxContainer2/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Main" to="." method="_on_main_pressed"]
@@ -436,6 +398,7 @@ text = "Host Yang Tersedia"
 [connection signal="value_changed" from="ColorRect/SENV" to="." method="_on_senv_value_changed"]
 [connection signal="text_changed" from="ColorRect/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="ColorRect/save" to="." method="_on_save_pressed"]
-[connection signal="tab_changed" from="PlayMenu/TabContainer" to="PlayMenu" method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Quit" to="PlayMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Buat" to="PlayMenu" method="_on_buat_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Start" to="PlayMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="PlayMenu/Close" to="PlayMenu" method="_on_close_pressed"]
-[connection signal="pressed" from="PlayMenu/HostMenu/Buat" to="PlayMenu" method="_on_buat_pressed"]

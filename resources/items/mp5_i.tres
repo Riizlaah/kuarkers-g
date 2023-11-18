@@ -25,6 +25,7 @@ rate_of_fire = 13
 c_ammo = 45
 max_ammo = 45
 reload_time = 60
+cooldown = 60
 
 [resource]
 script = ExtResource("1_axyhu")

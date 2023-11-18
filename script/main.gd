@@ -13,6 +13,7 @@ func _ready():
 	text_edit.text = "EL_HEKER"
 	fov.value = Settings.fov
 	senv.value = Settings.senv * 100
+	#var hek = get_node_or_null("Elek")
 
 
 func _on_main_pressed():
@@ -40,7 +41,7 @@ func _on_senv_value_changed(value: float):
 	senv_lb.text = "Sensivitas : " + str(value)
 	Settings.senv = value*0.01
 
-func _on_text_edit_text_changed():
+func _on_text_edit_text_changed(new_text):
 	if check_s_n_t(text_edit.text) == true:
 		text_edit.text = text_set(text_edit.text)
 	pass
@@ -57,3 +58,5 @@ func _on_save_pressed():
 	Settings.p_name = text_edit.text
 
 
+func _on_info_pressed():
+	pass

@@ -3,11 +3,10 @@
 [ext_resource type="Script" path="res://script/inv/pick_up.gd" id="1_ta0f4"]
 [ext_resource type="Texture2D" uid="uid://dv2ryppgebjfn" path="res://resources/item3_atlas.tres" id="2_hxqn2"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_bq0uq"]
-radius = 0.3
+[sub_resource type="BoxShape3D" id="BoxShape3D_l43uo"]
+size = Vector3(0.5, 0.1, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gwr6j"]
-radius = 0.6
 
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 3
@@ -20,8 +19,8 @@ texture_filter = 0
 texture = ExtResource("2_hxqn2")
 
 [node name="Colls1" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-shape = SubResource("SphereShape3D_bq0uq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_l43uo")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 2

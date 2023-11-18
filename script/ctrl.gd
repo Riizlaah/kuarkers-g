@@ -23,6 +23,12 @@ func _on_play_pressed():
 
 
 func _on_keluar_pressed():
+	if multiplayer.is_server():
+		GameManager.players.clear()
+		get_node("/root/World").host_disconnected.emit()
+	else:
+		GameManager.players.erase(multiplayer.multiplayer_peer.get_unique_id())
+		get_node("/root/World").player_disc(multiplayer.multiplayer_peer.get_unique_id())
 	get_tree().change_scene_to_file("res://scene/main.tscn")
 	pass
 

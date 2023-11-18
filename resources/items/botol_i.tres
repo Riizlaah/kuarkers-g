@@ -22,6 +22,7 @@ script = ExtResource("2_l87no")
 time_eff = 1200
 dmg_tmp = 3
 spd_tmp = 10.0
+cooldown = 60
 
 [resource]
 script = ExtResource("1_7ojx1")

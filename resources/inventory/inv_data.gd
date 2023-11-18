@@ -90,5 +90,10 @@ func pick_up_slot(slot_d: slotData):
 			return true
 	return false
 
-
+func clear_slot():
+	var slot_size = slotDatas.size()
+	slotDatas.clear()
+	for i in range(slot_size):
+		slotDatas.append(slotData.new())
+	inv_updated.emit(self)
 

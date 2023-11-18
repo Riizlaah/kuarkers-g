@@ -25,6 +25,7 @@ rate_of_fire = 5
 c_ammo = 40
 max_ammo = 40
 reload_time = 60
+cooldown = 60
 
 [resource]
 script = ExtResource("1_yts1m")

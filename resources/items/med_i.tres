@@ -20,6 +20,7 @@ region = Rect2(0, 213, 213, 213)
 [sub_resource type="Resource" id="Resource_fxm3o"]
 script = ExtResource("2_ettvt")
 heal = 90
+cooldown = 60
 
 [resource]
 script = ExtResource("1_jhujp")

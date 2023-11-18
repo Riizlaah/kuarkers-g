@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://ultvhqbrysi5"]
+[gd_scene load_steps=94 format=3 uid="uid://ultvhqbrysi5"]
 
 [ext_resource type="Script" path="res://script/char.gd" id="1_kyc15"]
 [ext_resource type="ArrayMesh" uid="uid://cvm761xsbp83k" path="res://obj/Kuark1.obj" id="2_2g7ay"]
@@ -16,16 +16,9 @@
 [ext_resource type="Script" path="res://script/inv/Inv_player.gd" id="13_vklqo"]
 [ext_resource type="Script" path="res://resources/inventory/main_inv.gd" id="14_1v16x"]
 [ext_resource type="Texture2D" uid="uid://btfe2n03ewnlc" path="res://Texture/pause.png" id="14_idumj"]
-[ext_resource type="Resource" uid="uid://tb41b67a6jkn" path="res://resources/items/golok_i.tres" id="15_3uh3g"]
-[ext_resource type="Resource" uid="uid://0ukd5x4s8tlu" path="res://resources/items/rpg_i.tres" id="15_e1whs"]
 [ext_resource type="Texture2D" uid="uid://cu21rod0stbet" path="res://Texture/play.png" id="15_s21i2"]
 [ext_resource type="Texture2D" uid="uid://dxcp0exwn4cw8" path="res://Texture/inv/chest.png" id="16_eeg0a"]
-[ext_resource type="Resource" uid="uid://bsjpm2uecnqh5" path="res://resources/items/botol_i.tres" id="16_kh6sd"]
-[ext_resource type="Resource" uid="uid://b3cq20qh5hsdc" path="res://resources/items/rocket_i.tres" id="16_naae2"]
-[ext_resource type="Resource" uid="uid://cb6oo7enll5s" path="res://resources/items/donat_i.tres" id="19_2en2m"]
-[ext_resource type="Resource" uid="uid://bx8oos2kju26b" path="res://resources/items/grenade_i.tres" id="20_p8gxx"]
 [ext_resource type="PackedScene" uid="uid://ckkh0eieiemoe" path="res://scene/inv/slot.tscn" id="20_qm2vf"]
-[ext_resource type="Resource" uid="uid://dfpjdspcuof7v" path="res://resources/items/pistol_i.tres" id="21_hjsrf"]
 [ext_resource type="Texture2D" uid="uid://b46uigpq5nd0" path="res://Texture/inv/trash.png" id="22_qtseg"]
 [ext_resource type="PackedScene" uid="uid://bqnquycwh0avb" path="res://resources/cmd/chat.tscn" id="27_obgwy"]
 [ext_resource type="Texture2D" uid="uid://dce0khwxybbb0" path="res://Texture/hud/chat.png" id="28_f6ixg"]
@@ -507,18 +500,15 @@ size = Vector3(0.6, 0.45, 0.6)
 
 [sub_resource type="Resource" id="Resource_f1md5"]
 script = ExtResource("3_6lr5c")
-item_data = ExtResource("15_3uh3g")
 quantity = 1
 
 [sub_resource type="Resource" id="Resource_vgsjw"]
 script = ExtResource("3_6lr5c")
-item_data = ExtResource("15_e1whs")
 quantity = 1
 
 [sub_resource type="Resource" id="Resource_ke1ju"]
 script = ExtResource("3_6lr5c")
-item_data = ExtResource("16_naae2")
-quantity = 20
+quantity = 1
 
 [sub_resource type="Resource" id="Resource_lkdfs"]
 script = ExtResource("14_1v16x")
@@ -526,51 +516,47 @@ slotDatas = Array[ExtResource("3_6lr5c")]([SubResource("Resource_f1md5"), SubRes
 
 [sub_resource type="Resource" id="Resource_udxgu"]
 script = ExtResource("3_6lr5c")
-item_data = ExtResource("16_kh6sd")
-quantity = 20
-
-[sub_resource type="Resource" id="Resource_b75jc"]
-script = ExtResource("3_6lr5c")
-item_data = ExtResource("19_2en2m")
-quantity = 11
-
-[sub_resource type="Resource" id="Resource_xj7pe"]
-script = ExtResource("3_6lr5c")
-item_data = ExtResource("20_p8gxx")
-quantity = 5
-
-[sub_resource type="Resource" id="Resource_8t7dg"]
-script = ExtResource("3_6lr5c")
-item_data = ExtResource("21_hjsrf")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_faasc"]
+[sub_resource type="Resource" id="Resource_ymkou"]
 script = ExtResource("3_6lr5c")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_eoik0"]
+[sub_resource type="Resource" id="Resource_62fue"]
 script = ExtResource("3_6lr5c")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_ga4iv"]
+[sub_resource type="Resource" id="Resource_ek45p"]
 script = ExtResource("3_6lr5c")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_4kscg"]
+[sub_resource type="Resource" id="Resource_asqgo"]
 script = ExtResource("3_6lr5c")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_ggr23"]
+[sub_resource type="Resource" id="Resource_oi1kd"]
 script = ExtResource("3_6lr5c")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_cso4f"]
+[sub_resource type="Resource" id="Resource_rfepw"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_rgrfl"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_8prsr"]
+script = ExtResource("3_6lr5c")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_6mhxx"]
 script = ExtResource("3_6lr5c")
 quantity = 1
 
 [sub_resource type="Resource" id="Resource_jxwyt"]
 script = ExtResource("2_pqpwr")
-slotDatas = Array[ExtResource("3_6lr5c")]([SubResource("Resource_udxgu"), SubResource("Resource_b75jc"), SubResource("Resource_xj7pe"), SubResource("Resource_8t7dg"), SubResource("Resource_faasc"), SubResource("Resource_eoik0"), SubResource("Resource_ga4iv"), SubResource("Resource_4kscg"), SubResource("Resource_ggr23"), SubResource("Resource_cso4f")])
+slotDatas = Array[ExtResource("3_6lr5c")]([SubResource("Resource_udxgu"), SubResource("Resource_ymkou"), SubResource("Resource_62fue"), SubResource("Resource_ek45p"), SubResource("Resource_asqgo"), SubResource("Resource_oi1kd"), SubResource("Resource_rfepw"), SubResource("Resource_rgrfl"), SubResource("Resource_8prsr"), SubResource("Resource_6mhxx")])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qybcw"]
 atlas = ExtResource("11_s5y2s")
@@ -616,12 +602,29 @@ region = Rect2(960, 0, 320, 322)
 atlas = ExtResource("11_s5y2s")
 region = Rect2(0, 0, 320, 320)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf4cy"]
+bg_color = Color(0.54902, 0.54902, 0.54902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2yx4"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0, 0.407843, 0.611765, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c5the"]
+properties/0/path = NodePath(".:syncPos")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:syncRot")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
 
 [node name="Char" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
@@ -1045,11 +1048,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 metadata/_edit_use_anchors_ = true
 
-[node name="Timer" type="Timer" parent="Control/Inv_Player"]
-wait_time = 0.05
-one_shot = true
-autostart = true
-
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Control"]
 position = Vector2(2, 90)
 shape = SubResource("RectangleShape2D_tr08t")
@@ -1184,7 +1182,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.180392, 0.180392, 0.180392, 0.898039)
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="DeathScreen/Deathsc"]
 layout_mode = 1
@@ -1204,21 +1202,18 @@ text = "Kamu Mati"
 
 [node name="Respawn" type="Button" parent="DeathScreen/Deathsc"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -61.0
-offset_top = 59.0
-offset_right = 59.0
-offset_bottom = 119.0
+anchors_preset = -1
+anchor_left = 0.447049
+anchor_top = 0.591049
+anchor_right = 0.551215
+anchor_bottom = 0.683642
 grow_horizontal = 2
 grow_vertical = 2
-toggle_mode = true
-button_pressed = true
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mf4cy")
 action_mode = 0
 text = "Respawn"
+metadata/_edit_use_anchors_ = true
 
 [node name="pause_bg" type="Control" parent="."]
 visible = false
@@ -1236,7 +1231,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.368627)
+color = Color(0, 0, 0, 0.580392)
 
 [node name="RESUME" type="Button" parent="pause_bg/PAUSE_BG"]
 layout_mode = 1
@@ -1268,11 +1263,15 @@ theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_y2yx4")
 text = "Keluar"
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
+delta_interval = 0.1
+replication_config = SubResource("SceneReplicationConfig_c5the")
+
 [connection signal="pressed" from="Control/PAUSE" to="Control" method="_on_pause_pressed" flags=18]
 [connection signal="visibility_changed" from="Control/Inv_Player/SecInventory" to="Control/Inv_Player" method="_on_sec_inv_visibility_changed"]
 [connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_single" to="Control/Inv_Player" method="_on_rm_single_pressed"]
 [connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_all" to="Control/Inv_Player" method="_on_rm_all_pressed"]
-[connection signal="timeout" from="Control/Inv_Player/Timer" to="Control/Inv_Player" method="_on_timer_timeout"]
 [connection signal="pressed" from="Control/TouchScreenButton/ToggleInv" to="Control/Inv_Player" method="_OnInv_pressed"]
 [connection signal="gui_input" from="Control/Right" to="Control" method="_on_right_gui_input"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_hud_pressed"]

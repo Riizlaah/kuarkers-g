@@ -1,6 +1,5 @@
 extends Node
 
-var host := false
-var player_auth := "user"
-var use_time := true
-var time_start := ""
+func write_deb(text: String):
+	var file = FileAccess.open("res://resources/debug.txt", FileAccess.WRITE)
+	file.store_string(text)

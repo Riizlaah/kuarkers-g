@@ -124,7 +124,7 @@ func _on_sec_inv_visibility_changed():
 func on_right_pressed():
 	if mainItem == null:
 		return
-	if mainItem.type is GunType:
+	if mainItem.type is GunType or mainItem.type is RPGType:
 		toggle_scope()
 	elif mainItem.type is MeleeType:
 		var throwItem: RigidBody3D = throw_i.instantiate()
@@ -184,9 +184,14 @@ func search_ammo():
 		#sampai sini
 
 func update_ammo():
-	Minv_data.pop_it_grid(main_inv)
-	Sinv_data.pop_it_grid(sec_inv)
+	main_inv.inv_updated.emit(main_inv)
+	sec_inv.inv_updated.emit(sec_inv)
 	return
 
-func _on_timer_timeout():
+func set_main_s():
 	main_inv.set_main_slot(0)
+
+func clear_slot():
+	main_inv.clear_slot()
+	sec_inv.clear_slot()
+	set_main_s()

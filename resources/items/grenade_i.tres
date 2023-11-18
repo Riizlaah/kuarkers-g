@@ -19,6 +19,7 @@ region = Rect2(213, 426, 213, 213)
 
 [sub_resource type="Resource" id="Resource_i24nc"]
 script = ExtResource("2_grl6x")
+cooldown = 60
 
 [resource]
 script = ExtResource("1_rrn4y")

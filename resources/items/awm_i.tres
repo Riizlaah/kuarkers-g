@@ -19,12 +19,13 @@ region = Rect2(426, 213, 213, 213)
 
 [sub_resource type="Resource" id="Resource_elc8m"]
 script = ExtResource("2_u1dw5")
-cam_fov = 30.0
+cam_fov = 16.0
 bullet_damage = 50
 rate_of_fire = 1
 c_ammo = 3
 max_ammo = 3
 reload_time = 60
+cooldown = 60
 
 [resource]
 script = ExtResource("1_yq4lo")
