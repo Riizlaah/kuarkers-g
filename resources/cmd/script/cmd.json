@@ -1,6 +1,0 @@
-{
-	"get": {
-		"name":"get",
-		"param": ["id"]
-	}
-}

@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="BaseCMD" load_steps=2 format=3 uid="uid://cv1dey0j55ffg"]
-
-[ext_resource type="Script" path="res://resources/cmd/script/basecmd.gd" id="1_2eh4d"]
-
-[resource]
-script = ExtResource("1_2eh4d")
