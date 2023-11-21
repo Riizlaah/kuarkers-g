@@ -6,6 +6,7 @@ extends Control
 @onready var senv = $ColorRect/SENV
 @onready var text_edit = $ColorRect/TextEdit
 @onready var PlayMenu = $PlayMenu
+@onready var infomenu = $InfoMenu
 
 func _ready():
 	fov_lb.text = "FOV : " + str(Settings.fov)
@@ -59,4 +60,9 @@ func _on_save_pressed():
 
 
 func _on_info_pressed():
-	pass
+	infomenu.show()
+
+
+func _on_gui_input(event: InputEvent):
+	if event is InputEventScreenTouch and event.is_pressed():
+		infomenu.hide()

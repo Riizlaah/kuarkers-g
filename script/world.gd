@@ -7,36 +7,19 @@ signal host_disconnected
 @onready var moon = $MOON
 @onready var w_env : WorldEnvironment = $W_ENV
 @onready var noise = load("res://resources/other/Noise1.tres")
-@onready var ResItemArr = [
-	preload("res://resources/items/akm_i.tres"),
-	preload("res://resources/items/ammo_i.tres"),
-	preload("res://resources/items/arit_i.tres"),
-	preload("res://resources/items/awm_i.tres"),
-	preload("res://resources/items/botol_i.tres"),
-	preload("res://resources/items/donat_i.tres"),
-	preload("res://resources/items/golok_i.tres"),
-	preload("res://resources/items/grenade_i.tres"),
-	preload("res://resources/items/kapak_i.tres"),
-	preload("res://resources/items/med_i.tres"),
-	preload("res://resources/items/mp5_i.tres"),
-	preload("res://resources/items/pistol_i.tres"),
-	preload("res://resources/items/rocket_i.tres"),
-	preload("res://resources/items/rpg_i.tres")
-	]
-@onready var WpItemArr = [
-	preload("res://resources/items/golok_i.tres"),
-	preload("res://resources/items/kapak_i.tres"),
-	preload("res://resources/items/arit_i.tres"),
-	preload("res://resources/items/pistol_i.tres"),
-	preload("res://resources/items/botol_i.tres")
+var ResItemArr = Func.ResItemArr
+var WpItemArr = [
+	ResItemArr[2],
+	ResItemArr[4],
+	ResItemArr[6],
+	ResItemArr[8],
+	ResItemArr[11]
 ]
-
 var time : float
 var time_rate : float
 var noise_offset := 0.05
 @export_category("Other")
-@export var player_s : PackedScene = preload("res://scene/char.tscn")
-@export var main_s : PackedScene = preload("res://scene/main.tscn")
+@export var player_s : PackedScene
 
 @export_category("Time")
 @export var day_length = 800.0
@@ -58,7 +41,7 @@ func _ready():
 		var c_player = player_s.instantiate()
 		c_player.name = str(i)
 		add_child(c_player)
-		c_player.position = Vector3(0, 3, 0)
+		c_player.position = Vector3(3, 3, 3)
 		c_player.lb_name.text = GameManager.players[i]["nama"]
 		c_player.setRandomItem()
 
@@ -110,5 +93,5 @@ func free_host():
 @rpc("any_peer", "call_local")
 func ch_scene():
 	multiplayer.multiplayer_peer = null
-	get_tree().change_scene_to_packed(main_s)
+	get_tree().change_scene_to_file("res://scene/main.tscn")
 

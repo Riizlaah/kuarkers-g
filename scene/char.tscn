@@ -1,27 +1,25 @@
-[gd_scene load_steps=94 format=3 uid="uid://ultvhqbrysi5"]
+[gd_scene load_steps=90 format=3 uid="uid://ultvhqbrysi5"]
 
 [ext_resource type="Script" path="res://script/char.gd" id="1_kyc15"]
-[ext_resource type="ArrayMesh" uid="uid://cvm761xsbp83k" path="res://obj/Kuark1.obj" id="2_2g7ay"]
-[ext_resource type="Texture2D" uid="uid://ccaxvk866x6ie" path="res://Texture/hud/crosshair.png" id="2_87j2v"]
+[ext_resource type="ArrayMesh" uid="uid://lh6oiy56atcj" path="res://Mesh_Obj/Kuark1.obj" id="2_5xby8"]
+[ext_resource type="Texture2D" uid="uid://b7ym4d3jrfsyw" path="res://Texture/hud/crosshair.png" id="2_87j2v"]
 [ext_resource type="Script" path="res://resources/inventory/inv_data.gd" id="2_pqpwr"]
 [ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_6lr5c"]
-[ext_resource type="Texture2D" uid="uid://hnr46ouikeft" path="res://Texture/hud/hp_bar_bg.png" id="3_brukk"]
+[ext_resource type="Texture2D" uid="uid://cag1k053h7qcq" path="res://Texture/hud/hp_bar_bg.png" id="3_brukk"]
 [ext_resource type="Script" path="res://script/ctrl.gd" id="3_gh06u"]
-[ext_resource type="Texture2D" uid="uid://htyvajxxftyw" path="res://Texture/hud/hp_bar.png" id="4_avfwg"]
+[ext_resource type="Texture2D" uid="uid://dt8h3r3m4v3pp" path="res://Texture/hud/hp_bar.png" id="4_avfwg"]
 [ext_resource type="Script" path="res://joystick/virtual_joystick.gd" id="10_p834q"]
 [ext_resource type="PackedScene" uid="uid://djjf1mcmsdd00" path="res://scene/inv/inventory.tscn" id="11_8xbgs"]
-[ext_resource type="Texture2D" uid="uid://bmwvp4qiegtqb" path="res://Texture/hud/hud1.png" id="11_s5y2s"]
-[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://joystick/textures/joystick_base_outline.png" id="11_ylpgg"]
-[ext_resource type="Texture2D" uid="uid://dt13r06u87fib" path="res://joystick/textures/joystick_tip_arrows.png" id="12_tun1c"]
+[ext_resource type="Texture2D" uid="uid://d3cojumces2pb" path="res://Texture/hud/hud1.png" id="11_s5y2s"]
+[ext_resource type="Texture2D" uid="uid://cgx8mvs1fqb8o" path="res://joystick/textures/joystick_base_outline.png" id="11_ylpgg"]
+[ext_resource type="Texture2D" uid="uid://dwdespjtp1us7" path="res://joystick/textures/joystick_tip_arrows.png" id="12_tun1c"]
 [ext_resource type="Script" path="res://script/inv/Inv_player.gd" id="13_vklqo"]
 [ext_resource type="Script" path="res://resources/inventory/main_inv.gd" id="14_1v16x"]
-[ext_resource type="Texture2D" uid="uid://btfe2n03ewnlc" path="res://Texture/pause.png" id="14_idumj"]
-[ext_resource type="Texture2D" uid="uid://cu21rod0stbet" path="res://Texture/play.png" id="15_s21i2"]
-[ext_resource type="Texture2D" uid="uid://dxcp0exwn4cw8" path="res://Texture/inv/chest.png" id="16_eeg0a"]
+[ext_resource type="Texture2D" uid="uid://dxyy8c1oat353" path="res://Texture/pause.png" id="14_idumj"]
+[ext_resource type="Texture2D" uid="uid://dhajkgtem4at1" path="res://Texture/play.png" id="15_s21i2"]
+[ext_resource type="Texture2D" uid="uid://cth55d6iknfyw" path="res://Texture/inv/chest.png" id="16_eeg0a"]
 [ext_resource type="PackedScene" uid="uid://ckkh0eieiemoe" path="res://scene/inv/slot.tscn" id="20_qm2vf"]
-[ext_resource type="Texture2D" uid="uid://b46uigpq5nd0" path="res://Texture/inv/trash.png" id="22_qtseg"]
-[ext_resource type="PackedScene" uid="uid://bqnquycwh0avb" path="res://resources/cmd/chat.tscn" id="27_obgwy"]
-[ext_resource type="Texture2D" uid="uid://dce0khwxybbb0" path="res://Texture/hud/chat.png" id="28_f6ixg"]
+[ext_resource type="Texture2D" uid="uid://cprlwngo8cn8y" path="res://Texture/inv/trash.png" id="22_qtseg"]
 
 [sub_resource type="Animation" id="Animation_4nl5q"]
 length = 0.001
@@ -416,13 +414,6 @@ albedo_color = Color(0.301961, 0.631373, 0.984314, 1)
 radius = 0.08
 height = 0.6
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swr3i"]
-load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_64blb"]
-atlas = SubResource("CompressedTexture2D_swr3i")
-region = Rect2(852, 0, 213, 213)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3p5o"]
 albedo_color = Color(1.92523e-06, 0, 0.645179, 1)
 
@@ -639,7 +630,7 @@ libraries = {
 
 [node name="Badan" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_m5u4w")
-mesh = ExtResource("2_2g7ay")
+mesh = ExtResource("2_5xby8")
 
 [node name="Bahu_kanan" type="MeshInstance3D" parent="Badan"]
 transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0.45, 0.35, 0)
@@ -668,7 +659,6 @@ transform = Transform3D(1.14641e-15, 2.62268e-08, -0.6, 0.6, -2.62268e-08, 0, -2
 centered = false
 offset = Vector2(-100, 0)
 pixel_size = 0.005
-texture = SubResource("AtlasTexture_64blb")
 
 [node name="Bahu_kiri" type="MeshInstance3D" parent="Badan"]
 transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, -0.45, 0.35, 0)
@@ -1149,23 +1139,6 @@ ignore_texture_size = true
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Chat" parent="Control" node_paths=PackedStringArray("chat_btn") instance=ExtResource("27_obgwy")]
-layout_mode = 1
-chat_btn = NodePath("../Chat-Btn")
-
-[node name="Chat-Btn" type="TextureButton" parent="Control"]
-custom_minimum_size = Vector2(45, 45)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.913194
-anchor_right = 0.952257
-anchor_bottom = 0.0694444
-grow_horizontal = 0
-texture_normal = ExtResource("28_f6ixg")
-ignore_texture_size = true
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
 [node name="DeathScreen" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -1278,7 +1251,6 @@ replication_config = SubResource("SceneReplicationConfig_c5the")
 [connection signal="gui_input" from="Control/JUMP" to="Control" method="_on_jump_gui_input"]
 [connection signal="button_down" from="Control/Left" to="Control" method="_on_left_button_down"]
 [connection signal="button_up" from="Control/Left" to="Control" method="_on_left_button_up"]
-[connection signal="pressed" from="Control/Chat-Btn" to="." method="_on_chat_btn_pressed"]
 [connection signal="pressed" from="DeathScreen/Deathsc/Respawn" to="." method="_on_respawn"]
 [connection signal="pressed" from="pause_bg/PAUSE_BG/RESUME" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="pause_bg/PAUSE_BG/EXIT" to="Control" method="_on_keluar_pressed"]

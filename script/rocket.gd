@@ -6,10 +6,11 @@ var tmp_velo: Vector3
 @onready var world_node = get_tree().get_root().get_node("/root/World")
 
 func launch(dir):
+	look_at(dir * 5)
 	tmp_velo = dir * speed
 
 func _physics_process(_delta):
-	velocity = tmp_velo
+	velocity = tmp_velo * 2.5
 	move_and_slide()
 
 func on_area3d_body_entered(_body):
@@ -20,5 +21,3 @@ func on_area3d_body_entered(_body):
 	queue_free()
 
 
-func _on_area_3d_body_entered(body):
-	print(body)

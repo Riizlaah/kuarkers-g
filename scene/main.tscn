@@ -1,18 +1,32 @@
-[gd_scene load_steps=20 format=3 uid="uid://yw7vd1w222jo"]
+[gd_scene load_steps=22 format=3 uid="uid://yw7vd1w222jo"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_qhviq"]
-[ext_resource type="Texture2D" uid="uid://7c3ejx1ypj" path="res://Texture/main-menu/play.png" id="2_8bmul"]
-[ext_resource type="Texture2D" uid="uid://cmxswtf81o2n7" path="res://Texture/main-menu/main_bg.jpg" id="2_fenea"]
-[ext_resource type="Texture2D" uid="uid://gfx226cyt26b" path="res://Texture/main-menu/quit.png" id="3_xq4o6"]
-[ext_resource type="Texture2D" uid="uid://c2psrbu4ai55b" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
-[ext_resource type="Texture2D" uid="uid://c5q5104l2u71" path="res://Texture/main-menu/close.png" id="5_hligs"]
-[ext_resource type="AudioStream" uid="uid://b0we3xeeuxahr" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
+[ext_resource type="Texture2D" uid="uid://drssjryeyektw" path="res://Texture/main-menu/play.png" id="2_8bmul"]
+[ext_resource type="Texture2D" uid="uid://bd7mkuuguoip7" path="res://Texture/main-menu/main_bg.jpg" id="2_fenea"]
+[ext_resource type="Texture2D" uid="uid://c14sl0tnpywuc" path="res://Texture/main-menu/quit.png" id="3_xq4o6"]
+[ext_resource type="Texture2D" uid="uid://bxf2c6ehqn45d" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
+[ext_resource type="Texture2D" uid="uid://wbdvfc22ymew" path="res://Texture/main-menu/close.png" id="5_hligs"]
+[ext_resource type="AudioStream" uid="uid://bqjca545raj7e" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
 [ext_resource type="Script" path="res://script/multiplayer/PlayMenu.gd" id="8_n7ply"]
 [ext_resource type="Script" path="res://script/multiplayer/ServerBrowser.gd" id="9_3ey4u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolhe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q8ll"]
+bg_color = Color(0.329412, 0.329412, 0.329412, 0.627451)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmg10"]
+bg_color = Color(0.266667, 0.266667, 0.266667, 0.74902)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh65s"]
 content_margin_left = 0.0
@@ -139,11 +153,15 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 
 [node name="Info" type="Button" parent="VBoxC/HBoxContainer2"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q8ll")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gmg10")
 text = "i"
-flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxC"]
 layout_mode = 2
@@ -389,6 +407,71 @@ ignore_texture_size = true
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="InfoMenu" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -226.0
+offset_top = 70.0
+offset_right = 274.0
+offset_bottom = 370.0
+grow_horizontal = 2
+color = Color(0, 0.701961, 0.945098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Control" type="Control" parent="InfoMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Versi : 1.0"
+
+[node name="Label2" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Developer : Naf'an Rizkilah"
+
+[node name="Label3" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.568627)
+layout_mode = 2
+size_flags_vertical = 6
+text = "(klik dimana saja untuk menutup)"
+
+[node name="Label3" type="Label" parent="InfoMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "Dibuat di Godot"
+
+[node name="LinkButton" type="LinkButton" parent="InfoMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Github"
+uri = "https://github.com/Riizlaah"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="VBoxC/HBoxContainer2/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Setting" to="." method="_on_setting_pressed"]
