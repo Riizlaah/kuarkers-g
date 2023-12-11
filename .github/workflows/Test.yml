@@ -2,6 +2,8 @@ name: Test
 jobs:
   testing:
     runs-on: ubuntu-latest
+    permissions: write-all
+    name: Testt
     steps:
     - uses: action/checkout@v4
     
