@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://resources/inventory/ItemType.gd" id="3_2eep3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
-load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ri4l"]
 atlas = SubResource("CompressedTexture2D_mm6ba")

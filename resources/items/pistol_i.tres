@@ -4,14 +4,12 @@
 [ext_resource type="Script" path="res://resources/ItemType/script/GunType.gd" id="2_70bxa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
-load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wjhn"]
 atlas = SubResource("CompressedTexture2D_mm6ba")
 region = Rect2(213, 0, 213, 213)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bptvd"]
-load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_la5dk"]
 atlas = SubResource("CompressedTexture2D_bptvd")
