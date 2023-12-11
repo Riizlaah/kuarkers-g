@@ -10,7 +10,7 @@ jobs:
     permissions: write-all
     name: Testt
     steps:
-    - uses: action/checkout@v4
+    - uses: actions/checkout@v4
     
     - name: Install java
       uses: actions/setup-java@v3
