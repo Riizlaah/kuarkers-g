@@ -68,10 +68,12 @@ func _physics_process(delta):
 			cooldown -= 1
 		if Input.is_action_pressed("left_click"):
 			on_left_pressed()
-		if time_eff != 0 and time_eff > 0:
+		if time_eff > 0:
 			time_eff -= 1
-		if time_eff == 0:
+		elif time_eff == 0:
 			reset_effect()
+		else:
+			pass
 		if currentHealth == 0 and die == false:
 			if cam_pos == Vector3.ZERO:
 				cam_pos = cam.global_position
@@ -162,14 +164,14 @@ func reset_onhand_item():
 	sprite.hide()
 	damage = 1
 	SPEED = 10
-	if not effect.is_empty() and time_eff > 0:
+	if !effect.is_empty() and time_eff > 0:
 		eff()
 func pick_up_slot(slot_d: slotData):
 	return inv_player.pick_up_slot(slot_d)
 func set_properti(data: ItemType):
 	damage = data.damage
 	cd_template = data.cooldown
-	if not effect.is_empty() and time_eff > 0:
+	if !effect.is_empty() and time_eff > 0:
 		eff()
 
 func death(free_obj : bool = false):
@@ -340,6 +342,7 @@ func take_effect(spd: float, dmg: int, time: int):
 	effect["speed"] = spd
 	effect["damage"] = dmg
 	time_eff = time
+	eff()
 func eff():
 	SPEED += effect["speed"]
 	damage += effect["damage"]

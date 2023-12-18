@@ -81,7 +81,7 @@ func make_uniq(dict: Dictionary):
 	return dict
 
 func free_player(id: int):
-	var player = get_node("/root/World/%d" % id)
+	var player = get_node("/root/World/%s" % str(id))
 	player.death(true)
 
 func free_host():

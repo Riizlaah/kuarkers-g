@@ -28,9 +28,9 @@ func _on_keluar_pressed():
 		get_node("/root/World").host_disconnected.emit()
 	else:
 		GameManager.players.erase(multiplayer.multiplayer_peer.get_unique_id())
-		get_node("/root/World").player_disc(multiplayer.multiplayer_peer.get_unique_id())
-	get_tree().change_scene_to_file("res://scene/main.tscn")
-	pass
+		get_node("/root/World").free_player(multiplayer.multiplayer_peer.get_unique_id())
+		get_tree().change_scene_to_file("res://scene/main.tscn")
+
 
 func _on_jump_gui_input(event):
 	if event is InputEventScreenDrag or event is InputEventScreenTouch and event.is_pressed():

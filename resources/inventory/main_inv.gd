@@ -17,7 +17,7 @@ func set_main_slot(index: int):
 
 func check_main_slot():
 	var slot_d = slotDatas[main_slot_index]
-	if main_slot.item_data != slot_d.item_data or main_slot != slot_d:
+	if main_slot.item_data != slot_d.item_data or main_slot.quantity != slot_d.quantity:
 		set_main_slot(main_slot_index)
 		inv_updated.emit(self)
 		main_slot_change.emit(main_slot)
