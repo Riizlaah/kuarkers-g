@@ -20,7 +20,6 @@ func throw(dir: Vector3):
 	pass
 
 func _on_body_entered(body: Node3D):
-	#if body.has_method("takeDamage"):
-	body.takeDamage(damage_bullet)
+	body.takeDamage.rpc_id(body.name.to_int(),damage_bullet)
 	queue_free()
 	pass # Replace with function body.

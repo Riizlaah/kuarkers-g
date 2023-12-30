@@ -608,10 +608,10 @@ content_margin_bottom = 10.0
 bg_color = Color(0, 0.407843, 0.611765, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c5the"]
-properties/0/path = NodePath(".:syncPos")
+properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:syncRot")
+properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
@@ -862,11 +862,10 @@ grow_vertical = 0
 script = ExtResource("10_p834q")
 clampzone_size = 80.0
 visibility_mode = 1
-use_input_actions = false
-action_left = "move_left"
-action_right = "move_right"
-action_up = "move_forward"
-action_down = "move_back"
+action_left = "a"
+action_right = "d"
+action_up = "w"
+action_down = "s"
 
 [node name="Base" type="TextureRect" parent="Control/Joystick"]
 layout_mode = 1
@@ -1233,6 +1232,17 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_y2yx4")
 text = "Keluar"
+
+[node name="Label" type="Label" parent="pause_bg/PAUSE_BG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.1
