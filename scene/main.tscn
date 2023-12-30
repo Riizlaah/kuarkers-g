@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://yw7vd1w222jo"]
+[gd_scene load_steps=24 format=3 uid="uid://yw7vd1w222jo"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_qhviq"]
 [ext_resource type="Texture2D" uid="uid://drssjryeyektw" path="res://Texture/main-menu/play.png" id="2_8bmul"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://c14sl0tnpywuc" path="res://Texture/main-menu/quit.png" id="3_xq4o6"]
 [ext_resource type="Texture2D" uid="uid://bxf2c6ehqn45d" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
 [ext_resource type="Texture2D" uid="uid://wbdvfc22ymew" path="res://Texture/main-menu/close.png" id="5_hligs"]
-[ext_resource type="AudioStream" uid="uid://bqjca545raj7e" path="res://Musik/mood_24kGoldn.mp3" id="7_hw44m"]
 [ext_resource type="Script" path="res://script/multiplayer/PlayMenu.gd" id="8_n7ply"]
 [ext_resource type="Script" path="res://script/multiplayer/ServerBrowser.gd" id="9_3ey4u"]
 
@@ -107,6 +106,42 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="Animation" id="Animation_rugrx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hw1dl"]
+resource_name = "when-ready"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8e4hg"]
+_data = {
+"RESET": SubResource("Animation_rugrx"),
+"when-ready": SubResource("Animation_hw1dl")
+}
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -118,11 +153,14 @@ script = ExtResource("1_qhviq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite" type="TextureRect" parent="."]
-layout_mode = 0
-anchor_right = 1.17101
-anchor_bottom = 1.10957
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_fenea")
-metadata/_edit_use_anchors_ = true
+expand_mode = 1
 
 [node name="VBoxC" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -304,10 +342,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_b2t4b")
 text = "Simpan"
 metadata/_edit_use_anchors_ = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_hw44m")
-autoplay = true
-
 [node name="PlayMenu" type="Panel" parent="."]
 visible = false
 layout_mode = 1
@@ -394,6 +428,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Timer" type="Timer" parent="PlayMenu/MarginContainer/HostMenu"]
+wait_time = 2.0
 
 [node name="Close" type="TextureButton" parent="PlayMenu"]
 layout_mode = 1
@@ -444,7 +479,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Versi : 1.0"
+text = "Versi : beta1.2"
 
 [node name="Label2" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -471,6 +506,18 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Github"
 uri = "https://github.com/Riizlaah"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8e4hg")
+}
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 998.712
+offset_top = 29.7018
+offset_right = 1038.71
+offset_bottom = 52.7018
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="VBoxC/HBoxContainer2/Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="VBoxC/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
@@ -484,4 +531,5 @@ uri = "https://github.com/Riizlaah"
 [connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Quit" to="PlayMenu" method="_on_quit_pressed"]
 [connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Buat" to="PlayMenu" method="_on_buat_pressed"]
 [connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Start" to="PlayMenu" method="_on_start_pressed"]
+[connection signal="timeout" from="PlayMenu/MarginContainer/HostMenu/Timer" to="PlayMenu/MarginContainer/HostMenu" method="_on_timer_timeout"]
 [connection signal="pressed" from="PlayMenu/Close" to="PlayMenu" method="_on_close_pressed"]

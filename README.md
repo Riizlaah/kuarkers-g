@@ -1,7 +1,7 @@
 # Kuarkers The Game
----
+
+Kuarkers adalah game multiplayer tanpa tujuan yang Open Source
 
 Link download di bawah
 
-[beta1.0](https://github.com/Riizlaah/kuarkers-g/blob/16e01be280dbbb60e1ba283ffd10e6c3841c91ef/Musik/mood_24kGoldn.mp3)
-
+[Download APK](https://github.com/Riizlaah/kuarkers-g/releases/beta1.0/Kuarkers-beta2.0)
