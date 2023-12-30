@@ -3,5 +3,5 @@
 
 Link download di bawah
 
-[beta1.0](https://github.com/Riizlaah/kuarkers-g/blob/16e01be280dbbb60e1ba283ffd10e6c3841c91ef/Musik/mood_24kGoldn.mp3)
-
+<a href="https://raw.githubusercontent.com/Riizlaah/kuarkers-g/main/release/Kuarkers-beta1.0.apk">beta1.0</a><br>
+<a href="https://raw.githubusercontent.com/Riizlaah/kuarkers-g/main/release/Kuarkers-beta2.0.apk">beta2.0</a><br>
