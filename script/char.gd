@@ -30,8 +30,6 @@ var time_eff := 0
 var effect := {}
 var sec_inv: invData
 var main_inv: MainInv
-@export var syncPos : Vector3
-@export var syncRot : Vector3
 
 
 @onready var hpbar = $Control/HUD/hp_bar
@@ -48,87 +46,87 @@ var main_inv: MainInv
 @onready var joystick_l: VirtualJoystick = $Control/Joystick
 @onready var world_node = get_tree().root.get_node("/root/World")
 @onready var ammo_lb = $Control/HUD/Ammo
-@onready var chat = $Control/Chat
-@onready var chat_btn = $"Control/Chat-Btn"
+
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	# Set ukuran awal health bar sesuai dengan nilai maxHealth
+	if multiplayer.get_unique_id() != get_multiplayer_authority():
+		return
+	await get_tree().create_timer(0.2).timeout
+	cam.current = true
 	hpbar.scale.x = (currentHealth / maxHealth) * sn
 	lb_hpbar.text = str(currentHealth)
 	senv = Settings.senv
 	cam.fov = Settings.fov
-	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
-	await get_tree().create_timer(0.2).timeout
 	main_inv = inv_player.main_inv
 	sec_inv = inv_player.sec_inv
 
 func _physics_process(delta):
-	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
-		if cooldown != 0:
-			cooldown -= 1
-		if Input.is_action_pressed("left_click"):
-			on_left_pressed()
-		if time_eff > 0:
-			time_eff -= 1
-		elif time_eff == 0:
-			reset_effect()
-		else:
-			pass
-		if currentHealth == 0 and die == false:
-			if cam_pos == Vector3.ZERO:
-				cam_pos = cam.global_position
-			anim.play("death")
-			dscreen.show()
-			ctrl_ui.hide()
-			hide()
-			set_collision_layer_value(2, false)
-			set_collision_layer_value(3, false)
-			currentHealth = -1
-			position.y = -33
-			cam.global_position = cam_pos
-			die = true
-			death()
-		if is_on_floor() and Input.is_action_pressed("jump"):
-			velocity.y = JUMP_VELOCITY
-		if !is_on_floor() and die == false:
-			if s_fall == 0:
-				s_fall = floor(position.y)
-			velocity.y -= gravity * delta
-		elif !is_on_floor() and die == true:
-			velocity.y = 0
-			pass
-		else:
-			if ground == null:
-				ground = position.y
-			if s_fall - ground > min_h:
-				takeDamage(s_fall - ground)
-			s_fall = 0
-			ground = null
-		var input_dir = joystick_l.output
-		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
-		if input_dir != Vector2.ZERO and is_on_floor():
-			anim.play("move")
-		elif anim.is_playing() and anim.current_animation != 'move':
-			pass
-		else:
-			anim.play("idle")
-		if head.rotation_degrees.y != 0 and velocity != Vector3.ZERO:
-			rotate_y(head.rotation.y)
-			head.rotation.y = 0
-		syncPos = global_position
-		syncRot = rotation_degrees
-		move_and_slide()
+	if get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
+	if cooldown != 0:
+		cooldown -= 1
+	if Input.is_action_pressed("left_click"):
+		on_left_pressed()
+	if time_eff > 0:
+		time_eff -= 1
+	elif time_eff == 0:
+		reset_effect()
 	else:
-		global_position = global_position.lerp(syncPos, 0.5)
-		rotation_degrees = rotation_degrees.lerp(syncRot, 0.5)
+		pass
+	if currentHealth == 0 and die == false:
+		if cam_pos == Vector3.ZERO:
+			cam_pos = cam.global_position
+		anim.play("death")
+		dscreen.show()
+		ctrl_ui.hide()
+		hide()
+		set_collision_layer_value(2, false)
+		set_collision_layer_value(3, false)
+		currentHealth = -1
+		position.y = -33
+		cam.global_position = cam_pos
+		die = true
+		death()
+	if is_on_floor() and Input.is_action_pressed("jump"):
+		velocity.y = JUMP_VELOCITY
+	if !is_on_floor() and die == false:
+		if s_fall == 0:
+			s_fall = floor(position.y)
+		velocity.y -= gravity * delta
+	elif !is_on_floor() and die == true:
+		velocity.y = 0
+		pass
+	else:
+		if ground == null:
+			ground = position.y
+		if s_fall - ground > min_h:
+			takeDamage(s_fall - ground)
+		s_fall = 0
+		ground = null
+	var input_dir = Input.get_vector("a","d","w","s")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if input_dir != Vector2.ZERO and is_on_floor():
+		anim.play("move")
+	elif anim.is_playing() and anim.current_animation != 'move':
+		pass
+	else:
+		anim.play("idle")
+	if head.rotation_degrees.y != 0 and velocity != Vector3.ZERO:
+		rotate_y(head.rotation.y)
+		head.rotation.y = 0
+	move_and_slide()
 
 func _input(event):
+	if get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
 	if event is InputEventScreenDrag and die == false and paused == false:
 		head.rotate_y(deg_to_rad(-event.relative.x * senv))
 		head.rotation.y = clamp(head.rotation.y, deg_to_rad(-81), deg_to_rad(81))
@@ -137,6 +135,7 @@ func _input(event):
 		cam.rotate_x(deg_to_rad(-event.relative.y * senv))
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-60), deg_to_rad(89))
 
+@rpc("any_peer")
 func takeDamage(dmg):
 	currentHealth = floor(clamp(currentHealth - dmg, 0, maxHealth))
 	cam.rotation_degrees.z = -5
@@ -215,10 +214,11 @@ func pause():
 
 func interact_left():
 	anim.play("attack")
-	if rayc.is_colliding() and rayc.get_collider().has_method("player_interact"):
-		pass
-	elif rayc.is_colliding() and rayc.get_collider().has_method("takeDamage"):
-		rayc.get_collider().takeDamage(damage)
+	if !rayc.is_colliding():
+		return
+	var collider = rayc.get_collider()
+	if collider.has_method("takeDamage"):
+		collider.takeDamage.rpc_id(collider.name.to_int(),damage)
 
 
 func on_left_pressed():
@@ -351,10 +351,6 @@ func reset_effect():
 	damage = 5
 	time_eff = -1
 	effect.clear()
-
-func _on_chat_btn_pressed():
-	chat_btn.hide()
-	chat.show()
 
 func setRandomItem():
 	var RandItemArr = []

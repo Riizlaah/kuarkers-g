@@ -26,7 +26,7 @@ func throw(direction, slot_d2: slotData):
 
 func _on_body_entered(body: Node3D):
 	if body.has_method("takeDamage"):
-		body.takeDamage(slot_d.item_data.type.damage * 1.5)
+		body.takeDamage.rpc_id(body.name.to_int(),slot_d.item_data.type.damage * 1.5)
 	freeze = true
 	await get_tree().create_timer(1).timeout
 	var pickup2 = pickup.instantiate()

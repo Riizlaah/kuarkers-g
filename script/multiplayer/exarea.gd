@@ -14,6 +14,6 @@ func explode():
 		queue_free()
 		return
 	for body in bodies:
-		body.takeDamage(50)
+		body.takeDamage.rpc_id(body.name.to_int(),50)
 	queue_free()
 

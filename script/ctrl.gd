@@ -6,7 +6,14 @@ signal right_click
 @onready var charr = $".."
 @onready var left_btn = $Left
 @onready var jump_btn = $JUMP
+@onready var label = $"../pause_bg/PAUSE_BG/Label"
 
+func _ready():
+	await get_tree().create_timer(0.2).timeout
+	if multiplayer.is_server():
+		label.text = "Host"
+		return
+	label.text = "Client"
 
 func _on_pause_pressed():
 	pause_bg.visible = true
@@ -23,14 +30,14 @@ func _on_play_pressed():
 
 
 func _on_keluar_pressed():
+	var id = multiplayer.multiplayer_peer.get_unique_id()
 	if multiplayer.is_server():
 		GameManager.players.clear()
-		get_node("/root/World").host_disconnected.emit()
+		multiplayer.server_disconnected.emit()
 	else:
-		GameManager.players.erase(multiplayer.multiplayer_peer.get_unique_id())
-		get_node("/root/World").free_player(multiplayer.multiplayer_peer.get_unique_id())
+		GameManager.players.erase(charr.name.to_int())
+		multiplayer.multiplayer_peer.disconnect_peer(id)
 		get_tree().change_scene_to_file("res://scene/main.tscn")
-
 
 func _on_jump_gui_input(event):
 	if event is InputEventScreenDrag or event is InputEventScreenTouch and event.is_pressed():

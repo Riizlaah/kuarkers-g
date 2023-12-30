@@ -1,8 +1,5 @@
 extends Node3D
 
-signal player_disc(id: int)
-signal host_disconnected
-
 @onready var sun = $SUN
 @onready var moon = $MOON
 @onready var w_env : WorldEnvironment = $W_ENV
@@ -34,8 +31,6 @@ var noise_offset := 0.05
 func _ready():
 	time_rate = 1.0 / day_length
 	time = s_time
-	player_disc.connect(free_player)
-	host_disconnected.connect(free_host)
 	GameManager.players = make_uniq(GameManager.players)
 	for i in GameManager.players:
 		var c_player = player_s.instantiate()
@@ -44,6 +39,8 @@ func _ready():
 		c_player.position = Vector3(3, 3, 3)
 		c_player.lb_name.text = GameManager.players[i]["nama"]
 		c_player.setRandomItem()
+	multiplayer.peer_disconnected.connect(peer_disconnect)
+	multiplayer.server_disconnected.connect(server_disconnect)
 
 func _process(delta):
 	noise_offset += time * 0.05
@@ -80,18 +77,12 @@ func make_uniq(dict: Dictionary):
 			not_dup.append(nilai)
 	return dict
 
-func free_player(id: int):
-	var player = get_node("/root/World/%s" % str(id))
-	player.death(true)
+func peer_disconnect(id: int):
+	await get_tree().create_timer(0.2).timeout
+	var player = get_node(str(id))
+	player.queue_free()
 
-func free_host():
-	var nodes = get_children(true)
-	for node in nodes:
-		node.queue_free()
-	ch_scene.rpc()
-
-@rpc("any_peer", "call_local")
-func ch_scene():
-	multiplayer.multiplayer_peer = null
+func server_disconnect():
 	get_tree().change_scene_to_file("res://scene/main.tscn")
+
 

@@ -5,11 +5,11 @@ extends Panel
 @onready var s_browser = $MarginContainer/HostMenu
 @onready var lb_player = $MarginContainer/HostMenu/HBoxContainer/Label
 var scene = preload("res://scene/world.tscn")
-var port = 8910
-var address = "127.0.0.1"
+var port: int
 var peer
 
 func _ready():
+	port = randi_range(8090, 8989)
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 	multiplayer.server_disconnected.connect(server_disconnected)
@@ -17,7 +17,6 @@ func _ready():
 func _on_close_pressed():
 	hide()
 
-#client only
 func connected_to_server():
 	print('Terkoneksi ke server')
 	sendInfo.rpc_id(1, Settings.p_name, multiplayer.get_unique_id())
@@ -38,12 +37,15 @@ func _on_buat_pressed():
 	tg_visible(true)
 	sendInfo(Settings.p_name, multiplayer.get_unique_id())
 	lb_player.text = "Player : " + str(GameManager.players.size())
-	s_browser.setBroadcast(lineEdit.text)
+	s_browser.setBroadcast(lineEdit.text, port)
 	$MarginContainer/HostMenu/HBoxContainer/Start.show()
 
-func joinByIp(ip):
+func joinByIp(ip, port2):
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(ip, port)
+	var err = peer.create_client(ip, port2)
+	if err != OK:
+		print(err)
+		return
 	multiplayer.multiplayer_peer = peer
 
 #rpc
