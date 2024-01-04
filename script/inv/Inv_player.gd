@@ -145,11 +145,10 @@ func on_right_pressed():
 		charr.heal(data.heal)
 		#kurangi
 		main_inv.slotDatas[main_inv.main_slot_index].quantity -= 1
-		#print(main_inv.main_slot.quantity, main_inv.slotDatas[main_inv.main_slot_index].quantity)
 		if main_inv.slotDatas[main_inv.main_slot_index].quantity < 0:
 			main_inv.slotDatas[main_inv.main_slot_index] = slotData.new()
 		#update
-		main_inv.check_main_slot()#set_main_slot(main_inv.main_slot_index)
+		main_inv.check_main_slot()
 	elif mainItem.type is DrinkType:
 		#minum & efek
 		charr.anim.play("eat")

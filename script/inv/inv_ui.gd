@@ -10,11 +10,8 @@ func setup_slot(inv_d: invData):
 	pass
 
 func pop_it_grid(inv_data: invData):
-	#print(inv_data.slotDatas.size())
-	#var i3 = 0
 	for child in it_grid.get_children():
 		child.queue_free()
-		#i3 += 1
 	for slot_d in inv_data.slotDatas:
 		var slot = slot_s.instantiate()
 		it_grid.add_child(slot)
@@ -22,6 +19,5 @@ func pop_it_grid(inv_data: invData):
 		slot.activate(slot_d)
 		if slot_d.item_data != null:
 			slot.set_slotD(slot_d)
-	#print(i3)
 	pass
 

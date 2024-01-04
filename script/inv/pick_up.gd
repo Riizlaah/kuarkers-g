@@ -19,7 +19,6 @@ func _on_area3d_entered(body: Node3D):
 			calc_rest()
 
 func calc_rest():
-	#print(pick_up)
 	slot_d.quantity = pick_up
 	pass
 
