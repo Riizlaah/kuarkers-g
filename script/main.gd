@@ -8,6 +8,10 @@ extends Control
 @onready var PlayMenu = $PlayMenu
 @onready var infomenu = $InfoMenu
 @onready var anim = $AnimationPlayer
+@onready var setting = $ColorRect
+@onready var bg_texture = $bg_texture
+
+@export var texture_arr : Array[Texture]
 
 func _ready():
 	multiplayer.multiplayer_peer = null
@@ -41,24 +45,24 @@ func save_file():
 	file.close()
 
 func aready():
-	await get_tree().create_timer(0.5).timeout
+	bg_texture.texture = texture_arr.pick_random()
+	show()
 	anim.play("when-ready")
 func _on_main_pressed():
 	PlayMenu.show()
-
+	anim.play("playmenu")
 
 func _on_quit_pressed():
 	get_tree().quit()
 
-
 func _on_setting_pressed():
-	$ColorRect.show()
-
+	setting.show()
+	anim.play("setting")
 
 func _on_close_pressed():
-	$ColorRect.hide()
-
-
+	anim.play_backwards("setting")
+	await get_tree().create_timer(0.5).timeout
+	setting.hide()
 
 func _on_fov_value_changed(value: int):
 	fov_lb.text = "FOV : " + str(value)
@@ -82,14 +86,18 @@ func text_set(text: String):
 func check_s_n_t(text: String):
 	return text.find("\n") != -1 or text.find(" ") != -1
 
-func _on_save_pressed():
-	Settings.p_name = text_edit.text
-	save_file()
-
 func _on_info_pressed():
 	infomenu.show()
-
 
 func _on_gui_input(event: InputEvent):
 	if event is InputEventScreenTouch and event.is_pressed():
 		infomenu.hide()
+
+func _on_text_edit_text_submitted(new_text):
+	Settings.p_name = new_text
+	save_file()
+
+func _on_close1_pressed():
+	anim.play_backwards("playmenu")
+	await get_tree().create_timer(0.5).timeout
+	PlayMenu.hide()

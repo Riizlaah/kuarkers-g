@@ -4,27 +4,38 @@ extends Panel
 @onready var lineEdit = $MarginContainer/HostMenu/HBoxContainer/LineEdit
 @onready var s_browser = $MarginContainer/HostMenu
 @onready var lb_player = $MarginContainer/HostMenu/HBoxContainer/Label
+@onready var start_button = $MarginContainer/HostMenu/HBoxContainer/Start
 var scene = preload("res://scene/world.tscn")
 var port: int
 var peer
+var time = 60
 
 func _ready():
 	port = randi_range(8090, 8989)
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
-	multiplayer.server_disconnected.connect(server_disconnected)
+	multiplayer.peer_disconnected.connect(peer_connected)
+	multiplayer.peer_connected.connect(peer_connected)
 
-func _on_close_pressed():
-	hide()
 
+func peer_connected(_id):
+	await get_tree().create_timer(0.25).timeout
+	lb_player.text = "Player : " + str(GameManager.players.size())
 func connected_to_server():
-	print('Terkoneksi ke server')
+	tg_visible(true)
 	sendInfo.rpc_id(1, Settings.p_name, multiplayer.get_unique_id())
 func connection_failed():
 	multiplayer.multiplayer_peer = null
-	print('koneksi gagal')
+	OS.alert("Koneksi Gagal !", "Peringatan")
+@rpc("call_local")
 func server_disconnected():
-	print('Server berhenti')
+	multiplayer.multiplayer_peer = null
+	GameManager.players.clear()
+	s_browser.clear_server()
+	tg_visible(false)
+@rpc("any_peer", "call_local")
+func disconnect_peer(id):
+	GameManager.players.erase(id)
 
 func _on_buat_pressed():
 	peer = ENetMultiplayerPeer.new()
@@ -38,13 +49,13 @@ func _on_buat_pressed():
 	sendInfo(Settings.p_name, multiplayer.get_unique_id())
 	lb_player.text = "Player : " + str(GameManager.players.size())
 	s_browser.setBroadcast(lineEdit.text, port)
-	$MarginContainer/HostMenu/HBoxContainer/Start.show()
+	start_button.show()
 
 func joinByIp(ip, port2):
 	peer = ENetMultiplayerPeer.new()
 	var err = peer.create_client(ip, port2)
 	if err != OK:
-		print(err)
+		OS.alert("Tidak bisa bergabung, kode eror : " + err, "Peringatan")
 		return
 	multiplayer.multiplayer_peer = peer
 
@@ -54,7 +65,6 @@ func sendInfo(nama: String, id: int) -> void:
 	if !GameManager.players.has(id):
 		GameManager.players[id] = {
 			"nama": nama,
-			"id": id
 		}
 	if multiplayer.is_server():
 		for i in GameManager.players:
@@ -75,13 +85,14 @@ func tg_visible(tg: bool):
 
 
 func _on_quit_pressed():
+	var peer_id = multiplayer.multiplayer_peer.get_unique_id()
 	if multiplayer.is_server():
+		s_browser.close_broadcast()
+		server_disconnected.rpc()
+		start_button.hide()
+	else:
+		disconnect_peer.rpc(peer_id)
 		multiplayer.multiplayer_peer.close()
 		multiplayer.multiplayer_peer = null
-		GameManager.players.clear()
 		tg_visible(false)
-		$MarginContainer/HostMenu/HBoxContainer/Start.hide()
-	else:
-		GameManager.players.erase(multiplayer.multiplayer_peer.get_unique_id())
-		multiplayer.multiplayer_peer.close()
-		tg_visible(false)
+

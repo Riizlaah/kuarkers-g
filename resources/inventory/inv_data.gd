@@ -51,7 +51,6 @@ func drop_slotD(g_slotD: slotData, index: int):
 			slot_d.active = false
 		r_slot_d = slot_d
 	elif slot_d.item_data and slot_d.can_merge(g_slotD):
-		#print('h3k')
 		slot_d.merge(g_slotD)
 		if slot_d.rest > 0:
 			var nSlotD = g_slotD
