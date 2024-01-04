@@ -593,13 +593,6 @@ region = Rect2(960, 0, 320, 322)
 atlas = ExtResource("11_s5y2s")
 region = Rect2(0, 0, 320, 320)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf4cy"]
-bg_color = Color(0.54902, 0.54902, 0.54902, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2yx4"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -607,18 +600,32 @@ content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0, 0.407843, 0.611765, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf4cy"]
+bg_color = Color(0.54902, 0.54902, 0.54902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c5the"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/replication_mode = 2
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
+properties/2/path = NodePath("AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("Badan/Kepala:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 2
 
 [node name="Char" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
 collision_layer = 6
-floor_max_angle = 1.22173
+wall_min_slide_angle = 0.122173
+floor_max_angle = 1.39626
 script = ExtResource("1_kyc15")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -822,7 +829,8 @@ anchor_top = 0.0875
 anchor_right = 0.837838
 anchor_bottom = 0.400001
 theme_override_font_sizes/font_size = 15
-text = "p"
+text = "
+"
 metadata/_edit_use_anchors_ = true
 
 [node name="Ammo" type="Label" parent="Control/HUD"]
@@ -1088,18 +1096,6 @@ texture = SubResource("AtlasTexture_ielac")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -22.0
-offset_right = 22.0
-offset_bottom = 31.0
-grow_horizontal = 2
-text = "HUD"
-
 [node name="JUMP" type="Control" parent="Control"]
 layout_mode = 1
 anchor_left = 0.920139
@@ -1134,55 +1130,6 @@ grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_f8y3b")
 ignore_texture_size = true
 stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="DeathScreen" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Deathsc" type="ColorRect" parent="DeathScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Label" type="Label" parent="DeathScreen/Deathsc"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = -44.0
-offset_right = 62.5
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Kamu Mati"
-
-[node name="Respawn" type="Button" parent="DeathScreen/Deathsc"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.447049
-anchor_top = 0.591049
-anchor_right = 0.551215
-anchor_bottom = 0.683642
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_mf4cy")
-action_mode = 0
-text = "Respawn"
 metadata/_edit_use_anchors_ = true
 
 [node name="pause_bg" type="Control" parent="."]
@@ -1244,6 +1191,58 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Deathsc" type="ColorRect" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen/Deathsc"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -44.0
+offset_right = 62.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Kamu Mati"
+
+[node name="Respawn" type="Button" parent="CanvasLayer/DeathScreen/Deathsc"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.447049
+anchor_top = 0.591049
+anchor_right = 0.551215
+anchor_bottom = 0.683642
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mf4cy")
+action_mode = 0
+text = "Respawn"
+metadata/_edit_use_anchors_ = true
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.1
 delta_interval = 0.1
@@ -1255,10 +1254,9 @@ replication_config = SubResource("SceneReplicationConfig_c5the")
 [connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_all" to="Control/Inv_Player" method="_on_rm_all_pressed"]
 [connection signal="pressed" from="Control/TouchScreenButton/ToggleInv" to="Control/Inv_Player" method="_OnInv_pressed"]
 [connection signal="gui_input" from="Control/Right" to="Control" method="_on_right_gui_input"]
-[connection signal="pressed" from="Control/Button" to="." method="_on_hud_pressed"]
 [connection signal="gui_input" from="Control/JUMP" to="Control" method="_on_jump_gui_input"]
 [connection signal="button_down" from="Control/Left" to="Control" method="_on_left_button_down"]
 [connection signal="button_up" from="Control/Left" to="Control" method="_on_left_button_up"]
-[connection signal="pressed" from="DeathScreen/Deathsc/Respawn" to="." method="_on_respawn"]
 [connection signal="pressed" from="pause_bg/PAUSE_BG/RESUME" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="pause_bg/PAUSE_BG/EXIT" to="Control" method="_on_keluar_pressed"]
+[connection signal="pressed" from="CanvasLayer/DeathScreen/Deathsc/Respawn" to="." method="_on_respawn"]

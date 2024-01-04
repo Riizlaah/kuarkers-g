@@ -12,8 +12,7 @@ color_ramp = SubResource("Gradient_kxpn2")
 noise = ExtResource("1_h4vrm")
 
 [resource]
-sky_curve = 0.0478322
+sky_curve = 0.0990383
 sky_cover = SubResource("NoiseTexture2D_q71nb")
 sky_cover_modulate = Color(1, 1, 1, 0.356863)
 ground_curve = 0.0413906
-use_debanding = false

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c420ec638iol7"]
+[gd_scene load_steps=4 format=3 uid="uid://c420ec638iol7"]
 
 [ext_resource type="Script" path="res://script/inv/pick_up.gd" id="1_ta0f4"]
-[ext_resource type="Texture2D" uid="uid://dv2ryppgebjfn" path="res://resources/item3_atlas.tres" id="2_hxqn2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l43uo"]
 size = Vector3(0.5, 0.1, 0.5)
@@ -16,7 +15,6 @@ script = ExtResource("1_ta0f4")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.45, 0, 0, 0, -1.96701e-08, -0.45, 0, 0.45, -1.96701e-08, 0, 0.15, 0)
 texture_filter = 0
-texture = ExtResource("2_hxqn2")
 
 [node name="Colls1" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
