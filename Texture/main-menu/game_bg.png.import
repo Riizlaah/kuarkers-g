@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl2twhmn2eg7r"
-path="res://.godot/imported/chat.png-cfa3eb985551506c5e133c0ff32ce3d8.ctex"
+uid="uid://bbehrvboh4xs1"
+path="res://.godot/imported/game_bg.png-0ce731df2583b1aedbaddfe16e38b5db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/hud/chat.png"
-dest_files=["res://.godot/imported/chat.png-cfa3eb985551506c5e133c0ff32ce3d8.ctex"]
+source_file="res://Texture/main-menu/game_bg.png"
+dest_files=["res://.godot/imported/game_bg.png-0ce731df2583b1aedbaddfe16e38b5db.ctex"]
 
 [params]
 

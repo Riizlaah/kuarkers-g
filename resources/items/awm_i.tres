@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://so8bhwsf5png"]
 
-[ext_resource type="Texture2D" uid="uid://6vp8bjs6rye" path="res://Texture/inv/tekstur3.png" id="1_yomyf"]
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_yq4lo"]
 [ext_resource type="Script" path="res://resources/ItemType/script/GunType.gd" id="2_u1dw5"]
 
@@ -11,8 +10,11 @@ load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4
 atlas = SubResource("CompressedTexture2D_mm6ba")
 region = Rect2(426, 213, 213, 213)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hh2iy"]
-atlas = ExtResource("1_yomyf")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swr3i"]
+load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1l44"]
+atlas = SubResource("CompressedTexture2D_swr3i")
 region = Rect2(426, 213, 213, 213)
 
 [sub_resource type="Resource" id="Resource_elc8m"]
@@ -30,7 +32,7 @@ script = ExtResource("1_yq4lo")
 name = "AWM"
 icon = SubResource("AtlasTexture_etdto")
 stack = false
-onhand_texture = SubResource("AtlasTexture_hh2iy")
+onhand_texture = SubResource("AtlasTexture_o1l44")
 onhand_pos = Vector3(0, -1.25, -0.6)
 onhand_rot = Vector3(0, -90, 0)
 onhand_scale = 2.0

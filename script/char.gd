@@ -30,14 +30,15 @@ var time_eff := 0
 var effect := {}
 var sec_inv: invData
 var main_inv: MainInv
-
+var ftime = 300
+var tgHud: bool = false
 
 @onready var hpbar = $Control/HUD/hp_bar
 @onready var lb_hpbar = $Control/HUD/Label
 @onready var head = $Badan/Kepala
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var rayc : RayCast3D = $Badan/Kepala/Camera3D/RayCast3D
-@onready var dscreen = $DeathScreen
+@onready var dscreen = $CanvasLayer
 @onready var ctrl_ui = $Control
 @onready var cam: Camera3D = $Badan/Kepala/Camera3D
 @onready var inv_player = $Control/Inv_Player
@@ -95,9 +96,9 @@ func _physics_process(delta):
 		if s_fall == 0:
 			s_fall = floor(position.y)
 		velocity.y -= gravity * delta
+		ftime -= 1
 	elif !is_on_floor() and die == true:
 		velocity.y = 0
-		pass
 	else:
 		if ground == null:
 			ground = position.y
@@ -105,6 +106,17 @@ func _physics_process(delta):
 			takeDamage(s_fall - ground)
 		s_fall = 0
 		ground = null
+		ftime = 300
+	if ftime == 0:
+		ctrl_ui.visible = false
+		dscreen.show()
+		hide()
+		set_collision_layer_value(2, false)
+		set_collision_layer_value(3, false)
+		currentHealth = -1
+		die = true
+		death(false, true)
+		ftime = -1
 	var input_dir = Input.get_vector("a","d","w","s")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -134,6 +146,11 @@ func _input(event):
 			rotate_y(deg_to_rad(-event.relative.x))
 		cam.rotate_x(deg_to_rad(-event.relative.y * senv))
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-60), deg_to_rad(89))
+
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("tg_hud"):
+		tgHud = !tgHud
+		ctrl_ui.visible = tgHud
 
 @rpc("any_peer")
 func takeDamage(dmg):
@@ -173,27 +190,29 @@ func set_properti(data: ItemType):
 	if !effect.is_empty() and time_eff > 0:
 		eff()
 
-func death(free_obj : bool = false):
-	for slot in main_inv.slotDatas:
-		if slot.item_data != null:
-			var pickup = pickup_s.instantiate()
-			pickup.slot_d = slot
-			pickup.slot_d.active = false
-			pickup.position = cam.global_position
-			world_node.add_child(pickup)
-	for slot in sec_inv.slotDatas:
-		if slot.item_data != null:
-			var pickup = pickup_s.instantiate()
-			pickup.slot_d = slot
-			pickup.slot_d.active = false
-			pickup.position = cam.global_position
-			world_node.add_child(pickup)
+func death(free_obj : bool = false, free_item: bool = false):
+	if free_item == false:
+		for slot in main_inv.slotDatas:
+			if slot.item_data != null:
+				var pickup = pickup_s.instantiate()
+				pickup.slot_d = slot
+				pickup.slot_d.active = false
+				pickup.position = cam.global_position
+				world_node.add_child(pickup)
+		for slot in sec_inv.slotDatas:
+			if slot.item_data != null:
+				var pickup = pickup_s.instantiate()
+				pickup.slot_d = slot
+				pickup.slot_d.active = false
+				pickup.position = cam.global_position
+				world_node.add_child(pickup)
 	inv_player.clear_slot()
 	reset_onhand_item()
 	if free_obj == true:
 		queue_free()
 
 func _on_respawn():
+	ftime = 300
 	position = Vector3(0, 5, 0)
 	show()
 	anim.play("RESET")
@@ -237,8 +256,6 @@ func on_left_pressed():
 	else:
 		interact_left()
 
-func _on_hud_pressed():
-	ctrl_ui.hide()
 func shoot_rocket():
 	if not Input.is_action_pressed("left_click"):
 		return
