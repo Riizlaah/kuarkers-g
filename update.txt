@@ -1,0 +1,8 @@
+#Fix
+- HP Error
+
+#Tambahkan
+- Musuh
+- Model3D
+- Pintu
+- Rumah

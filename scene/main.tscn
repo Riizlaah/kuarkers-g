@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://yw7vd1w222jo"]
+[gd_scene load_steps=29 format=3 uid="uid://yw7vd1w222jo"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_qhviq"]
 [ext_resource type="Texture2D" uid="uid://drssjryeyektw" path="res://Texture/main-menu/play.png" id="2_8bmul"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bd7mkuuguoip7" path="res://Texture/main-menu/main_bg.jpg" id="2_fenea"]
 [ext_resource type="Texture2D" uid="uid://c14sl0tnpywuc" path="res://Texture/main-menu/quit.png" id="3_xq4o6"]
 [ext_resource type="Texture2D" uid="uid://bxf2c6ehqn45d" path="res://Texture/main-menu/setting.png" id="4_tr2ql"]
+[ext_resource type="Texture2D" uid="uid://c2etg6rom0f7k" path="res://Texture/main-menu/game_bg2.png" id="4_vqg2r"]
 [ext_resource type="Texture2D" uid="uid://wbdvfc22ymew" path="res://Texture/main-menu/close.png" id="5_hligs"]
 [ext_resource type="Script" path="res://script/multiplayer/PlayMenu.gd" id="8_n7ply"]
 [ext_resource type="Script" path="res://script/multiplayer/ServerBrowser.gd" id="9_3ey4u"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="10_vj0vi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolhe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -80,7 +82,18 @@ content_margin_left = 10.0
 content_margin_top = 5.0
 content_margin_right = 10.0
 content_margin_bottom = 5.0
-bg_color = Color(0.180392, 0.443137, 0.14902, 1)
+bg_color = Color(0.141176, 0.356863, 0.113725, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o82vv"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.145098, 0.364706, 0.117647, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -138,7 +151,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_r5n5f"]
 resource_name = "playmenu"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -146,7 +159,7 @@ tracks/0/path = NodePath("PlayMenu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -154,7 +167,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_awn76"]
 resource_name = "setting"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -162,7 +175,7 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -170,7 +183,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hw1dl"]
 resource_name = "when-ready"
-length = 1.5
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -178,7 +191,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -193,7 +206,6 @@ _data = {
 }
 
 [node name="Main" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,7 +213,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qhviq")
-texture_arr = Array[Texture]([ExtResource("2_82wcs"), ExtResource("2_fenea")])
+texture_arr = Array[Texture]([ExtResource("2_82wcs"), ExtResource("2_fenea"), ExtResource("4_vqg2r")])
 metadata/_edit_use_anchors_ = true
 
 [node name="bg_texture" type="TextureRect" parent="."]
@@ -410,14 +422,15 @@ theme_override_constants/margin_bottom = 30
 
 [node name="HostMenu" type="VBoxContainer" parent="PlayMenu/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 script = ExtResource("9_3ey4u")
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayMenu/MarginContainer/HostMenu"]
+[node name="Hbox" type="HBoxContainer" parent="PlayMenu/MarginContainer/HostMenu"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Quit" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+[node name="Quit" type="Button" parent="PlayMenu/MarginContainer/HostMenu/Hbox" groups=["wait_ui"]]
 visible = false
 layout_mode = 2
 focus_mode = 0
@@ -425,33 +438,37 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_xk83h")
 text = "Keluar"
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+[node name="MarginContainer" type="MarginContainer" parent="PlayMenu/MarginContainer/HostMenu/Hbox" groups=["wait_ui"]]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 30
 
-[node name="Label" type="Label" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["wait_ui"]]
+[node name="Label" type="Label" parent="PlayMenu/MarginContainer/HostMenu/Hbox" groups=["wait_ui"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 
-[node name="LineEdit" type="LineEdit" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["host_ui"]]
+[node name="LineEdit" type="LineEdit" parent="PlayMenu/MarginContainer/HostMenu/Hbox" groups=["host_ui"]]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_vj0vi")
 theme_override_font_sizes/font_size = 20
 text = "Room1"
 placeholder_text = "Nama Dunia"
 
-[node name="Buat" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer" groups=["host_ui"]]
+[node name="Buat" type="Button" parent="PlayMenu/MarginContainer/HostMenu/Hbox" groups=["host_ui"]]
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
+theme_override_fonts/font = ExtResource("10_vj0vi")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_stuqu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_stuqu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o82vv")
 text = "Buat"
 
-[node name="Start" type="Button" parent="PlayMenu/MarginContainer/HostMenu/HBoxContainer"]
+[node name="Start" type="Button" parent="PlayMenu/MarginContainer/HostMenu/Hbox"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 10
@@ -460,18 +477,47 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_c1npj")
 text = "Mulai"
 
-[node name="Scroll" type="ScrollContainer" parent="PlayMenu/MarginContainer/HostMenu" groups=["host_ui"]]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-
-[node name="ServerList" type="VBoxContainer" parent="PlayMenu/MarginContainer/HostMenu/Scroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Timer" type="Timer" parent="PlayMenu/MarginContainer/HostMenu"]
 wait_time = 2.0
+
+[node name="Label" type="Label" parent="PlayMenu/MarginContainer/HostMenu" groups=["wait_ui"]]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_vj0vi")
+theme_override_font_sizes/font_size = 32
+
+[node name="Hbox2" type="HBoxContainer" parent="PlayMenu/MarginContainer/HostMenu" groups=["host_ui"]]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+
+[node name="LineEdit" type="LineEdit" parent="PlayMenu/MarginContainer/HostMenu/Hbox2"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_vj0vi")
+theme_override_font_sizes/font_size = 20
+text = "127.0.0.1"
+placeholder_text = "Alamat IP"
+
+[node name="LineEdit2" type="LineEdit" parent="PlayMenu/MarginContainer/HostMenu/Hbox2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("10_vj0vi")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Port"
+
+[node name="Join" type="Button" parent="PlayMenu/MarginContainer/HostMenu/Hbox2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("10_vj0vi")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_stuqu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_stuqu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_stuqu")
+text = "Gabung"
 
 [node name="Close" type="TextureButton" parent="PlayMenu"]
 layout_mode = 1
@@ -522,7 +568,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Versi : 1.0"
+text = "Versi : 1.1.0"
 
 [node name="Label2" type="Label" parent="InfoMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -571,8 +617,9 @@ offset_bottom = 52.7018
 [connection signal="value_changed" from="ColorRect/SENV" to="." method="_on_senv_value_changed"]
 [connection signal="text_changed" from="ColorRect/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="text_submitted" from="ColorRect/TextEdit" to="." method="_on_text_edit_text_submitted"]
-[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Quit" to="PlayMenu" method="_on_quit_pressed"]
-[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Buat" to="PlayMenu" method="_on_buat_pressed"]
-[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/HBoxContainer/Start" to="PlayMenu" method="_on_start_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/Hbox/Quit" to="PlayMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/Hbox/Buat" to="PlayMenu" method="_on_buat_pressed"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/Hbox/Start" to="PlayMenu" method="_on_start_pressed"]
 [connection signal="timeout" from="PlayMenu/MarginContainer/HostMenu/Timer" to="PlayMenu/MarginContainer/HostMenu" method="_on_timer_timeout"]
+[connection signal="pressed" from="PlayMenu/MarginContainer/HostMenu/Hbox2/Join" to="PlayMenu" method="_on_join_pressed"]
 [connection signal="pressed" from="PlayMenu/Close" to="." method="_on_close1_pressed"]

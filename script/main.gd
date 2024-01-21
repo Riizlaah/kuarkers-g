@@ -23,6 +23,7 @@ func _ready():
 	text_edit.text = "EL_HEKER"
 	fov.value = Settings.fov
 	senv.value = Settings.senv * 100
+	#ProjectSettings.get_setting()
 
 func load_file():
 	var data = FileAccess.get_file_as_string("user://conf.json")

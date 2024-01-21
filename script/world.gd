@@ -29,6 +29,8 @@ var noise_offset := 0.05
 @export var sky_horizon_c : Gradient
 
 func _ready():
+	const h_con = 2.25
+	var height: float = 2.25
 	time_rate = 1.0 / day_length
 	time = s_time
 	GameManager.players = make_uniq(GameManager.players)
@@ -36,9 +38,10 @@ func _ready():
 		var c_player = player_s.instantiate()
 		c_player.name = str(i)
 		add_child(c_player)
-		c_player.position = Vector3(3, 3, 3)
+		c_player.position = Vector3(3, height, 3)
 		c_player.lb_name.text = GameManager.players[i]["nama"]
 		c_player.setRandomItem()
+		height += h_con
 	multiplayer.peer_disconnected.connect(peer_disconnect)
 	multiplayer.server_disconnected.connect(server_disconnect)
 

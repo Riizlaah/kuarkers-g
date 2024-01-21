@@ -1,36 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0isxp0j1ixgu"]
+[gd_scene load_steps=5 format=3 uid="uid://b0isxp0j1ixgu"]
 
 [ext_resource type="Script" path="res://script/rocket.gd" id="1_yyes8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e857i"]
 radius = 0.3
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swr3i"]
-load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_us6cb"]
-atlas = SubResource("CompressedTexture2D_swr3i")
-region = Rect2(0, 426, 213, 213)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_5p7u6"]
 radius = 0.4
 
+[sub_resource type="SphereMesh" id="SphereMesh_eodve"]
+radius = 0.35
+height = 0.7
+
 [node name="Rocket" type="CharacterBody3D"]
 collision_layer = 0
+collision_mask = 5
 script = ExtResource("1_yyes8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_e857i")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.05, 0)
-texture = SubResource("AtlasTexture_us6cb")
-
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_5p7u6")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_eodve")
 
 [connection signal="body_entered" from="Area3D" to="." method="on_area3d_body_entered"]
