@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://bsjpm2uecnqh5"]
 
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_7ojx1"]
+[ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_idjpn"]
 [ext_resource type="Script" path="res://resources/ItemType/script/DrinkType.gd" id="2_l87no"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
@@ -10,11 +11,8 @@ load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4
 atlas = SubResource("CompressedTexture2D_mm6ba")
 region = Rect2(1065, 0, 213, 213)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bptvd"]
-load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oa0al"]
-atlas = SubResource("CompressedTexture2D_bptvd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxnhh"]
+atlas = ExtResource("1_idjpn")
 region = Rect2(1065, 0, 213, 213)
 
 [sub_resource type="Resource" id="Resource_ehwfu"]
@@ -29,7 +27,7 @@ script = ExtResource("1_7ojx1")
 name = "Botol"
 icon = SubResource("AtlasTexture_tqthv")
 stack = true
-onhand_texture = SubResource("AtlasTexture_oa0al")
+onhand_texture = SubResource("AtlasTexture_yxnhh")
 onhand_pos = Vector3(0, -0.15, 0.1)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 0.65

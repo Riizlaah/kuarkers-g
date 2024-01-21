@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6vp8bjs6rye"
-path.s3tc="res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.s3tc.ctex"
-path.etc2="res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.etc2.ctex"
+uid="uid://bisvb3hbytb3b"
+path.s3tc="res://.godot/imported/portal.png-3d3cf3f112e183343808bf33eb2d6819.s3tc.ctex"
+path.etc2="res://.godot/imported/portal.png-3d3cf3f112e183343808bf33eb2d6819.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Texture/inv/tekstur3.png"
-dest_files=["res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.s3tc.ctex", "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.etc2.ctex"]
+source_file="res://Texture/3d/portal.png"
+dest_files=["res://.godot/imported/portal.png-3d3cf3f112e183343808bf33eb2d6819.s3tc.ctex", "res://.godot/imported/portal.png-3d3cf3f112e183343808bf33eb2d6819.etc2.ctex"]
 
 [params]
 

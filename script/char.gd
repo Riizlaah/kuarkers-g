@@ -2,7 +2,6 @@ extends CharacterBody3D
 class_name Player
 
 const JUMP_VELOCITY = 6
-const bullet_s = preload("res://scene/bullet.tscn")
 const grn_s = preload("res://scene/inv/throw-ex.tscn")
 const rocket_s = preload("res://scene/rocket.tscn")
 const pickup_s = preload("res://scene/inv/pick_up.tscn")
@@ -37,7 +36,7 @@ var tgHud: bool = false
 @onready var lb_hpbar = $Control/HUD/Label
 @onready var head = $Badan/Kepala
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var rayc : RayCast3D = $Badan/Kepala/Camera3D/RayCast3D
+@onready var rayc : RayCast3D = $Badan/Kepala/Camera3D/MeleeRay
 @onready var dscreen = $CanvasLayer
 @onready var ctrl_ui = $Control
 @onready var cam: Camera3D = $Badan/Kepala/Camera3D
@@ -47,6 +46,7 @@ var tgHud: bool = false
 @onready var joystick_l: VirtualJoystick = $Control/Joystick
 @onready var world_node = get_tree().root.get_node("/root/World")
 @onready var ammo_lb = $Control/HUD/Ammo
+@onready var weapon_ray = $Badan/Kepala/Camera3D/WeaponRay
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -146,8 +146,6 @@ func _input(event):
 			rotate_y(deg_to_rad(-event.relative.x))
 		cam.rotate_x(deg_to_rad(-event.relative.y * senv))
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-60), deg_to_rad(89))
-
-func _unhandled_input(event: InputEvent):
 	if event.is_action_pressed("tg_hud"):
 		tgHud = !tgHud
 		ctrl_ui.visible = tgHud
@@ -169,7 +167,7 @@ func update_health_bar():
 	hpbar.scale.x = (currentHealth / maxHealth) * sn
 	lb_hpbar.text = str(currentHealth)
 #Inv
-func set_onhand_item(slot: slotData):
+func set_onhand_item(slot):
 	sprite.show()
 	var data = slot.item_data
 	sprite.texture = data.onhand_texture
@@ -230,14 +228,13 @@ func _on_respawn():
 
 func pause():
 	paused = !paused
-
+@rpc("call_local")
 func interact_left():
 	anim.play("attack")
 	if !rayc.is_colliding():
 		return
 	var collider = rayc.get_collider()
-	if collider.has_method("takeDamage"):
-		collider.takeDamage.rpc_id(collider.name.to_int(),damage)
+	collider.takeDamage.rpc_id(collider.name.to_int(),damage)
 
 
 func on_left_pressed():
@@ -250,12 +247,15 @@ func on_left_pressed():
 	if inv_player.mainItem.type is GunType:
 		shoot_bullet()
 	elif inv_player.mainItem.type is ThrowExType:
-		throw_grenade()
+		print('gud')
+		throw_grenade.rpc()
 	elif inv_player.mainItem.type is RPGType:
-		shoot_rocket()
+		print('gud')
+		shoot_rocket.rpc()
 	else:
-		interact_left()
-
+		print('gud')
+		interact_left.rpc()
+@rpc("call_local")
 func shoot_rocket():
 	if not Input.is_action_pressed("left_click"):
 		return
@@ -276,6 +276,7 @@ func shoot_rocket():
 	world_node.add_child(rocket)
 	rocket.launch(-cam.global_transform.basis.z)
 	#update
+@rpc("call_local")
 func throw_grenade():
 	var grenade = inv_player.main_inv.find_name("Granat")
 	if grenade == null:
@@ -326,10 +327,6 @@ func reload():
 	inv_player.mainItem.type.c_ammo = inv_player.mainItem.type.max_ammo
 	update_ammo()
 	inv_player.update_ammo()
-	#inv_player.main_inv.inv_updated.emit(inv_player.main_inv)
-	#inv_player.sec_inv.inv_updated.emit(inv_player.sec_inv)
-	pass
-
 func shoot_bullet():
 	if Input.is_action_pressed("left_click") == false:
 		return
@@ -344,11 +341,9 @@ func shoot_bullet():
 	update_ammo()
 	if inv_player.mainItem.type.rate_of_fire > 1:
 		await get_tree().create_timer(1.0 / inv_player.mainItem.type.rate_of_fire).timeout
-	var bullet = bullet_s.instantiate()
-	bullet.position = -cam.global_transform.basis.z + (cam.global_transform * Vector3(0,0,-1))
-	bullet.damage_bullet = inv_player.mainItem.type.bullet_damage
-	world_node.add_child(bullet)
-	bullet.throw(-cam.global_transform.basis.z)
+	if weapon_ray.is_colliding():
+		var collider = weapon_ray.get_collider()
+		collider.takeDamage(inv_player.mainItem.type.bullet_damage)
 	RoF -= 1
 	if RoF == 0:
 		return

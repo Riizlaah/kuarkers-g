@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://0ukd5x4s8tlu"]
 
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_etqnl"]
+[ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_p2l48"]
 [ext_resource type="Script" path="res://resources/ItemType/script/RPGType.gd" id="2_67a1f"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
@@ -10,11 +11,8 @@ load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4
 atlas = SubResource("CompressedTexture2D_mm6ba")
 region = Rect2(1065, 213, 213, 213)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_swr3i"]
-load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdvkh"]
-atlas = SubResource("CompressedTexture2D_swr3i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_171ps"]
+atlas = ExtResource("1_p2l48")
 region = Rect2(1065, 213, 213, 213)
 
 [sub_resource type="Resource" id="Resource_5xju0"]
@@ -26,7 +24,7 @@ script = ExtResource("1_etqnl")
 name = "RPG-7"
 icon = SubResource("AtlasTexture_3nb8w")
 stack = false
-onhand_texture = SubResource("AtlasTexture_qdvkh")
+onhand_texture = SubResource("AtlasTexture_171ps")
 onhand_pos = Vector3(0, 0, 0.95)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 2.25
