@@ -1,0 +1,652 @@
+[gd_scene load_steps=26 format=3 uid="uid://b2gjn4cibyxvh"]
+
+[ext_resource type="Script" path="res://script/char.gd" id="1_ajvq1"]
+[ext_resource type="ArrayMesh" uid="uid://ckl8nk2ce7857" path="res://Mesh_Obj/char/char_mesh.tres" id="1_t8ary"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="2_ua660"]
+[ext_resource type="Script" path="res://script/ctrl.gd" id="2_xbtnl"]
+[ext_resource type="Texture2D" uid="uid://b7ym4d3jrfsyw" path="res://Texture/hud/crosshair.png" id="3_nrpli"]
+[ext_resource type="Texture2D" uid="uid://dcfvpjhc057fy" path="res://joystick/textures/joystick_tip.png" id="6_how3t"]
+[ext_resource type="Texture2D" uid="uid://dxyy8c1oat353" path="res://Texture/pause.png" id="6_nry0w"]
+[ext_resource type="Script" path="res://joystick/virtual_joystick.gd" id="7_gl1p4"]
+[ext_resource type="Texture2D" uid="uid://bw6c1q6y0badl" path="res://Texture/hud/att.png" id="8_ekgb8"]
+[ext_resource type="Texture2D" uid="uid://b4pmnpy72vifw" path="res://joystick/textures/joystick_base_outline.png" id="8_mu6bi"]
+[ext_resource type="Script" path="res://script/inv/Inv_player.gd" id="10_ani4t"]
+[ext_resource type="Texture2D" uid="uid://d3cojumces2pb" path="res://Texture/hud/hud1.png" id="14_uyeo6"]
+[ext_resource type="PackedScene" uid="uid://djjf1mcmsdd00" path="res://scene/inv/inventory.tscn" id="15_7pca8"]
+[ext_resource type="PackedScene" uid="uid://ckkh0eieiemoe" path="res://scene/inv/slot.tscn" id="16_b5bj4"]
+[ext_resource type="Texture2D" uid="uid://cprlwngo8cn8y" path="res://Texture/inv/trash.png" id="17_pd0cv"]
+[ext_resource type="Texture2D" uid="uid://cth55d6iknfyw" path="res://Texture/inv/chest.png" id="18_1f1qu"]
+[ext_resource type="Texture2D" uid="uid://dhajkgtem4at1" path="res://Texture/play.png" id="19_imoa1"]
+
+[sub_resource type="Skin" id="Skin_7ip3p"]
+resource_name = "Skin"
+bind_count = 20
+bind/0/name = &"Base"
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.876635, 0)
+bind/1/name = &"Chest"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, 0, 0, 1, 1.34359e-07, 0, -1.34359e-07, 1, 0, -0.123365, 1.65752e-08)
+bind/2/name = &"LeftChest"
+bind/2/bone = -1
+bind/2/pose = Transform3D(0.0484866, -0.998824, 2.3514e-07, 0.998824, 0.0484867, 6.51459e-09, -1.79081e-08, 2.34547e-07, 1, 0.599425, -0.0290984, -2.04817e-07)
+bind/3/name = &"LeftHand"
+bind/3/bone = -1
+bind/3/pose = Transform3D(-0.0580416, -0.998314, 2.57909e-07, 0.998314, -0.0580415, -7.7984e-09, 2.27547e-08, 2.57022e-07, 1, 0.683475, -0.753648, -2.51375e-07)
+bind/4/name = &"LeftHandUpper"
+bind/4/bone = -1
+bind/4/pose = Transform3D(-0.118653, -0.992936, 2.49437e-07, 0.992936, -0.118653, -1.5942e-08, 4.54257e-08, 2.45783e-07, 1, 0.768338, -1.3719, -2.7758e-07)
+bind/5/name = &"LeftHandLower"
+bind/5/bone = -1
+bind/5/pose = Transform3D(-0.0921982, -0.995741, -8.69653e-08, 0.995741, -0.0921982, -1.23876e-08, 4.31682e-09, -8.77371e-08, 1, 0.698818, -2.62279, -1.61443e-08)
+bind/6/name = &"RightChest"
+bind/6/bone = -1
+bind/6/pose = Transform3D(0.0484866, 0.998824, -2.3514e-07, -0.998824, 0.0484867, 6.51459e-09, 1.79081e-08, 2.34547e-07, 1, -0.599425, -0.0290984, -2.04817e-07)
+bind/7/name = &"RightHand"
+bind/7/bone = -1
+bind/7/pose = Transform3D(-0.0580416, 0.998314, -2.57909e-07, -0.998314, -0.0580415, -7.7984e-09, -2.27547e-08, 2.57022e-07, 1, -0.683475, -0.753648, -2.51375e-07)
+bind/8/name = &"RightHandUpper"
+bind/8/bone = -1
+bind/8/pose = Transform3D(-0.118653, 0.992936, -2.49437e-07, -0.992936, -0.118653, -1.5942e-08, -4.54257e-08, 2.45783e-07, 1, -0.768338, -1.3719, -2.7758e-07)
+bind/9/name = &"RightHandLower"
+bind/9/bone = -1
+bind/9/pose = Transform3D(-0.0921982, 0.995741, 8.69653e-08, -0.995741, -0.0921982, -1.23876e-08, -4.31682e-09, -8.77371e-08, 1, -0.698818, -2.62279, -1.61443e-08)
+bind/10/name = &"UpperChest"
+bind/10/bone = -1
+bind/10/pose = Transform3D(0.999953, -0.00970828, 2.90289e-08, 0.00970828, 0.999953, 1.34353e-07, -3.03319e-08, -1.34064e-07, 1, 0.00582624, -0.600103, 1.63984e-08)
+bind/11/name = &"Head"
+bind/11/bone = -1
+bind/11/pose = Transform3D(1, 8.93179e-18, 7.10543e-15, -4.06642e-15, 1, 1.34359e-07, -3.55271e-15, -1.34359e-07, 1, -0.00640815, -1.26017, 1.65752e-08)
+bind/12/name = &"LeftFoot"
+bind/12/bone = -1
+bind/12/pose = Transform3D(1.56305e-07, 9.33274e-08, 1, 0.868243, -0.496139, -3.17901e-07, 0.496139, 0.868243, -1.59227e-07, 8.18141e-08, -0.434933, 0.761132)
+bind/13/name = &"UpperLeftLeg"
+bind/13/bone = -1
+bind/13/pose = Transform3D(1.34395e-07, -1.20212e-07, 1, 0.104685, -0.994506, -2.66606e-07, 0.994506, 0.104685, -3.06881e-07, -1.43105e-07, -1.12539, -0.260419)
+bind/14/name = &"LowerLeftLeg"
+bind/14/bone = -1
+bind/14/pose = Transform3D(-1.41908e-07, -1.49236e-07, 1, 0.104267, -0.99455, -2.66534e-07, 0.99455, 0.104267, -2.91695e-08, -7.06138e-08, -2.34384, -0.261402)
+bind/15/name = &"TelapakKakiKiri"
+bind/15/bone = -1
+bind/15/pose = Transform3D(-0.0918095, 0.987693, 0.126627, -1.77883e-07, -0.127164, 0.991882, 0.995777, 0.0910639, 0.0116749, 4.2937, -0.544396, -0.3188)
+bind/16/name = &"RightFoot"
+bind/16/bone = -1
+bind/16/pose = Transform3D(1.56305e-07, -9.33274e-08, -1, -0.868243, -0.496139, -3.17901e-07, -0.496139, 0.868243, -1.59227e-07, -8.18141e-08, -0.434933, 0.761132)
+bind/17/name = &"UpperRightLeg"
+bind/17/bone = -1
+bind/17/pose = Transform3D(9.22605e-08, 1.23848e-07, -1, -0.113192, -0.993573, -2.68066e-07, -0.993573, 0.113192, -2.62313e-07, 1.31199e-07, -1.12758, -0.250778)
+bind/18/name = &"LowerRightLeg"
+bind/18/bone = -1
+bind/18/pose = Transform3D(6.45297e-08, 1.28634e-07, -1, -0.0883629, -0.996088, -2.63754e-07, -0.996089, 0.0883627, -2.40875e-07, 1.28026e-07, -2.38842, -0.310476)
+bind/19/name = &"TelapakKakiKanan"
+bind/19/bone = -1
+bind/19/pose = Transform3D(-0.0818493, -0.993709, -0.076439, 1.88127e-07, -0.0766962, 0.997055, -0.996645, 0.081608, 0.00627753, -4.3586, -0.332009, -0.340104)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1w1cd"]
+radius = 1.2
+height = 6.7
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sltvd"]
+load_path = "res://.godot/imported/trash.png-1930917fb7b4e7bca58fa2a263ecce48.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qckt"]
+atlas = ExtResource("14_uyeo6")
+region = Rect2(960, 0, 320, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmeyo"]
+atlas = ExtResource("14_uyeo6")
+region = Rect2(333, 15, 291, 290)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n8nw"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.580392, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqeih"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.478431, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ol2r"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.458824, 0.168627, 1)
+
+[node name="Karakter" type="CharacterBody3D"]
+script = ExtResource("1_ajvq1")
+
+[node name="Armature" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+bones/0/name = "Base"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Chest"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, 0, 0, 0, 1, -1.34359e-07, 0, 1.34359e-07, 1, 0, 1, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(0, 1, 0)
+bones/1/rotation = Quaternion(6.71794e-08, 0, 0, 1)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "LeftChest"
+bones/2/parent = 1
+bones/2/rest = Transform3D(0.0484867, 0.998824, -1.79081e-08, -0.998824, 0.0484867, 3.68906e-07, 3.69341e-07, 1.42109e-14, 1, -5.78006e-09, 0.476767, -7.24505e-14)
+bones/2/enabled = true
+bones/2/position = Vector3(-5.78006e-09, 0.476767, -7.24505e-14)
+bones/2/rotation = Quaternion(-1.27377e-07, -1.3371e-07, -0.689751, 0.724047)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/name = "LeftHand"
+bones/3/parent = 2
+bones/3/rest = Transform3D(0.185411, 0.982661, 2.96652e-07, -0.982661, 0.185411, 3.85244e-07, 3.23562e-07, -3.62937e-07, 1, -4.09782e-08, 0.79298, 2.4869e-14)
+bones/3/enabled = true
+bones/3/position = Vector3(-4.09782e-08, 0.79298, 2.4869e-14)
+bones/3/rotation = Quaternion(-2.42956e-07, -8.73833e-09, -0.638196, 0.769874)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/name = "LeftHandUpper"
+bones/4/parent = 3
+bones/4/rest = Transform3D(0.998149, 0.0608212, 9.90391e-09, -0.0608212, 0.998149, 2.32852e-08, -8.46934e-09, -2.38444e-08, 1, 2.98023e-08, 0.662438, -3.19744e-14)
+bones/4/enabled = true
+bones/4/position = Vector3(2.98023e-08, 0.662438, -3.19744e-14)
+bones/4/rotation = Quaternion(-1.17878e-08, 4.59544e-09, -0.0304247, 0.999537)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "LeftHandLower"
+bones/5/parent = 4
+bones/5/rest = Transform3D(0.999646, -0.0266004, 3.36042e-07, 0.0266004, 0.999646, -1.24547e-09, -3.35889e-07, 1.01839e-08, 1, 2.98023e-08, 1.23137, -4.26326e-14)
+bones/5/enabled = true
+bones/5/position = Vector3(2.98023e-08, 1.23137, -4.26326e-14)
+bones/5/rotation = Quaternion(2.85759e-09, 1.67998e-07, 0.0133014, 0.999912)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/name = "RightChest"
+bones/6/parent = 1
+bones/6/rest = Transform3D(0.0484867, -0.998824, 1.79081e-08, 0.998824, 0.0484867, 3.68906e-07, -3.69341e-07, 1.42109e-14, 1, 5.78006e-09, 0.476767, -7.24505e-14)
+bones/6/enabled = true
+bones/6/position = Vector3(5.78006e-09, 0.476767, -7.24505e-14)
+bones/6/rotation = Quaternion(-1.27377e-07, 1.3371e-07, 0.689751, 0.724047)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/name = "RightHand"
+bones/7/parent = 6
+bones/7/rest = Transform3D(0.170163, -0.985416, -3.0263e-07, 0.985416, 0.170163, 3.86324e-07, -3.29193e-07, -3.63954e-07, 1, 4.09782e-08, 0.79298, 2.4869e-14)
+bones/7/enabled = true
+bones/7/position = Vector3(4.09782e-08, 0.79298, 2.4869e-14)
+bones/7/rotation = Quaternion(-2.45219e-07, 8.68195e-09, 0.644142, 0.764906)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/name = "RightHandUpper"
+bones/8/parent = 7
+bones/8/rest = Transform3D(0.998149, -0.0608212, -9.90392e-09, 0.0608212, 0.998149, 2.32851e-08, 8.46936e-09, -2.38444e-08, 1, -3.34276e-08, 0.662438, -3.33957e-14)
+bones/8/enabled = true
+bones/8/position = Vector3(-3.34276e-08, 0.662438, -3.33957e-14)
+bones/8/rotation = Quaternion(-1.17878e-08, -4.59545e-09, 0.0304247, 0.999537)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/name = "RightHandLower"
+bones/9/parent = 8
+bones/9/rest = Transform3D(0.999646, 0.0266004, -3.36042e-07, -0.0266004, 0.999646, -1.24546e-09, 3.35889e-07, 1.01839e-08, 1, -1.48969e-07, 1.23137, -6.84629e-14)
+bones/9/enabled = true
+bones/9/position = Vector3(-1.48969e-07, 1.23137, -6.84629e-14)
+bones/9/rotation = Quaternion(2.85759e-09, -1.67998e-07, -0.0133014, 0.999912)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/name = "UpperChest"
+bones/10/parent = 1
+bones/10/rest = Transform3D(0.999953, 0.00970828, -3.03319e-08, -0.00970828, 0.999953, 2.94488e-10, 3.03333e-08, -3.71925e-15, 1, 9.31279e-10, 0.476766, 1.42391e-14)
+bones/10/enabled = true
+bones/10/position = Vector3(9.31279e-10, 0.476766, 1.42391e-14)
+bones/10/rotation = Quaternion(-7.36238e-11, -1.51665e-08, -0.0048542, 0.999988)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/name = "Head"
+bones/11/parent = 10
+bones/11/rest = Transform3D(0.999953, -0.00970828, 3.03333e-08, 0.00970828, 0.999953, -3.21965e-14, -3.03318e-08, 2.94516e-10, 1, -9.31296e-10, 0.660071, -9.35338e-15)
+bones/11/enabled = true
+bones/11/position = Vector3(-9.31296e-10, 0.660071, -9.35338e-15)
+bones/11/rotation = Quaternion(0.000474975, 0.000474975, 0.000474975, 1.00048)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/name = "LeftFoot"
+bones/12/parent = 0
+bones/12/rest = Transform3D(2.38419e-07, 0.868243, 0.496139, 5.96046e-08, -0.496139, 0.868243, 1, -1.78814e-07, -2.38419e-07, 0, 0, 0)
+bones/12/enabled = true
+bones/12/position = Vector3(0, 0, 0)
+bones/12/rotation = Quaternion(-0.611584, -0.354916, -0.611584, 0.354916)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/name = "UpperLeftLeg"
+bones/13/parent = 12
+bones/13/rest = Transform3D(1, -2.10073e-07, 4.41438e-08, 8.69222e-08, 0.584305, 0.811534, -1.96274e-07, -0.811534, 0.584305, -7.5662e-15, 0.433979, 1.74136e-08)
+bones/13/enabled = true
+bones/13/position = Vector3(-7.5662e-15, 0.433979, 1.74136e-08)
+bones/13/rotation = Quaternion(-0.455903, 6.7531e-08, 8.34227e-08, 0.890029)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/name = "LowerLeftLeg"
+bones/14/parent = 13
+bones/14/rest = Transform3D(1, -5.67051e-11, 2.77823e-07, -5.99363e-11, 1, 0.00041984, -2.77823e-07, -0.00041984, 1, 0, 1.21856, -1.49011e-08)
+bones/14/enabled = true
+bones/14/position = Vector3(0, 1.21856, -1.49011e-08)
+bones/14/rotation = Quaternion(-0.00020992, 1.38912e-07, -8.07797e-13, 1)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/name = "TelapakKakiKiri"
+bones/15/parent = 14
+bones/15/rest = Transform3D(0.126627, 0.991882, 0.0116749, -0.991882, 0.126471, 0.0132594, 0.0116752, -0.0132591, 0.999844, -3.02563e-08, 1.98808, 4.04467e-10)
+bones/15/enabled = true
+bones/15/position = Vector3(-3.02563e-08, 1.98808, 4.04467e-10)
+bones/15/rotation = Quaternion(-0.00883372, -9.98967e-08, -0.660823, 0.75049)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/name = "RightFoot"
+bones/16/parent = 0
+bones/16/rest = Transform3D(2.38419e-07, -0.868243, -0.496139, -5.96046e-08, -0.496139, 0.868243, -1, -1.78814e-07, -2.38419e-07, 0, 0, 0)
+bones/16/enabled = true
+bones/16/position = Vector3(0, 0, 0)
+bones/16/rotation = Quaternion(-0.611584, 0.354916, 0.611584, 0.354916)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/name = "UpperRightLeg"
+bones/17/parent = 16
+bones/17/rest = Transform3D(1, 2.08531e-07, -8.8215e-08, -5.21434e-08, 0.591228, 0.806504, 2.20336e-07, -0.806504, 0.591228, 1.86492e-14, 0.433979, -2.40357e-08)
+bones/17/enabled = true
+bones/17/position = Vector3(1.86492e-14, 0.433979, -2.40357e-08)
+bones/17/rotation = Quaternion(-0.45209, -8.648e-08, -7.30611e-08, 0.891972)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/name = "LowerRightLeg"
+bones/18/parent = 17
+bones/18/rest = Transform3D(1, 2.3172e-09, -2.80453e-08, -1.61663e-09, 0.999689, 0.0249543, 2.80944e-08, -0.0249543, 0.999689, 3.6363e-14, 1.26785, -2.9793e-08)
+bones/18/enabled = true
+bones/18/position = Vector3(3.6363e-14, 1.26785, -2.9793e-08)
+bones/18/rotation = Quaternion(-0.0124781, -1.4036e-08, -9.83535e-10, 0.999922)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/name = "TelapakKakiKanan"
+bones/19/parent = 18
+bones/19/rest = Transform3D(0.0764387, -0.997055, -0.00627776, 0.997055, 0.076396, 0.00677746, -0.0062779, -0.00677733, 0.999957, 1.84115e-08, 1.98501, -6.11e-08)
+bones/19/enabled = true
+bones/19/position = Vector3(1.84115e-08, 1.98501, -6.11e-08)
+bones/19/rotation = Quaternion(-0.00461915, 4.71298e-08, 0.679544, 0.73362)
+bones/19/scale = Vector3(1, 1, 1)
+
+[node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+mesh = ExtResource("1_t8ary")
+skin = SubResource("Skin_7ip3p")
+
+[node name="CamHandle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CamHandle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+
+[node name="Colls" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("CapsuleShape3D_1w1cd")
+
+[node name="ControlLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="ControlLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_xbtnl")
+
+[node name="TextureRect" type="TextureRect" parent="ControlLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_nrpli")
+stretch_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="ControlLayer/Control"]
+custom_minimum_size = Vector2(230, 120)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="Vbox" type="VBoxContainer" parent="ControlLayer/Control/ColorRect"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hbox" type="HBoxContainer" parent="ControlLayer/Control/ColorRect/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ControlLayer/Control/ColorRect/Vbox/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 20
+text = "Test"
+
+[node name="Hbox2" type="HBoxContainer" parent="ControlLayer/Control/ColorRect/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="ControlLayer/Control/ColorRect/Vbox/Hbox2"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 20
+text = "Test"
+
+[node name="Joystick" type="Control" parent="ControlLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+offset_right = 300.0
+grow_vertical = 0
+script = ExtResource("7_gl1p4")
+visibility_mode = 1
+action_left = "a"
+action_right = "d"
+action_up = "w"
+action_down = "s"
+
+[node name="Base" type="TextureRect" parent="ControlLayer/Control/Joystick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 100)
+mouse_force_pass_scroll_events = false
+texture = ExtResource("8_mu6bi")
+stretch_mode = 5
+
+[node name="Tip" type="TextureRect" parent="ControlLayer/Control/Joystick/Base"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(35, 35)
+texture = ExtResource("6_how3t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Inv_Player" type="Control" parent="ControlLayer/Control"]
+custom_minimum_size = Vector2(140, 160)
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 8.0
+offset_right = 396.0
+offset_bottom = 168.0
+script = ExtResource("10_ani4t")
+
+[node name="Main_Inv" parent="ControlLayer/Control/Inv_Player" instance=ExtResource("15_7pca8")]
+layout_mode = 1
+
+[node name="Sec_Inv" parent="ControlLayer/Control/Inv_Player" instance=ExtResource("15_7pca8")]
+visible = false
+layout_mode = 1
+offset_top = 90.0
+offset_bottom = 160.0
+
+[node name="ActiveSlot" type="ColorRect" parent="ControlLayer/Control/Inv_Player"]
+visible = false
+custom_minimum_size = Vector2(150, 180)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 48.0
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="Slot" parent="ControlLayer/Control/Inv_Player/ActiveSlot" instance=ExtResource("16_b5bj4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -75.0
+offset_right = 30.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ControlLayer/Control/Inv_Player/ActiveSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 20
+text = "Test"
+
+[node name="RM_ONE" type="TextureButton" parent="ControlLayer/Control/Inv_Player/ActiveSlot"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+focus_mode = 0
+texture_normal = SubResource("CompressedTexture2D_sltvd")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RM_ALL" type="TextureButton" parent="ControlLayer/Control/Inv_Player/ActiveSlot"]
+modulate = Color(0.772549, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+texture_normal = ExtResource("17_pd0cv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Inv" type="TextureButton" parent="ControlLayer/Control"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 70.0
+offset_bottom = 200.0
+texture_normal = ExtResource("18_1f1qu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Att" type="TextureButton" parent="ControlLayer/Control"]
+layout_mode = 0
+anchor_left = 0.736111
+anchor_top = 0.587963
+anchor_right = 0.857639
+anchor_bottom = 0.804012
+texture_normal = ExtResource("8_ekgb8")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Jump" type="TextureButton" parent="ControlLayer/Control"]
+layout_mode = 0
+anchor_left = 0.901042
+anchor_top = 0.716049
+anchor_right = 0.970486
+anchor_bottom = 0.839506
+texture_normal = SubResource("AtlasTexture_8qckt")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Interact" type="TextureButton" parent="ControlLayer/Control"]
+layout_mode = 0
+anchor_left = 0.907118
+anchor_top = 0.455247
+anchor_right = 0.976563
+anchor_bottom = 0.578704
+texture_normal = SubResource("AtlasTexture_dmeyo")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Pause" type="Button" parent="ControlLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("6_nry0w")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="PauseLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.129412, 0.129412, 0.87451)
+
+[node name="Pause2" type="Button" parent="PauseLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -59.0
+offset_bottom = 59.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("19_imoa1")
+
+[node name="Keluar" type="Button" parent="PauseLayer/Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8n8nw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rqeih")
+text = "Keluar"
+
+[node name="Label" type="Label" parent="PauseLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 42
+
+[node name="DeathLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="DeathLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="DeathLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[node name="Vbox" type="VBoxContainer" parent="DeathLayer/Control"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -75.0
+offset_right = 150.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DeathLayer/Control/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 26
+text = "Kamu Mati..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="DeathLayer/Control/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_ua660")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_8n8nw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8n8nw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ol2r")
+text = "Respawn"
+
+[connection signal="visibility_changed" from="ControlLayer/Control/Inv_Player/Sec_Inv" to="ControlLayer/Control/Inv_Player" method="_on_sec_inv_visibility_changed"]
+[connection signal="button_down" from="ControlLayer/Control/Att" to="ControlLayer/Control" method="_on_att_down"]
+[connection signal="button_up" from="ControlLayer/Control/Att" to="ControlLayer/Control" method="_on_att_up"]
+[connection signal="gui_input" from="ControlLayer/Control/Jump" to="ControlLayer/Control" method="_on_jump_gui_input"]
+[connection signal="gui_input" from="ControlLayer/Control/Interact" to="ControlLayer/Control" method="_on_right_gui_input"]
+[connection signal="pressed" from="ControlLayer/Control/Pause" to="ControlLayer/Control" method="_on_pause_pressed"]
+[connection signal="pressed" from="PauseLayer/Control/Pause2" to="ControlLayer/Control" method="_on_play_pressed"]
+[connection signal="pressed" from="PauseLayer/Control/Keluar" to="ControlLayer/Control" method="_on_keluar_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://g6a86iwyptmx"]
+[gd_scene load_steps=46 format=3 uid="uid://g6a86iwyptmx"]
 
 [ext_resource type="Script" path="res://script/world.gd" id="1_s3a68"]
 [ext_resource type="PackedScene" uid="uid://ultvhqbrysi5" path="res://scene/char.tscn" id="2_ayqd1"]
@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://c47xumyskpw7x" path="res://Mesh_Obj/House/House2.obj" id="7_o7bfp"]
 [ext_resource type="Texture2D" uid="uid://b7fft7ly6xnup" path="res://Mesh_Obj/House/House2_1.png" id="8_x2j3y"]
 [ext_resource type="Texture2D" uid="uid://dbory3q62lxkk" path="res://Mesh_Obj/House/House2_4.png" id="10_ywrjv"]
+[ext_resource type="PackedScene" uid="uid://bkjejotjgf0xo" path="res://scene/portal.tscn" id="11_u8wf4"]
 
 [sub_resource type="Gradient" id="Gradient_2e1e5"]
 offsets = PackedFloat32Array(0, 0.246529, 0.777429, 1)
@@ -134,6 +135,21 @@ data = PackedVector3Array(16.5, 0, 1.75, -16.5, 0, 1.75, 16.5, 0, -1.75, -16.5, 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a6lpb"]
 size = Vector2(33, 3.5)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5olyh"]
+data = PackedVector3Array(32, 0, 32, -32, 0, 32, 32, 0, -32, -32, 0, 32, -32, 0, -32, 32, 0, -32)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oceg2"]
+albedo_color = Color(0, 0.607843, 0.109804, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nt6g4"]
+size = Vector2(64, 64)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6gg3"]
+albedo_texture = ExtResource("6_vejdg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jgyx"]
+albedo_texture = ExtResource("10_ywrjv")
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_s3a68")
 player_s = ExtResource("2_ayqd1")
@@ -172,11 +188,38 @@ mesh = ExtResource("4_gtafr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_fj5li")
 
+[node name="House1-3" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(-3.54695, 0, -7.17072, 0, 8, 0, 7.17072, 0, -3.54695, 80.6995, 0, 115.334)
+shape = SubResource("ConcavePolygonShape3D_qky33")
+
+[node name="House1_1" type="MeshInstance3D" parent="Ground/House1-3"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj5li")
+
+[node name="House1-4" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(-3.54695, 0, -7.17072, 0, 8, 0, 7.17072, 0, -3.54695, 110.741, 0, 14.055)
+shape = SubResource("ConcavePolygonShape3D_qky33")
+
+[node name="House1_1" type="MeshInstance3D" parent="Ground/House1-4"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj5li")
+
 [node name="House1-2" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(-8, 0, -1.20797e-06, 0, 8, 0, 1.20797e-06, 0, -8, 34.746, 0, -36.8124)
 shape = SubResource("ConcavePolygonShape3D_hysfh")
 
 [node name="House1_2" type="MeshInstance3D" parent="Ground/House1-2"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_437q7")
+
+[node name="House1-5" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(-3.40118, 0, 7.24099, 0, 8, 0, -7.24099, 0, -3.40118, 66.6805, 0, -14.1153)
+shape = SubResource("ConcavePolygonShape3D_hysfh")
+
+[node name="House1_2" type="MeshInstance3D" parent="Ground/House1-5"]
 mesh = ExtResource("4_gtafr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_437q7")
@@ -190,11 +233,47 @@ mesh = ExtResource("7_o7bfp")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_3vcw3")
 
+[node name="House2-3" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 114.232, 0, 53.7252)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground/House2-3"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vcw3")
+
+[node name="House2-5" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -41.1805, 0, -60.1712)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground/House2-5"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vcw3")
+
 [node name="House2-2" type="CollisionShape3D" parent="Ground"]
 transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, -52.7233, 0, -7.00647)
 shape = SubResource("ConcavePolygonShape3D_w5x6n")
 
 [node name="House2_2" type="MeshInstance3D" parent="Ground/House2-2"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hemqv")
+
+[node name="House2-6" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, 22.2189, 0, 71.3555)
+shape = SubResource("ConcavePolygonShape3D_w5x6n")
+
+[node name="House2_2" type="MeshInstance3D" parent="Ground/House2-6"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hemqv")
+
+[node name="House2-4" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(-4.04309, 0, 6.90315, 0, 8, 0, -6.90315, 0, -4.04309, 115.633, 0, -108.864)
+shape = SubResource("ConcavePolygonShape3D_w5x6n")
+
+[node name="House2_2" type="MeshInstance3D" parent="Ground/House2-4"]
 mesh = ExtResource("7_o7bfp")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hemqv")
@@ -238,3 +317,104 @@ shape = SubResource("ConcavePolygonShape3D_rglsk")
 transform = Transform3D(1, 2.98023e-08, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_a6lpb")
 skeleton = NodePath("../..")
+
+[node name="Portal" parent="Ground" node_paths=PackedStringArray("destination") instance=ExtResource("11_u8wf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.3729, 37.7427, 69.2128)
+destination = NodePath("../../Ground2/Portal")
+
+[node name="Ground2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 600.904, 0, -275.383)
+
+[node name="Collls" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_5olyh")
+
+[node name="Plane" type="MeshInstance3D" parent="Ground2/Collls"]
+material_override = SubResource("StandardMaterial3D_oceg2")
+mesh = SubResource("PlaneMesh_nt6g4")
+skeleton = NodePath("../..")
+
+[node name="House1-1" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(-8, 0, -1.20797e-06, 0, 8, 0, 1.20797e-06, 0, -8, 32, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_qky33")
+
+[node name="House1_1" type="MeshInstance3D" parent="Ground2/House1-1"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj5li")
+
+[node name="House1-4" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(-8, 0, -1.20797e-06, 0, 8, 0, 1.20797e-06, 0, -8, 91.3914, 0, 20.4485)
+shape = SubResource("ConcavePolygonShape3D_qky33")
+
+[node name="House1_1" type="MeshInstance3D" parent="Ground2/House1-4"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fj5li")
+
+[node name="House1-2" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(-8, 0, -1.20797e-06, 0, 8, 0, 1.20797e-06, 0, -8, -33.0668, 0, -57.5627)
+shape = SubResource("ConcavePolygonShape3D_qky33")
+
+[node name="House1_1" type="MeshInstance3D" parent="Ground2/House1-2"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r6gg3")
+
+[node name="House1-3" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(-8, 0, -1.20797e-06, 0, 8, 0, 1.20797e-06, 0, -8, 81.7102, 0, -57.5627)
+shape = SubResource("ConcavePolygonShape3D_qky33")
+
+[node name="House1_1" type="MeshInstance3D" parent="Ground2/House1-3"]
+mesh = ExtResource("4_gtafr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_r6gg3")
+
+[node name="House2-1" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, -78.6272)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground2/House2-1"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vcw3")
+
+[node name="House2-4" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(6.38059, 0, 4.82578, 0, 8, 0, -4.82578, 0, 6.38059, 0, 0, 57.5088)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground2/House2-4"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vcw3")
+
+[node name="House2-2" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(4.33625, 0, 6.72287, 0, 8, 0, -6.72287, 0, 4.33625, -57.6969, 0, 24.1072)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground2/House2-2"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3jgyx")
+
+[node name="House2-3" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(7.68967, 0, 2.20658, 0, 8, 0, -2.20658, 0, 7.68967, 90.8702, 0, 77.2135)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground2/House2-3"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3jgyx")
+
+[node name="House2-5" type="CollisionShape3D" parent="Ground2"]
+transform = Transform3D(6.05952, 0, -5.22324, 0, 8, 0, 5.22324, 0, 6.05952, 90.8702, 0, -91.8724)
+shape = SubResource("ConcavePolygonShape3D_krc8x")
+
+[node name="House2_1" type="MeshInstance3D" parent="Ground2/House2-5"]
+mesh = ExtResource("7_o7bfp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3jgyx")
+
+[node name="Portal" parent="Ground2" node_paths=PackedStringArray("destination") instance=ExtResource("11_u8wf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15063, 2.6138, -18.5709)
+destination = NodePath("../../Ground/Portal")

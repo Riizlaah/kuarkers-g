@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="itemData" load_steps=8 format=3 uid="uid://bx8oos2kju26b"]
 
+[ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_bt8bm"]
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_rrn4y"]
 [ext_resource type="Script" path="res://resources/ItemType/script/Throw-ExType.gd" id="2_grl6x"]
 
@@ -10,11 +11,8 @@ load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4
 atlas = SubResource("CompressedTexture2D_mm6ba")
 region = Rect2(213, 426, 213, 213)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bptvd"]
-load_path = "res://.godot/imported/tekstur3.png-d0270d93c6f0b9b0b67d8643d01cfbdc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oivjm"]
-atlas = SubResource("CompressedTexture2D_bptvd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqlua"]
+atlas = ExtResource("1_bt8bm")
 region = Rect2(213, 426, 213, 213)
 
 [sub_resource type="Resource" id="Resource_i24nc"]
@@ -26,7 +24,7 @@ script = ExtResource("1_rrn4y")
 name = "Granat"
 icon = SubResource("AtlasTexture_euyto")
 stack = true
-onhand_texture = SubResource("AtlasTexture_oivjm")
+onhand_texture = SubResource("AtlasTexture_dqlua")
 onhand_pos = Vector3(0, -0.15, 0.1)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 0.6

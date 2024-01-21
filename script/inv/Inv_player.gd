@@ -7,8 +7,8 @@ var mainItem
 var toggle_s := false
 #var heal_time
 
-@onready var Minv_data = $MainInventory
-@onready var Sinv_data: PanelContainer = $SecInventory
+@onready var Minv_data = $Main_Inv
+@onready var Sinv_data: PanelContainer = $Sec_Inv
 @onready var act_hud = $Active_hud
 @onready var act_lb = $Active_hud/Label
 @onready var act_slot = $Active_hud/Slot
@@ -79,9 +79,11 @@ func ch_main_slot(slot: slotData):
 		mainItem = main_inv.main_slot.item_data
 		charr.set_properti(slot.item_data.type)
 		if mainItem.type is GunType or mainItem.type is RPGType:
+			charr.weapon_ray.show()
 			charr.update_ammo()
 			r_btn_texture.texture = texture_arr[0]
 		else:
+			charr.weapon_ray.hide()
 			charr.ammo_lb.hide()
 			if toggle_s == true:
 				camera.fov = 75

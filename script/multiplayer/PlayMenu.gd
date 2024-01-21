@@ -1,12 +1,16 @@
 extends Panel
 
 
-@onready var lineEdit = $MarginContainer/HostMenu/HBoxContainer/LineEdit
-@onready var s_browser = $MarginContainer/HostMenu
-@onready var lb_player = $MarginContainer/HostMenu/HBoxContainer/Label
-@onready var start_button = $MarginContainer/HostMenu/HBoxContainer/Start
+@onready var lineEdit = $MarginContainer/HostMenu/Hbox/LineEdit
+@onready var lb_player = $MarginContainer/HostMenu/Hbox/Label
+@onready var lb_info = $MarginContainer/HostMenu/Label
+@onready var start_button = $MarginContainer/HostMenu/Hbox/Start
+@onready var lined_ip = $MarginContainer/HostMenu/Hbox2/LineEdit
+@onready var lined_port = $MarginContainer/HostMenu/Hbox2/LineEdit2
+
 var scene = preload("res://scene/world.tscn")
 var port: int
+var ip_addr: String
 var peer
 var time = 60
 
@@ -31,7 +35,6 @@ func connection_failed():
 func server_disconnected():
 	multiplayer.multiplayer_peer = null
 	GameManager.players.clear()
-	s_browser.clear_server()
 	tg_visible(false)
 @rpc("any_peer", "call_local")
 func disconnect_peer(id):
@@ -42,14 +45,22 @@ func _on_buat_pressed():
 	var error = peer.create_server(port)
 	if error != OK:
 		return
+	var ips = IP.get_local_addresses()
+	ip_addr = ips[1]
+	#var udp = PacketPeerUDP.new()
+	#udp.bind(9001)
+	#udp.set_broadcast_enabled(true)
+	#udp.put_packet(PackedByteArray([0]))
+	#var paket = udp.get_packet()
+	#print(udp.get_packet_ip())
 	multiplayer.multiplayer_peer = peer
 	if lineEdit.text.length() == 0:
 		lineEdit.text = "Hegers"
 	tg_visible(true)
 	sendInfo(Settings.p_name, multiplayer.get_unique_id())
 	lb_player.text = "Player : " + str(GameManager.players.size())
-	s_browser.setBroadcast(lineEdit.text, port)
 	start_button.show()
+	set_interface(ip_addr, port)
 
 func joinByIp(ip, port2):
 	peer = ENetMultiplayerPeer.new()
@@ -69,10 +80,18 @@ func sendInfo(nama: String, id: int) -> void:
 	if multiplayer.is_server():
 		for i in GameManager.players:
 			sendInfo.rpc(GameManager.players[i].nama, i)
+			if i != 1:
+				set_interface.rpc_id(i, GameManager.interfaces['ip'], GameManager.interfaces['port'])
 
 @rpc("any_peer", "call_local")
 func load_game():
 	get_tree().change_scene_to_packed(scene)
+
+@rpc("any_peer")
+func set_interface(ip: String, port1: int):
+	GameManager.interfaces['ip'] = ip
+	GameManager.interfaces['port'] = port1
+	lb_info.text = "IP: " + GameManager.interfaces['ip'] + " || PORT: " + str(GameManager.interfaces['port'])
 
 func _on_start_pressed():
 	load_game.rpc()
@@ -87,7 +106,6 @@ func tg_visible(tg: bool):
 func _on_quit_pressed():
 	var peer_id = multiplayer.multiplayer_peer.get_unique_id()
 	if multiplayer.is_server():
-		s_browser.close_broadcast()
 		server_disconnected.rpc()
 		start_button.hide()
 	else:
@@ -96,3 +114,14 @@ func _on_quit_pressed():
 		multiplayer.multiplayer_peer = null
 		tg_visible(false)
 
+func _on_join_pressed():
+	var ip_adr: String = lined_ip.text
+	var port3: String = lined_port.text
+	if !ip_adr.is_valid_ip_address():
+		OS.alert("Bukan alamat ip yang valid!", "Peringatan")
+		return
+	if !port3.is_valid_int():
+		OS.alert("Bukan port yang valid!", "Peringatan")
+		return
+	var port4 = port3.to_int()
+	joinByIp(ip_adr, port4)

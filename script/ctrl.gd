@@ -19,15 +19,11 @@ func _on_pause_pressed():
 	pause_bg.visible = true
 	visible = false
 	charr.pause()
-	pass
-
 
 func _on_play_pressed():
 	pause_bg.visible = false
 	visible = true
 	charr.pause()
-	pass
-
 
 func _on_keluar_pressed():
 	var id = multiplayer.multiplayer_peer.get_unique_id()
