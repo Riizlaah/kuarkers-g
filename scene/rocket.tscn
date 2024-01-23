@@ -17,13 +17,15 @@ collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_yyes8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Colls" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_e857i")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 13
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="Colls" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_5p7u6")
 

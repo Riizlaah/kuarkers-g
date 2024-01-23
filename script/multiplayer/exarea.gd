@@ -14,6 +14,11 @@ func explode():
 		queue_free()
 		return
 	for body in bodies:
+		var dir = global_position.direction_to(body.global_position) * 5
+		body.global_position = dir
+		if body is Musuh1:
+			body.takeDamage(50)
+			break
 		body.takeDamage.rpc_id(body.name.to_int(),50)
 	queue_free()
 

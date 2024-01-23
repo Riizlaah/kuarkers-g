@@ -4,7 +4,6 @@ var broadcaster
 var listner = PacketPeerUDP.new()
 var l_port = 8991
 var b_port = 8990
-var btn_lan = preload("res://scene/lan_list.tscn")
 @onready var broadcastTimer = $Timer
 @onready var playMenu = $"../.."
 @onready var label = $"../../../Label"
