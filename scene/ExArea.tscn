@@ -69,10 +69,10 @@ _data = {
 
 [node name="ExArea" type="Area3D"]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_av7x8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Colls" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_c52va")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://ultvhqbrysi5"]
+[gd_scene load_steps=90 format=3 uid="uid://ultvhqbrysi5"]
 
 [ext_resource type="Script" path="res://script/char.gd" id="1_kyc15"]
 [ext_resource type="ArrayMesh" uid="uid://lh6oiy56atcj" path="res://Mesh_Obj/Kuark1.obj" id="2_5xby8"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dxyy8c1oat353" path="res://Texture/pause.png" id="14_idumj"]
 [ext_resource type="Texture2D" uid="uid://dhajkgtem4at1" path="res://Texture/play.png" id="15_s21i2"]
 [ext_resource type="Texture2D" uid="uid://cth55d6iknfyw" path="res://Texture/inv/chest.png" id="16_eeg0a"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="19_1onmx"]
+[ext_resource type="Texture2D" uid="uid://m8p3cog6hguq" path="res://Texture/hud/tool.png" id="19_qju0f"]
 [ext_resource type="PackedScene" uid="uid://ckkh0eieiemoe" path="res://scene/inv/slot.tscn" id="20_qm2vf"]
 [ext_resource type="Texture2D" uid="uid://cprlwngo8cn8y" path="res://Texture/inv/trash.png" id="22_qtseg"]
 
@@ -622,6 +624,7 @@ collision_layer = 6
 collision_mask = 5
 wall_min_slide_angle = 0.122173
 floor_max_angle = 1.39626
+platform_wall_layers = 4
 script = ExtResource("1_kyc15")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -736,13 +739,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
 [node name="MeleeRay" type="RayCast3D" parent="Badan/Kepala/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
 target_position = Vector3(0, 0, -3)
-collision_mask = 4
+collision_mask = 12
 
 [node name="WeaponRay" type="RayCast3D" parent="Badan/Kepala/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
 visible = false
 target_position = Vector3(0, 0, -80)
-collision_mask = 4
+collision_mask = 12
 
 [node name="Name" type="Label3D" parent="Badan/Kepala"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
@@ -837,19 +840,6 @@ anchor_bottom = 0.9375
 grow_vertical = 0
 theme_override_font_sizes/font_size = 18
 metadata/_edit_use_anchors_ = true
-
-[node name="PAUSE" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -42.0
-offset_right = 17.0
-offset_bottom = 59.0
-grow_horizontal = 0
-scale = Vector2(0.7, 0.7)
-action_mode = 0
-icon = ExtResource("14_idumj")
 
 [node name="Joystick" type="Control" parent="Control"]
 layout_mode = 1
@@ -1126,6 +1116,48 @@ ignore_texture_size = true
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="Hbox" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -59.0
+offset_bottom = 59.0
+grow_horizontal = 0
+
+[node name="Vbox" type="VBoxContainer" parent="Control/Hbox"]
+visible = false
+layout_mode = 2
+
+[node name="SpawnEnemy" type="Button" parent="Control/Hbox/Vbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_outline_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("19_1onmx")
+theme_override_font_sizes/font_size = 26
+text = "SpawnMusuh1"
+
+[node name="Tool" type="Button" parent="Control/Hbox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("19_qju0f")
+expand_icon = true
+
+[node name="PAUSE" type="Button" parent="Control/Hbox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("14_idumj")
+expand_icon = true
+
 [node name="pause_bg" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -1242,7 +1274,6 @@ replication_interval = 0.1
 delta_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_c5the")
 
-[connection signal="pressed" from="Control/PAUSE" to="Control" method="_on_pause_pressed"]
 [connection signal="visibility_changed" from="Control/Inv_Player/Sec_Inv" to="Control/Inv_Player" method="_on_sec_inv_visibility_changed"]
 [connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_single" to="Control/Inv_Player" method="_on_rm_single_pressed"]
 [connection signal="pressed" from="Control/Inv_Player/Active_hud/rm_all" to="Control/Inv_Player" method="_on_rm_all_pressed"]
@@ -1251,6 +1282,9 @@ replication_config = SubResource("SceneReplicationConfig_c5the")
 [connection signal="gui_input" from="Control/JUMP" to="Control" method="_on_jump_gui_input"]
 [connection signal="button_down" from="Control/Left" to="Control" method="_on_left_button_down"]
 [connection signal="button_up" from="Control/Left" to="Control" method="_on_left_button_up"]
+[connection signal="pressed" from="Control/Hbox/Vbox/SpawnEnemy" to="Control" method="_on_spawn_enemy_pressed"]
+[connection signal="toggled" from="Control/Hbox/Tool" to="Control" method="_tool_toggled"]
+[connection signal="pressed" from="Control/Hbox/PAUSE" to="Control" method="_on_pause_pressed"]
 [connection signal="pressed" from="pause_bg/PAUSE_BG/RESUME" to="Control" method="_on_play_pressed"]
 [connection signal="pressed" from="pause_bg/PAUSE_BG/EXIT" to="Control" method="_on_keluar_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/Deathsc/Respawn" to="." method="_on_respawn"]
