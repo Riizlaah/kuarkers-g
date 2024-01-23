@@ -74,6 +74,13 @@ tg_hud={
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+3d_physics/layer_1="Basic"
+3d_physics/layer_2="Item"
+3d_physics/layer_3="Character"
+3d_physics/layer_4="Enemy"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

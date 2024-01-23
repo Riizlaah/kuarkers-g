@@ -17,6 +17,7 @@ var time_rate : float
 var noise_offset := 0.05
 @export_category("Other")
 @export var player_s : PackedScene
+@export var musuh: PackedScene
 
 @export_category("Time")
 @export var day_length = 800.0
@@ -88,4 +89,8 @@ func peer_disconnect(id: int):
 func server_disconnect():
 	get_tree().change_scene_to_file("res://scene/main.tscn")
 
-
+@rpc("call_local")
+func spawn_musuh(glob_pos):
+	var musuh2 = musuh.instantiate()
+	add_child(musuh2)
+	musuh2.position = glob_pos

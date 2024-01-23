@@ -1,12 +1,14 @@
 extends CharacterBody3D
 class_name Player
 
-const JUMP_VELOCITY = 6
+const JUMP_VELOCITY = 8
 const grn_s = preload("res://scene/inv/throw-ex.tscn")
 const rocket_s = preload("res://scene/rocket.tscn")
 const pickup_s = preload("res://scene/inv/pick_up.tscn")
 
 var SPEED = 10.0
+var tmp_velo: Vector3 = Vector3.ZERO
+var time_tmp_velo := 60
 var senv = 0.25
 var min_h = 5.5
 var fall_h = 0.00
@@ -29,7 +31,7 @@ var time_eff := 0
 var effect := {}
 var sec_inv: invData
 var main_inv: MainInv
-var ftime = 300
+var ftime = 600
 var tgHud: bool = false
 
 @onready var hpbar = $Control/HUD/hp_bar
@@ -54,6 +56,7 @@ func _enter_tree():
 func _ready():
 	if multiplayer.get_unique_id() != get_multiplayer_authority():
 		return
+	ctrl_ui.set_multiplayer_authority(name.to_int())
 	await get_tree().create_timer(0.2).timeout
 	cam.current = true
 	hpbar.scale.x = (currentHealth / maxHealth) * sn
@@ -134,6 +137,12 @@ func _physics_process(delta):
 	if head.rotation_degrees.y != 0 and velocity != Vector3.ZERO:
 		rotate_y(head.rotation.y)
 		head.rotation.y = 0
+	time_tmp_velo -= 1
+	if time_tmp_velo == 0:
+		time_tmp_velo = 60
+		tmp_velo = Vector3.ZERO
+	if time_tmp_velo != 0 and tmp_velo != Vector3.ZERO:
+		velocity = tmp_velo
 	move_and_slide()
 
 func _input(event):
@@ -234,7 +243,10 @@ func interact_left():
 	if !rayc.is_colliding():
 		return
 	var collider = rayc.get_collider()
-	collider.takeDamage.rpc_id(collider.name.to_int(),damage)
+	if collider is Musuh1:
+		collider.takeDamage(damage)
+		return
+	collider.takeDamage.rpc_id(collider.name.to_int(), damage)
 
 
 func on_left_pressed():
@@ -247,13 +259,10 @@ func on_left_pressed():
 	if inv_player.mainItem.type is GunType:
 		shoot_bullet()
 	elif inv_player.mainItem.type is ThrowExType:
-		print('gud')
 		throw_grenade.rpc()
 	elif inv_player.mainItem.type is RPGType:
-		print('gud')
 		shoot_rocket.rpc()
 	else:
-		print('gud')
 		interact_left.rpc()
 @rpc("call_local")
 func shoot_rocket():
@@ -272,9 +281,9 @@ func shoot_rocket():
 	update_ammo()
 	cooldown = 120
 	var rocket = rocket_s.instantiate()
-	rocket.position = -cam.global_transform.basis.z + (cam.global_transform * Vector3(0,0,-1))
 	world_node.add_child(rocket)
-	rocket.launch(-cam.global_transform.basis.z)
+	rocket.position = cam.global_position + (cam.global_transform.basis * Vector3(0,0,-2))
+	rocket.launch(-cam.global_transform.basis.z + (cam.global_transform.basis * Vector3(0,0,-2)))
 	#update
 @rpc("call_local")
 func throw_grenade():
@@ -343,7 +352,10 @@ func shoot_bullet():
 		await get_tree().create_timer(1.0 / inv_player.mainItem.type.rate_of_fire).timeout
 	if weapon_ray.is_colliding():
 		var collider = weapon_ray.get_collider()
-		collider.takeDamage(inv_player.mainItem.type.bullet_damage)
+		if collider is Musuh1:
+			collider.takeDamage(inv_player.mainItem.type.bullet_damage)
+			return
+		collider.takeDamage.rpc_id(collider.name.to_int(), inv_player.mainItem.type.bullet_damage)
 	RoF -= 1
 	if RoF == 0:
 		return
@@ -387,3 +399,6 @@ func setRandomWeapon():
 	main_inv.slotDatas[0].quantity = randi_range(1, 15)
 	inv_player.update_ammo()
 	inv_player.set_main_s()
+
+func launch(dir):
+	tmp_velo = dir * 35

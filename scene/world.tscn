@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://g6a86iwyptmx"]
+[gd_scene load_steps=47 format=3 uid="uid://g6a86iwyptmx"]
 
 [ext_resource type="Script" path="res://script/world.gd" id="1_s3a68"]
 [ext_resource type="PackedScene" uid="uid://ultvhqbrysi5" path="res://scene/char.tscn" id="2_ayqd1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b7fft7ly6xnup" path="res://Mesh_Obj/House/House2_1.png" id="8_x2j3y"]
 [ext_resource type="Texture2D" uid="uid://dbory3q62lxkk" path="res://Mesh_Obj/House/House2_4.png" id="10_ywrjv"]
 [ext_resource type="PackedScene" uid="uid://bkjejotjgf0xo" path="res://scene/portal.tscn" id="11_u8wf4"]
+[ext_resource type="PackedScene" uid="uid://c462arklhm516" path="res://scene/npc/musuh_1.tscn" id="12_x6adp"]
 
 [sub_resource type="Gradient" id="Gradient_2e1e5"]
 offsets = PackedFloat32Array(0, 0.246529, 0.777429, 1)
@@ -153,6 +154,7 @@ albedo_texture = ExtResource("10_ywrjv")
 [node name="World" type="Node3D"]
 script = ExtResource("1_s3a68")
 player_s = ExtResource("2_ayqd1")
+musuh = ExtResource("12_x6adp")
 sun_c = SubResource("Gradient_2e1e5")
 sun_ins = SubResource("Curve_w3dhi")
 moon_c = SubResource("Gradient_m40k4")

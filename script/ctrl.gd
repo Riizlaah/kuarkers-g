@@ -7,11 +7,14 @@ signal right_click
 @onready var left_btn = $Left
 @onready var jump_btn = $JUMP
 @onready var label = $"../pause_bg/PAUSE_BG/Label"
+@onready var tool = $Hbox/Tool
+@onready var vbox_tool = $Hbox/Vbox
 
 func _ready():
 	await get_tree().create_timer(0.2).timeout
 	if multiplayer.is_server():
 		label.text = "Host"
+		tool.show()
 		return
 	label.text = "Client"
 
@@ -56,4 +59,13 @@ func _on_left_button_up():
 func _on_right_gui_input(event: InputEvent):
 	if event is InputEventScreenTouch and event.is_pressed():
 		right_click.emit()
-	pass # Replace with function body.
+
+func _on_spawn_enemy_pressed():
+	var dir = -charr.cam.global_transform.basis.z + (charr.cam.global_transform.basis * Vector3(0,5,-38))
+	get_node("/root/World").spawn_musuh.rpc(dir)
+
+func _tool_toggled(toggled_on: bool):
+	if toggled_on:
+		vbox_tool.show()
+	else:
+		vbox_tool.hide()
