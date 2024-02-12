@@ -2,6 +2,10 @@ extends Area3D
 class_name ExArea
 
 @onready var anim = $AnimationPlayer
+var explode_damage := 50
+
+func _enter_tree():
+	set_multiplayer_authority(1)
 
 func _ready():
 	set_physics_process(false)
@@ -14,11 +18,11 @@ func explode():
 		queue_free()
 		return
 	for body in bodies:
-		var dir = global_position.direction_to(body.global_position) * 5
-		body.global_position = dir
 		if body is Musuh1:
-			body.takeDamage(50)
+			body.takeDamage(explode_damage, true)
 			break
-		body.takeDamage.rpc_id(body.name.to_int(),50)
+		var dir = global_position.direction_to(body.global_position) * 2
+		body.takeDamage(explode_damage, true)
+		body.launch.rpc(body.name, dir, 10)
 	queue_free()
 

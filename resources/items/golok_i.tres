@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_lom8u"]
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_op60n"]
-[ext_resource type="Script" path="res://resources/ItemType/script/MeleeType.gd" id="2_c0phm"]
+[ext_resource type="Script" path="res://resources/ItemType/MeleeType.gd" id="2_c0phm"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
@@ -29,4 +29,5 @@ onhand_texture = SubResource("AtlasTexture_sclvl")
 onhand_pos = Vector3(0, -0.15, 0.2)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 1.3
+muzzle_pos = Vector3(0, 0, 0)
 type = SubResource("Resource_1rieg")

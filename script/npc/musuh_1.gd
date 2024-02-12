@@ -2,10 +2,14 @@ class_name Musuh1
 extends CharacterBody3D
 
 @onready var area = $Area3D
+@onready var label_3d = $Label3D
 
 var time = 16
 var target
 var hp = 80
+
+func _enter_tree():
+	set_multiplayer_authority(1)
 
 func _on_area_3d_body_entered(body: Node3D):
 	if body is Musuh1: return
@@ -28,10 +32,15 @@ func _on_area_3d_body_exited(_body):
 	rotation.x = 0
 	rotation.z = 0
 
-func tabrak(_body):
-	target.launch(-global_transform.basis.z + (global_transform.basis * Vector3(-1,0.25,-1)))
+func tabrak(body):
+	body.launch(body.name, -global_transform.basis.z + (global_transform.basis * Vector3(0,0.1,-1)))
+	target = null
 
 func takeDamage(dmg):
 	hp -= dmg
+	label_3d.text = str(hp)
 	if hp < 0:
-		queue_free()
+		delete.rpc()
+@rpc("call_local")
+func delete():
+	queue_free()

@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="slotData" load_steps=2 format=3 uid="uid://d1vjw2ang2fe8"]
-
-[ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="1_tk423"]
-
-[resource]
-script = ExtResource("1_tk423")
-quantity = 1

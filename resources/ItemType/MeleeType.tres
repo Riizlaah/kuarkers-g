@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="MeleeType" load_steps=2 format=3 uid="uid://dcmk6ljm4nbi3"]
-
-[ext_resource type="Script" path="res://resources/ItemType/script/MeleeType.gd" id="1_anuws"]
-
-[resource]
-script = ExtResource("1_anuws")
-Throwable_i = false
-damage_i = 5

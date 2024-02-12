@@ -5,6 +5,7 @@ const throw_i = preload("res://scene/inv/throw_i.tscn")
 var active_slot: slotData
 var mainItem
 var toggle_s := false
+var sinv_vis: bool = false
 #var heal_time
 
 @onready var Minv_data = $Main_Inv
@@ -18,6 +19,9 @@ var toggle_s := false
 @onready var r_btn_texture = $"../Right/TextureRect"
 @onready var c_texture = $"../TextureRect"
 @onready var vignette = $"../Vignette"
+@onready var left = $"../Left"
+@onready var muzzle = $"../../Badan/Bahu_kanan/Lengan/Siku/Lengan2/Sprite3D/Muzzle"
+
 
 @export var main_inv : MainInv: set = sMSlot
 @export var sec_inv : invData
@@ -33,20 +37,15 @@ func _ready():
 	main_inv.inv_interact.connect(on_inv_interact)
 	sec_inv.inv_interact.connect(on_inv_interact)
 	ctrl.right_click.connect(on_right_pressed)
-	#main_inv.set_main_slot(0)
 
 func sMSlot(inv_d: MainInv):
 	main_inv = inv_d
 	if inv_d.slotDatas.size() > 3:
 		var FArr = inv_d.slotDatas.slice(0,3)
 		main_inv.slotDatas = FArr
-	pass
 
-func _OnInv_pressed():
-	Sinv_data.visible = !Sinv_data.visible
-	pass
-
-func on_inv_interact(inv_d: invData, index: int) -> void:
+func on_inv_interact(inv_d, index: int) -> void:
+	if get_multiplayer_authority() != multiplayer.get_unique_id(): return
 	match active_slot:
 		null:
 			if Sinv_data.visible == false:
@@ -60,46 +59,57 @@ func on_inv_interact(inv_d: invData, index: int) -> void:
 				active_slot = inv_d.drop_slotD(active_slot, index)
 	update_active_slot()
 	main_inv.check_main_slot()
-	pass
+	check_gun()
+
+func check_gun():
+	if mainItem == null: return
+	var item_type = mainItem.type
+	if item_type is GunType or item_type is RPGType or item_type is MeleeType:
+		charr.is_holding_gun = true
+	else:
+		charr.is_holding_gun = false
 
 func pick_up_slot(slot_d: slotData):
 	if main_inv.slot_empty() == true:
 		var ret = main_inv.pick_up_slot(slot_d)
 		main_inv.check_main_slot()
 		return ret
-	else:
-		return sec_inv.pick_up_slot(slot_d)
+	else: return sec_inv.pick_up_slot(slot_d)
 
 func ch_main_slot(slot: slotData):
 	if slot.item_data == null:
-		charr.reset_onhand_item()
+		charr.reset_onhand_item.rpc()
 		mainItem = null
 	else:
-		charr.set_onhand_item(slot)
+		charr.set_onhand_item.rpc(slot)
 		mainItem = main_inv.main_slot.item_data
 		charr.set_properti(slot.item_data.type)
 		if mainItem.type is GunType or mainItem.type is RPGType:
 			charr.weapon_ray.show()
 			charr.update_ammo()
 			r_btn_texture.texture = texture_arr[0]
+			left.texture_normal = texture_arr[5]
 		else:
+			left.texture_normal = texture_arr[4]
 			charr.weapon_ray.hide()
 			charr.ammo_lb.hide()
 			if toggle_s == true:
+				charr._anim_scope(false)
+				await get_tree().create_timer(0.25).timeout
 				camera.fov = 75
 				c_texture.texture = texture_arr[3]
 				vignette.hide()
+				toggle_s = false
 			r_btn_texture.texture = texture_arr[2]
-
+		check_gun()
+		muzzle.position = slot.item_data.muzzle_pos
 
 func update_active_slot():
 	if active_slot != null:
 		act_hud.show()
 		act_lb.text = active_slot.item_data.name
 		act_slot.set_slotD(active_slot)
-	else:
-		act_hud.hide()
-	pass
+	else: act_hud.hide()
 
 func _on_rm_single_pressed():
 	var npickup = pickup.instantiate()
@@ -124,8 +134,7 @@ func _on_sec_inv_visibility_changed():
 
 
 func on_right_pressed():
-	if mainItem == null:
-		return
+	if mainItem == null: return
 	if mainItem.type is GunType or mainItem.type is RPGType:
 		toggle_scope()
 	elif mainItem.type is MeleeType:
@@ -163,15 +172,17 @@ func on_right_pressed():
 			main_inv.slotDatas[main_inv.main_slot_index] = slotData.new()
 		#update
 		main_inv.check_main_slot()
-		pass
 
 func toggle_scope():
 	toggle_s = !toggle_s
 	if toggle_s == true:
+		charr._anim_scope(true)
 		c_texture.texture = texture_arr[1]
 		camera.fov = mainItem.type.cam_fov
 		vignette.show()
 	else:
+		charr._anim_scope(false)
+		await get_tree().create_timer(0.25).timeout
 		c_texture.texture = texture_arr[3]
 		camera.fov = 75
 		vignette.hide()
@@ -182,7 +193,6 @@ func search_ammo():
 		return main_r
 	else:
 		return sec_inv.find_name("Ammo")
-		#sampai sini
 
 func update_ammo():
 	main_inv.inv_updated.emit(main_inv)
@@ -196,3 +206,18 @@ func clear_slot():
 	main_inv.clear_slot()
 	sec_inv.clear_slot()
 	set_main_s()
+
+func _open_inv_toggled(toggled_on):
+	Sinv_data.visible = !toggled_on
+	sinv_vis = Sinv_data.visible
+
+func _on_set_exar_pressed():
+	var rpg_slot = slotData.new()
+	rpg_slot.item_data = load("res://resources/items/rpg_i.tres")
+	main_inv.slotDatas[0] = rpg_slot
+	var gr_slot = slotData.new()
+	gr_slot.item_data = load("res://resources/items/grenade_i.tres")
+	gr_slot.quantity = 3
+	main_inv.slotDatas[1] = gr_slot
+	main_inv.check_main_slot()
+	main_inv.inv_updated.emit(main_inv)

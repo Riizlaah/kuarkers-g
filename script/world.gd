@@ -1,8 +1,12 @@
 extends Node3D
 
+const times = [0.23, 0.48, 0.725, 0.78, 0.98]
+
 @onready var sun = $SUN
 @onready var moon = $MOON
 @onready var w_env : WorldEnvironment = $W_ENV
+@onready var animation_player = $AnimationPlayer
+
 @onready var noise = load("res://resources/other/Noise1.tres")
 var ResItemArr = Func.ResItemArr
 var WpItemArr = [
@@ -18,9 +22,10 @@ var noise_offset := 0.05
 @export_category("Other")
 @export var player_s : PackedScene
 @export var musuh: PackedScene
+@export var w_npc: PackedScene
 
 @export_category("Time")
-@export var day_length = 800.0
+@export var day_length = 1000.0
 @export var s_time = 0.3
 @export var sun_c : Gradient
 @export var sun_ins : Curve
@@ -30,7 +35,10 @@ var noise_offset := 0.05
 @export var sky_horizon_c : Gradient
 
 func _ready():
-	const h_con = 2.25
+	animation_player.play("mov1")
+	get_viewport().scaling_3d_scale = Settings.scale_3d
+	sun.shadow_enabled = Settings.shadow_enabled
+	const h_con = -1.25
 	var height: float = 2.25
 	time_rate = 1.0 / day_length
 	time = s_time
@@ -39,18 +47,19 @@ func _ready():
 		var c_player = player_s.instantiate()
 		c_player.name = str(i)
 		add_child(c_player)
-		c_player.position = Vector3(3, height, 3)
-		c_player.lb_name.text = GameManager.players[i]["nama"]
+		c_player.position = Vector3(3, 3, height)
+		c_player.nama_player = GameManager.players[i]["nama"]
 		c_player.setRandomItem()
 		height += h_con
+		c_player.ctrl_ui.hide()
 	multiplayer.peer_disconnected.connect(peer_disconnect)
 	multiplayer.server_disconnected.connect(server_disconnect)
 
 func _process(delta):
-	noise_offset += time * 0.05
+	noise_offset += time_rate * 20
 	noise.set("offset", Vector3(noise_offset, 0, 0))
 	time += time_rate * delta
-	if time >= 1.0:
+	if time > 1.0:
 		time = 0.0
 	#sun
 	sun.rotation_degrees.x = time * 360 + 90
@@ -87,6 +96,7 @@ func peer_disconnect(id: int):
 	player.queue_free()
 
 func server_disconnect():
+	GameManager.players.clear()
 	get_tree().change_scene_to_file("res://scene/main.tscn")
 
 @rpc("call_local")
@@ -94,3 +104,13 @@ func spawn_musuh(glob_pos):
 	var musuh2 = musuh.instantiate()
 	add_child(musuh2)
 	musuh2.position = glob_pos
+@rpc("call_local")
+func spawn_npc1(glob_pos):
+	var npc2 = w_npc.instantiate()
+	npc2.position = glob_pos
+	add_child(npc2)
+@rpc("call_local")
+func _change_time(idx):
+	time = times[idx]
+
+
