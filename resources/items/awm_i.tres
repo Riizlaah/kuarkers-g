@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_v247v"]
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_yq4lo"]
-[ext_resource type="Script" path="res://resources/ItemType/script/GunType.gd" id="2_u1dw5"]
+[ext_resource type="Script" path="res://resources/ItemType/GunType.gd" id="3_qnjmj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
@@ -16,7 +16,7 @@ atlas = ExtResource("1_v247v")
 region = Rect2(426, 213, 213, 213)
 
 [sub_resource type="Resource" id="Resource_elc8m"]
-script = ExtResource("2_u1dw5")
+script = ExtResource("3_qnjmj")
 cam_fov = 16.0
 bullet_damage = 50
 rate_of_fire = 1
@@ -31,7 +31,8 @@ name = "AWM"
 icon = SubResource("AtlasTexture_etdto")
 stack = false
 onhand_texture = SubResource("AtlasTexture_jlwea")
-onhand_pos = Vector3(0, -1.25, -0.6)
-onhand_rot = Vector3(0, -90, 0)
+onhand_pos = Vector3(0, -0.45, 0.9)
+onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 2.0
+muzzle_pos = Vector3(-0.4, 0.58, -0.001)
 type = SubResource("Resource_elc8m")

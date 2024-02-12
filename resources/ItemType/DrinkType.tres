@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="DrinkType" load_steps=2 format=3 uid="uid://c0ub6tdncr46"]
-
-[ext_resource type="Script" path="res://resources/ItemType/script/DrinkType.gd" id="1_lg2it"]
-
-[resource]
-script = ExtResource("1_lg2it")

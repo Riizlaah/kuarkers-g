@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_r64km"]
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_yc3wr"]
-[ext_resource type="Script" path="res://resources/ItemType/script/FoodType.gd" id="2_a8rof"]
+[ext_resource type="Script" path="res://resources/ItemType/FoodType.gd" id="2_a8rof"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"

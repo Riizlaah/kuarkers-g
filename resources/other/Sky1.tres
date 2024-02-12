@@ -3,8 +3,8 @@
 [ext_resource type="FastNoiseLite" uid="uid://bw5ndyhrr5lfh" path="res://resources/other/Noise1.tres" id="1_h4vrm"]
 
 [sub_resource type="Gradient" id="Gradient_kxpn2"]
-offsets = PackedFloat32Array(0.598502, 0.826359)
-colors = PackedColorArray(0.00392157, 0.619608, 0.909804, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.442478, 0.867257)
+colors = PackedColorArray(0.352941, 0.521569, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q71nb"]
 seamless = true
@@ -13,4 +13,5 @@ noise = ExtResource("1_h4vrm")
 
 [resource]
 sky_cover = SubResource("NoiseTexture2D_q71nb")
-sky_cover_modulate = Color(1, 1, 1, 0.356863)
+sky_cover_modulate = Color(1, 1, 1, 0.607843)
+ground_curve = 0.0857419
