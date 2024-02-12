@@ -1,6 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ci5mhn73uy0nh"]
-
-[ext_resource type="Script" path="res://resources/ItemType/script/AmmoType.gd" id="1_5cdor"]
-
-[resource]
-script = ExtResource("1_5cdor")

@@ -24,10 +24,6 @@ Func="*res://script/config/func.gd"
 GameManager="*res://script/config/GManager.gd"
 Settings="*res://script/config/settings.gd"
 
-[display]
-
-window/size/mode=2
-
 [filesystem]
 
 import/blender/enabled=false
@@ -76,14 +72,15 @@ pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
-3d_physics/layer_1="Basic"
+3d_physics/layer_1="Static"
 3d_physics/layer_2="Item"
 3d_physics/layer_3="Character"
 3d_physics/layer_4="Enemy"
+3d_physics/layer_5="Car"
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_3d=1

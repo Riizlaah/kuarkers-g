@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://resources/inventory/item_data.gd" id="1_axyhu"]
 [ext_resource type="Texture2D" uid="uid://bs2t458fio6l8" path="res://Texture/3d/inv3.png" id="1_igxws"]
-[ext_resource type="Script" path="res://resources/ItemType/script/GunType.gd" id="2_fi8l5"]
+[ext_resource type="Script" path="res://resources/ItemType/GunType.gd" id="3_5v6cs"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mm6ba"]
 load_path = "res://.godot/imported/tekstur2.png-663a12b465c0e46cdbf990c5ae22bcf4.ctex"
@@ -16,7 +16,7 @@ atlas = ExtResource("1_igxws")
 region = Rect2(852, 213, 213, 213)
 
 [sub_resource type="Resource" id="Resource_sqnmo"]
-script = ExtResource("2_fi8l5")
+script = ExtResource("3_5v6cs")
 cam_fov = 50.0
 bullet_damage = 5
 rate_of_fire = 13
@@ -34,4 +34,5 @@ onhand_texture = SubResource("AtlasTexture_jdysg")
 onhand_pos = Vector3(0, -0.4, 0.5)
 onhand_rot = Vector3(0, -90, 90)
 onhand_scale = 1.3
+muzzle_pos = Vector3(-0.4, 0.58, -0.001)
 type = SubResource("Resource_sqnmo")

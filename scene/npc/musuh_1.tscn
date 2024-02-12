@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c462arklhm516"]
+[gd_scene load_steps=8 format=3 uid="uid://c462arklhm516"]
 
 [ext_resource type="Script" path="res://script/npc/musuh_1.gd" id="1_mcjnk"]
 
@@ -16,6 +16,14 @@ radius = 20.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhdie"]
 size = Vector3(1.4, 1.4, 3.1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ixcth"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Musuh1" type="CharacterBody3D"]
 collision_layer = 8
@@ -42,6 +50,16 @@ collision_mask = 4
 
 [node name="Colls" type="CollisionShape3D" parent="Hit"]
 shape = SubResource("BoxShape3D_vhdie")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20598, 0)
+text = "100
+"
+font_size = 96
+outline_size = 30
+
+[node name="MSync" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ixcth")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
