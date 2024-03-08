@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ExplodableItem" load_steps=5 format=3 uid="uid://buj16xtfa2ht2"]
+
+[ext_resource type="Script" path="res://resources/script_inv/items/explodable.gd" id="1_hx7kx"]
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_ofgp3"]
+[ext_resource type="PackedScene" uid="uid://b3c4gy2c068lo" path="res://resources/meshes/items/grenade.tscn" id="2_vydmu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ledm1"]
+atlas = ExtResource("1_ofgp3")
+region = Rect2(213, 426, 213, 213)
+
+[resource]
+script = ExtResource("1_hx7kx")
+damage = 250
+countdown = 3.0
+range_scale = 5.0
+effect = ""
+name = "Grenade"
+unique_name = "grenade"
+icon = SubResource("AtlasTexture_ledm1")
+stack = true
+cooldown = 2.0
+mesh3d = ExtResource("2_vydmu")
+pos = Vector3(0.0820838, 0.868997, 0.270224)
+rot = Vector3(1.39626, 0.174533, 0)

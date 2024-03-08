@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgm3huybhc7si"]
+
+[ext_resource type="ArrayMesh" uid="uid://dmt8wjbathqnw" path="res://resources/meshes/items/rpg.res" id="1_yybj3"]
+
+[node name="rpg" type="Node3D"]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+
+[node name="rpg" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, -1, -2.08616e-07, 0.642787, 1.19209e-07, -0.766045, 0.766045, -1.49012e-07, 0.642787, 0, 0, 0)
+mesh = ExtResource("1_yybj3")
+skeleton = NodePath("")

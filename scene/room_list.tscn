@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbtculmklppi8"]
+
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_v565l"]
+[ext_resource type="Script" path="res://script/room_list.gd" id="2_e7qyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0nnr"]
+content_margin_left = 15.0
+content_margin_top = 20.0
+content_margin_right = 15.0
+content_margin_bottom = 20.0
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chk2p"]
+content_margin_left = 15.0
+content_margin_top = 20.0
+content_margin_right = 15.0
+content_margin_bottom = 20.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[node name="Button" type="Button"]
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_v565l")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_j0nnr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j0nnr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_chk2p")
+text = "23ewrT56 Room [ 1 pemain ]"
+script = ExtResource("2_e7qyv")

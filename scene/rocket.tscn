@@ -1,36 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0isxp0j1ixgu"]
+[gd_scene load_steps=5 format=3 uid="uid://bpdt6xcxbcosy"]
 
-[ext_resource type="Script" path="res://script/rocket.gd" id="1_yyes8"]
+[ext_resource type="PackedScene" uid="uid://c63k70x8w8r5w" path="res://resources/meshes/items/rocket.tscn" id="1_kyubj"]
+[ext_resource type="Script" path="res://script/inv_and_items/rocket.gd" id="1_makj7"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e857i"]
-radius = 0.3
+[sub_resource type="SphereShape3D" id="SphereShape3D_rfg8w"]
+radius = 0.75
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5p7u6"]
-radius = 0.6
-
-[sub_resource type="SphereMesh" id="SphereMesh_eodve"]
-radius = 0.35
-height = 0.7
-radial_segments = 8
-rings = 4
+[sub_resource type="SphereShape3D" id="SphereShape3D_lr0ys"]
+radius = 0.9
 
 [node name="Rocket" type="CharacterBody3D"]
-collision_mask = 13
-script = ExtResource("1_yyes8")
+collision_layer = 0
+script = ExtResource("1_makj7")
 
 [node name="Colls" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("SphereShape3D_e857i")
+shape = SubResource("SphereShape3D_rfg8w")
+
+[node name="rocket" parent="." instance=ExtResource("1_kyubj")]
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 13
 
 [node name="Colls" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("SphereShape3D_5p7u6")
+shape = SubResource("SphereShape3D_lr0ys")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_eodve")
-
-[connection signal="body_entered" from="Area3D" to="." method="on_area3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_contact"]

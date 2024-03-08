@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpsbc8ahdhh8g"]
+
+[ext_resource type="ArrayMesh" uid="uid://djmfm4eugb10c" path="res://resources/meshes/items/arit.res" id="1_7p256"]
+
+[node name="arit2" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="arit" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.38419e-07, -1, -8.9407e-08, -0.642788, 0, -0.766044, 0.766044, 2.08616e-07, -0.642788, 0, 0, 0)
+mesh = ExtResource("1_7p256")
+skeleton = NodePath("")

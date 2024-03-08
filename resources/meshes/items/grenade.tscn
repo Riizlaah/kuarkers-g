@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3c4gy2c068lo"]
+
+[ext_resource type="ArrayMesh" uid="uid://nxliq5rf4tm3" path="res://resources/meshes/items/grenade.res" id="1_6h7au"]
+
+[node name="grenade2" type="Node3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="grenade" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.19209e-07, -1, -2.38419e-07, -1.19209e-07, 2.38419e-07, -1, 1, -1.19209e-07, -1.19209e-07, 0, 0, 0)
+mesh = ExtResource("1_6h7au")
+skeleton = NodePath("")

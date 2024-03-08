@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvjvp51jpibhn"]
+
+[ext_resource type="ArrayMesh" uid="uid://vdybvuoff37y" path="res://resources/meshes/items/ammo.res" id="1_v37ve"]
+
+[node name="ammo2" type="Node3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="ammo" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, -1, -2.68221e-07, -0.642788, 2.38419e-07, -0.766044, 0.766044, 1.19209e-07, -0.642788, 0, 0, 0)
+mesh = ExtResource("1_v37ve")
+skeleton = NodePath("")

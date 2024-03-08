@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbdtb7n81ttr3"]
+
+[ext_resource type="Script" path="res://script/inv_and_items/throwable_melee.gd" id="1_5d0e4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_csd1h"]
+size = Vector3(2.55, 0.5, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbx4k"]
+size = Vector3(2.75, 0.7, 1.4)
+
+[node name="ThrowableMelee" type="RigidBody3D"]
+collision_layer = 0
+script = ExtResource("1_5d0e4")
+
+[node name="Colls" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3753, 0.0129163, 0)
+shape = SubResource("BoxShape3D_csd1h")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 13
+
+[node name="Colls" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.388704, 0, 0)
+shape = SubResource("BoxShape3D_fbx4k")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_contact"]

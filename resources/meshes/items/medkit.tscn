@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnhib1otf60jg"]
+
+[ext_resource type="ArrayMesh" uid="uid://bdqammd212e38" path="res://resources/meshes/items/medkit.res" id="1_y0wfn"]
+
+[node name="medkit2" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="medkit" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.19209e-07, -1, -2.38419e-07, -1.19209e-07, 2.38419e-07, -1, 1, -1.19209e-07, -1.19209e-07, 0, 0, 0)
+mesh = ExtResource("1_y0wfn")
+skeleton = NodePath("")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://oegun2abbbhi"]
+
+[ext_resource type="ArrayMesh" uid="uid://bkyofy8y7cu2c" path="res://resources/meshes/items/awm.res" id="1_hw4ii"]
+
+[node name="awm2" type="Node3D"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="awm" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, -1, -1.78814e-07, 0.572579, 1.78814e-07, -0.819849, 0.819849, -1.19209e-07, 0.572579, 0, 0, 0)
+mesh = ExtResource("1_hw4ii")
+skeleton = NodePath("")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvfepdhxad0xq"]
+
+[ext_resource type="Script" path="res://script/inv_and_items/explodable_item.gd" id="1_2kgoi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4ghsq"]
+
+[node name="ExplodableItem" type="RigidBody3D"]
+script = ExtResource("1_2kgoi")
+
+[node name="Colls" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4ghsq")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_countdown_timeout"]

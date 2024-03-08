@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FoodItem" load_steps=5 format=3 uid="uid://b0i3imimwbxvy"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_j6l6j"]
+[ext_resource type="Script" path="res://resources/script_inv/items/food.gd" id="1_kpfuc"]
+[ext_resource type="PackedScene" uid="uid://cqnemuu7i2fgn" path="res://resources/meshes/items/donat.tscn" id="2_cvpsm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrtd5"]
+atlas = ExtResource("1_j6l6j")
+region = Rect2(852, 0, 213, 213)
+
+[resource]
+script = ExtResource("1_kpfuc")
+heal = 20
+effect = ""
+name = "Donat"
+unique_name = "donat"
+icon = SubResource("AtlasTexture_hrtd5")
+stack = true
+cooldown = 0.8
+mesh3d = ExtResource("2_cvpsm")
+pos = Vector3(0.0100957, 0.831921, 0.11527)
+rot = Vector3(-1.59872e-14, -7.10542e-15, 1.3411e-07)

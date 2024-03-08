@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dim67p28vquc"]
+
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_cetie"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rykj1"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[node name="Label" type="Label"]
+theme_override_fonts/font = ExtResource("1_cetie")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_rykj1")
+text = "Alex[host]"

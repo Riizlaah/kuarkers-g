@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://iubq1lg5c1yh"]
+
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_4lpch"]
+[ext_resource type="Script" path="res://script/chat.gd" id="1_oejtm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4njy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.15967, 0.15967, 0.15967, 1)
+border_width_top = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b418w"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+border_width_top = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nxpq"]
+content_margin_left = 5.0
+bg_color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61na7"]
+content_margin_left = 5.0
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdgld"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 15.0
+bg_color = Color(0.15967, 0.15967, 0.15967, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_131w0"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 15.0
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oejtm")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Vbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_4lpch")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_v4njy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v4njy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b418w")
+text = "Kembali"
+
+[node name="SCont" type="ScrollContainer" parent="Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Vbox" type="VBoxContainer" parent="Vbox/SCont"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="Vbox"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="Hbox" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LineEdit" type="LineEdit" parent="Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_4lpch")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_4nxpq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_61na7")
+
+[node name="Button" type="Button" parent="Hbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4lpch")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdgld")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gdgld")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_131w0")
+text = "->"
+
+[connection signal="pressed" from="Vbox/Button" to="." method="_on_back_pressed"]
+[connection signal="gui_input" from="Vbox/SCont" to="." method="_on_s_cont_gui_input"]
+[connection signal="focus_entered" from="Hbox/LineEdit" to="." method="_on_line_edit_clicked"]
+[connection signal="focus_exited" from="Hbox/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="Hbox/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Hbox/Button" to="." method="_on_send_pressed"]

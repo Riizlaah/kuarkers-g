@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqnemuu7i2fgn"]
+
+[ext_resource type="ArrayMesh" uid="uid://dflf3a26f68vl" path="res://resources/meshes/items/donat.res" id="1_er11d"]
+
+[node name="donat2" type="Node3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="donat" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.57628e-07, -1, 0, 1, 3.57628e-07, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("1_er11d")
+skeleton = NodePath("")

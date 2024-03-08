@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="GunItem" load_steps=5 format=3 uid="uid://c22owibu4l7df"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_bbwbe"]
+[ext_resource type="Script" path="res://resources/script_inv/items/gun.gd" id="1_jy7k8"]
+[ext_resource type="PackedScene" uid="uid://bv0mypbgi6agw" path="res://resources/meshes/items/mp5.tscn" id="2_r024d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e87sr"]
+atlas = ExtResource("1_bbwbe")
+region = Rect2(852, 213, 213, 213)
+
+[resource]
+script = ExtResource("1_jy7k8")
+max_ammo = 50
+ammo = 50
+bullet_damage = 18
+rate_of_fire = 15
+reload_time = 1.0
+max_range = 30.0
+name = "MP5"
+unique_name = "mp5"
+icon = SubResource("AtlasTexture_e87sr")
+stack = false
+cooldown = 1.0
+mesh3d = ExtResource("2_r024d")
+pos = Vector3(0.0485753, 1.55428, 0.190698)
+rot = Vector3(1.5708, -1.03127e-14, 0)

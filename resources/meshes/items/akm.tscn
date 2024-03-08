@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://rs7mdxt8mobd"]
+
+[ext_resource type="ArrayMesh" uid="uid://cnjdfxxhv46a8" path="res://resources/meshes/items/akm.res" id="1_03roo"]
+
+[node name="akm2" type="Node3D"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="akm" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.9407e-09, -0.05, -1.04308e-08, 0.0286788, 1.19209e-08, -0.0409576, 0.0409576, 1.49012e-09, 0.0286788, 0, 0, 0)
+mesh = ExtResource("1_03roo")
+skeleton = NodePath("")

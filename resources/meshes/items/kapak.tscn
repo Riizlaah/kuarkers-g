@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw04e582blpl1"]
+
+[ext_resource type="ArrayMesh" uid="uid://3xfuga1eymev" path="res://resources/meshes/items/kapak.res" id="1_sbgdy"]
+
+[node name="kapak2" type="Node3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="kapak" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.57628e-07, -1, -1.49012e-07, -0.573577, 2.98023e-07, -0.819152, 0.819152, -2.08616e-07, -0.573577, 0, 0, 0)
+mesh = ExtResource("1_sbgdy")
+skeleton = NodePath("")

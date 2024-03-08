@@ -1,0 +1,718 @@
+[gd_scene load_steps=42 format=3 uid="uid://h48kruqrygb"]
+
+[ext_resource type="Script" path="res://script/main_menu.gd" id="1_qjerj"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_sj1e0"]
+[ext_resource type="Texture2D" uid="uid://bd7mkuuguoip7" path="res://resources/texture/main-menu/game_bg1.jpg" id="2_60m0e"]
+[ext_resource type="Texture2D" uid="uid://d3f6c3n6dq2jm" path="res://resources/texture/main-menu/quit.png" id="2_qajmw"]
+[ext_resource type="Texture2D" uid="uid://bxf2c6ehqn45d" path="res://resources/texture/main-menu/setting.png" id="3_7muib"]
+[ext_resource type="Texture2D" uid="uid://c2etg6rom0f7k" path="res://resources/texture/main-menu/game_bg2.png" id="3_mmsr7"]
+[ext_resource type="Texture2D" uid="uid://bcg5125f3o622" path="res://resources/texture/main-menu/play.png" id="4_8yiy6"]
+[ext_resource type="Texture2D" uid="uid://bbehrvboh4xs1" path="res://resources/texture/main-menu/game_bg3.png" id="4_35udb"]
+[ext_resource type="Texture2D" uid="uid://bwvgcpnf7s8cn" path="res://resources/texture/main-menu/close.png" id="5_7iitw"]
+[ext_resource type="Texture2D" uid="uid://dnjjq283kairk" path="res://resources/texture/main-menu/game_bg4.png" id="5_n7r1d"]
+[ext_resource type="Texture2D" uid="uid://df5mdlsi2l05q" path="res://resources/texture/main-menu/refresh.png" id="5_yya07"]
+[ext_resource type="Texture2D" uid="uid://p1km7mpypa1h" path="res://resources/texture/main-menu/game_bg5.png" id="6_j3qcc"]
+[ext_resource type="Texture2D" uid="uid://d31x4pmnabonh" path="res://resources/texture/main-menu/game_bg6.png" id="7_kk2qq"]
+[ext_resource type="Script" path="res://script/playmenu.gd" id="12_2rcby"]
+[ext_resource type="Script" path="res://script/settings_menu.gd" id="15_57gnj"]
+[ext_resource type="AudioStream" uid="uid://dxbjr4lvk1rj6" path="res://resources/music/backsound-kuark.mp3" id="16_13x8s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2r43"]
+bg_color = Color(0.74902, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iytjc"]
+bg_color = Color(0.858824, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="InputEventKey" id="InputEventKey_yjnli"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_8lr4p"]
+events = [SubResource("InputEventKey_yjnli")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_056qq"]
+bg_color = Color(0, 0.556863, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7k7ny"]
+bg_color = Color(0, 0.643137, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2sy7"]
+bg_color = Color(0, 0.72549, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4hnh"]
+bg_color = Color(0, 0.839216, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmbmy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8q50"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8pp3"]
+content_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80wey"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.913725, 0, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6jrk"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.972549, 0, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku4mw"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.670588, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t42ja"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.764706, 0, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv6os"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au4gr"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.662745, 0.662745, 0.662745, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4gow"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_width_top = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8562g"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrhnp"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vy34"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2to0"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdhb7"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4fn2"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1hhj"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qjerj")
+bg_textures = Array[CompressedTexture2D]([ExtResource("2_60m0e"), ExtResource("3_mmsr7"), ExtResource("4_35udb"), ExtResource("5_n7r1d"), ExtResource("6_j3qcc"), ExtResource("7_kk2qq")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.623529)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mcont" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mcont/Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 72
+text = "Kuarkers"
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/Vbox"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="quit" type="Button" parent="Mcont/Vbox/Hbox"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2r43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y2r43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iytjc")
+shortcut = SubResource("Shortcut_8lr4p")
+icon = ExtResource("2_qajmw")
+expand_icon = true
+
+[node name="setting" type="Button" parent="Mcont/Vbox/Hbox"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_056qq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_056qq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7k7ny")
+icon = ExtResource("3_7muib")
+expand_icon = true
+
+[node name="play" type="Button" parent="Mcont/Vbox/Hbox"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_p2sy7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p2sy7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i4hnh")
+icon = ExtResource("4_8yiy6")
+expand_icon = true
+
+[node name="quick_host" type="Button" parent="Mcont/Vbox/Hbox"]
+self_modulate = Color(0.615686, 0.615686, 0.615686, 1)
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_p2sy7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p2sy7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i4hnh")
+text = "Quick Host  "
+icon = ExtResource("4_8yiy6")
+expand_icon = true
+
+[node name="Label" type="Label" parent="Mcont/Vbox/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 48
+text = "Kuarkers@v1.3.0
+Vulkan"
+
+[node name="PlayMenu" type="ColorRect" parent="Mcont"]
+visible = false
+layout_mode = 2
+color = Color(0.109804, 0.109804, 0.109804, 1)
+script = ExtResource("12_2rcby")
+
+[node name="Mcont" type="MarginContainer" parent="Mcont/PlayMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Mcont/PlayMenu/Mcont"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Button" type="Button" parent="Mcont/PlayMenu/Mcont/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmbmy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tmbmy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s8q50")
+text = "Cari Room"
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/Mcont/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+text = "Atau"
+
+[node name="Button2" type="Button" parent="Mcont/PlayMenu/Mcont/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmbmy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tmbmy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s8q50")
+text = "Buat Room"
+
+[node name="Room" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Control" type="Control" parent="Mcont/PlayMenu/Mcont/Room"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="room_info" type="Label" parent="Mcont/PlayMenu/Mcont/Room"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+text = "Nama Room : blabla"
+
+[node name="HSeparator" type="HSeparator" parent="Mcont/PlayMenu/Mcont/Room"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_n8pp3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Mcont/PlayMenu/Mcont/Room"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Button2" type="Button" parent="Mcont/PlayMenu/Mcont/Room/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_80wey")
+theme_override_styles/hover = SubResource("StyleBoxFlat_80wey")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y6jrk")
+text = "Keluar"
+
+[node name="Play" type="Button" parent="Mcont/PlayMenu/Mcont/Room/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ku4mw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ku4mw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t42ja")
+text = "Mulai"
+
+[node name="HSeparator2" type="HSeparator" parent="Mcont/PlayMenu/Mcont/Room"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_n8pp3")
+
+[node name="Control2" type="Control" parent="Mcont/PlayMenu/Mcont/Room"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/Mcont/Room"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PlayerList" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont/Room/Scont"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="RoomFinder" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Button2" type="Button" parent="Mcont/PlayMenu/Mcont/RoomFinder/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_80wey")
+theme_override_styles/hover = SubResource("StyleBoxFlat_80wey")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y6jrk")
+text = "Kembali"
+
+[node name="Button" type="Button" parent="Mcont/PlayMenu/Mcont/RoomFinder/Hbox"]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xv6os")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xv6os")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_au4gr")
+text = "Refresh"
+icon = ExtResource("5_yya07")
+expand_icon = true
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/Mcont/RoomFinder/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+text = "Cari Room"
+
+[node name="Control" type="Control" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont/RoomFinder/Scont"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="rnf" type="Label" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 0.486275)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+text = "Room Tidak Ditemukan"
+
+[node name="Close" type="Button" parent="Mcont/PlayMenu"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("5_7iitw")
+expand_icon = true
+
+[node name="BRTimer" type="Timer" parent="Mcont/PlayMenu"]
+wait_time = 0.05
+
+[node name="SettingsMenu" type="TabContainer" parent="Mcont"]
+visible = false
+layout_mode = 2
+theme_override_constants/side_margin = 0
+theme_override_font_sizes/font_size = 28
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o4gow")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_8562g")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_qrhnp")
+theme_override_styles/tab_focus = SubResource("StyleBoxFlat_o4gow")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8vy34")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_8vy34")
+script = ExtResource("15_57gnj")
+
+[node name="Umum" type="VBoxContainer" parent="Mcont/SettingsMenu"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="LineEdit" type="LineEdit" parent="Mcont/SettingsMenu/Umum"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_i2to0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pdhb7")
+placeholder_text = "Nama Pemain...(Heker)"
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/Umum"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/Umum/Hbox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 30
+text = "Sensivitas[ 100 ] : "
+horizontal_alignment = 3
+
+[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/Umum/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 200.0
+value = 100.0
+ticks_on_borders = true
+
+[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/Umum"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/Umum/Hbox2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 30
+text = "Warna Pemain : "
+
+[node name="PColor" type="ColorPickerButton" parent="Mcont/SettingsMenu/Umum/Hbox2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_k4fn2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h1hhj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k4fn2")
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[node name="Grafik" type="VBoxContainer" parent="Mcont/SettingsMenu"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/Grafik"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik/Hbox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 30
+text = "Skala 3D[ 1x ] : "
+horizontal_alignment = 3
+
+[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/Grafik/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.05
+max_value = 2.0
+step = 0.05
+value = 1.0
+
+[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/Grafik"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik/Hbox2"]
+custom_minimum_size = Vector2(375, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 30
+text = "Jarak Pandang[ 200m ] : "
+horizontal_alignment = 3
+
+[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/Grafik/Hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 100.0
+max_value = 2000.0
+step = 50.0
+value = 200.0
+
+[node name="Hbox3" type="HBoxContainer" parent="Mcont/SettingsMenu/Grafik"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik/Hbox3"]
+custom_minimum_size = Vector2(375, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 30
+text = "Kualitas Langit : "
+horizontal_alignment = 3
+
+[node name="sky_graphic" type="OptionButton" parent="Mcont/SettingsMenu/Grafik/Hbox3"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Rendah"
+popup/item_0/id = 0
+popup/item_1/text = "Sedang"
+popup/item_1/id = 1
+popup/item_2/text = "Bagus"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik"]
+modulate = Color(0.658824, 0.658824, 0.658824, 1)
+layout_mode = 2
+text = "*Pengaturan Skala 3D mungkin tidak akan mempengaruhi permainan jika memakai versi OpenGL"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 80.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 20
+text = "Riizlaah"
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "FALSE"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_13x8s")
+volume_db = -8.0
+autoplay = true
+mix_target = 1
+
+[connection signal="gui_input" from="Mcont" to="Mcont/SettingsMenu" method="_on_mcont_gui_input"]
+[connection signal="pressed" from="Mcont/Vbox/Hbox/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Mcont/Vbox/Hbox/setting" to="." method="_on_setting"]
+[connection signal="pressed" from="Mcont/Vbox/Hbox/play" to="." method="_on_play"]
+[connection signal="pressed" from="Mcont/Vbox/Hbox/quick_host" to="Mcont/PlayMenu" method="_on_create_room"]
+[connection signal="pressed" from="Mcont/PlayMenu/Mcont/HBoxContainer/Button" to="Mcont/PlayMenu" method="_on_find_room"]
+[connection signal="pressed" from="Mcont/PlayMenu/Mcont/HBoxContainer/Button2" to="Mcont/PlayMenu" method="_on_create_room"]
+[connection signal="pressed" from="Mcont/PlayMenu/Mcont/Room/HBoxContainer/Button2" to="Mcont/PlayMenu" method="_on_quit_room"]
+[connection signal="pressed" from="Mcont/PlayMenu/Mcont/Room/HBoxContainer/Play" to="Mcont/PlayMenu" method="_on_start_game_pressed"]
+[connection signal="pressed" from="Mcont/PlayMenu/Mcont/RoomFinder/Hbox/Button2" to="Mcont/PlayMenu" method="_on_back_to_choice"]
+[connection signal="pressed" from="Mcont/PlayMenu/Mcont/RoomFinder/Hbox/Button" to="Mcont/PlayMenu" method="_on_refresh_room"]
+[connection signal="pressed" from="Mcont/PlayMenu/Close" to="Mcont/PlayMenu" method="_on_close_pressed"]
+[connection signal="timeout" from="Mcont/PlayMenu/BRTimer" to="Mcont/PlayMenu" method="_on_broadcasting"]
+[connection signal="mouse_entered" from="Mcont/SettingsMenu" to="Mcont/SettingsMenu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Mcont/SettingsMenu" to="Mcont/SettingsMenu" method="_on_mouse_exited"]
+[connection signal="text_changed" from="Mcont/SettingsMenu/Umum/LineEdit" to="Mcont/SettingsMenu" method="_on_pname_ch"]
+[connection signal="value_changed" from="Mcont/SettingsMenu/Umum/Hbox/HSlider" to="Mcont/SettingsMenu" method="_on_senv_ch"]
+[connection signal="color_changed" from="Mcont/SettingsMenu/Umum/Hbox2/PColor" to="Mcont/SettingsMenu" method="_on_pcolor_ch"]
+[connection signal="value_changed" from="Mcont/SettingsMenu/Grafik/Hbox/HSlider" to="Mcont/SettingsMenu" method="_on_scale3d_ch"]
+[connection signal="value_changed" from="Mcont/SettingsMenu/Grafik/Hbox2/HSlider" to="Mcont/SettingsMenu" method="_on_viewr_ch"]
+[connection signal="item_selected" from="Mcont/SettingsMenu/Grafik/Hbox3/sky_graphic" to="Mcont/SettingsMenu" method="_on_sky_graphic_selected"]

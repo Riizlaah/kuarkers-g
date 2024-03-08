@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn58mwus4rrv4"]
+
+[ext_resource type="Script" path="res://script/inv_and_items/inv_interface.gd" id="1_8wddm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ia65"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+bg_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="InvInterface" type="PanelContainer"]
+custom_minimum_size = Vector2(245, 85)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ia65")
+script = ExtResource("1_8wddm")
+
+[node name="Mcont" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Gcont" type="GridContainer" parent="Mcont"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 9

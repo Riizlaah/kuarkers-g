@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AmmoItem" load_steps=5 format=3 uid="uid://b8jt1ex3ktyfl"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_ebht1"]
+[ext_resource type="Script" path="res://resources/script_inv/items/ammo.gd" id="1_g73tk"]
+[ext_resource type="PackedScene" uid="uid://c63k70x8w8r5w" path="res://resources/meshes/items/rocket.tscn" id="2_kg2q6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr78o"]
+atlas = ExtResource("1_ebht1")
+region = Rect2(0, 426, 213, 213)
+
+[resource]
+script = ExtResource("1_g73tk")
+type = "Rocket"
+name = "Peluru Roket"
+unique_name = "rocket_ammo"
+icon = SubResource("AtlasTexture_mr78o")
+stack = false
+cooldown = 2.0
+mesh3d = ExtResource("2_kg2q6")
+pos = Vector3(0.0400881, 0.882188, 0.360092)
+rot = Vector3(1.55334, -0.174533, -0.174533)

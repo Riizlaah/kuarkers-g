@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceohmlljanax1"]
+
+[ext_resource type="ArrayMesh" uid="uid://cap3rldpqunw" path="res://resources/meshes/items/golok.res" id="1_vxt64"]
+
+[node name="golok2" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="golok" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.96046e-08, -1, -1.78814e-07, -0.707107, 5.96046e-08, -0.707107, 0.707107, 1.78814e-07, -0.707107, 0, 0, 0)
+mesh = ExtResource("1_vxt64")
+skeleton = NodePath("")

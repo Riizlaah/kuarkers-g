@@ -1,0 +1,204 @@
+[gd_scene load_steps=31 format=3 uid="uid://ciadt50wmpngo"]
+
+[ext_resource type="Script" path="res://script/world.gd" id="1_0t1p0"]
+[ext_resource type="PackedScene" uid="uid://d2egsd8cal7nn" path="res://scene/player.tscn" id="2_7xhgf"]
+[ext_resource type="FastNoiseLite" uid="uid://bw5ndyhrr5lfh" path="res://resources/other/Noise1.tres" id="2_p3v2e"]
+[ext_resource type="PackedScene" uid="uid://c6sbru4m16p17" path="res://scene/pickable3d.tscn" id="3_kpg04"]
+[ext_resource type="Resource" uid="uid://bl6lym335k431" path="res://resources/items/akm.tres" id="4_esndl"]
+[ext_resource type="Resource" uid="uid://dmxvvydj6nlx2" path="res://resources/items/arit.tres" id="4_rp1ae"]
+[ext_resource type="Resource" uid="uid://c0imxiks3tao4" path="res://resources/items/golok.tres" id="4_va0po"]
+[ext_resource type="PackedScene" uid="uid://db686kw62urlo" path="res://scene/output_label.tscn" id="5_8g62o"]
+[ext_resource type="Resource" uid="uid://na7phkq2anfv" path="res://resources/items/awm.tres" id="6_kpsen"]
+[ext_resource type="Resource" uid="uid://b3iaejqugv5rb" path="res://resources/items/kapak.tres" id="6_rjjr2"]
+[ext_resource type="Resource" uid="uid://cwynwawaa05a0" path="res://resources/items/botol_air.tres" id="7_aqmec"]
+[ext_resource type="Resource" uid="uid://ghtpampw0p4t" path="res://resources/items/bullet_ammo.tres" id="8_luikt"]
+[ext_resource type="Resource" uid="uid://b0i3imimwbxvy" path="res://resources/items/donat.tres" id="9_vfu6w"]
+[ext_resource type="Resource" uid="uid://buj16xtfa2ht2" path="res://resources/items/grenade.tres" id="11_r65i1"]
+[ext_resource type="Resource" uid="uid://80ecqaelagjr" path="res://resources/items/medkit.tres" id="13_7nexk"]
+[ext_resource type="Resource" uid="uid://c22owibu4l7df" path="res://resources/items/mp5.tres" id="14_eb4eo"]
+[ext_resource type="Resource" uid="uid://o5u7f1qqqv61" path="res://resources/items/pistol.tres" id="15_x1hc3"]
+[ext_resource type="Resource" uid="uid://b8jt1ex3ktyfl" path="res://resources/items/rocket_ammo.tres" id="16_5bjqp"]
+[ext_resource type="Resource" uid="uid://cljlhyvmytgf6" path="res://resources/items/rpg.tres" id="17_fae4h"]
+[ext_resource type="AudioStream" uid="uid://bijtyp8j7coc7" path="res://resources/music/backsound2-kuark.mp3" id="19_i1s2w"]
+
+[sub_resource type="Gradient" id="Gradient_quepg"]
+offsets = PackedFloat32Array(0.173554, 0.264331, 0.355372, 0.652893, 0.735537, 0.809917)
+colors = PackedColorArray(4.57242e-07, 0, 0.311364, 1, 0.89429, 0.494185, 0, 1, 0.352941, 0.521569, 1, 1, 0.353651, 0.520566, 0.998214, 1, 0.89429, 0.494185, 0, 1, 4.57242e-07, 0, 0.311364, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q31er"]
+
+[sub_resource type="Gradient" id="Gradient_2e1e5"]
+offsets = PackedFloat32Array(0, 0.246529, 0.777429, 1)
+colors = PackedColorArray(0.93877, 0.551744, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.93877, 0.551744, 0, 1)
+
+[sub_resource type="Curve" id="Curve_w3dhi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253571, 1), 0.0, 0.0, 0, 0, Vector2(0.753571, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_m40k4"]
+colors = PackedColorArray(1, 1, 1, 0.792157, 1, 1, 1, 0.705882)
+
+[sub_resource type="Curve" id="Curve_ddx5n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.253571, 0), 0.0, 0.0, 0, 0, Vector2(0.753571, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_sb4yk"]
+offsets = PackedFloat32Array(0.22314, 0.308987, 0.683741, 0.785124)
+colors = PackedColorArray(4.57242e-07, 0, 0.311364, 1, 0.353651, 0.520566, 0.998214, 1, 0.353651, 0.520566, 0.998214, 1, 4.57242e-07, 0, 0.311364, 1)
+
+[sub_resource type="Gradient" id="Gradient_psjjy"]
+offsets = PackedFloat32Array(0.591304, 1)
+colors = PackedColorArray(0, 0.027451, 0.231373, 0, 1, 1, 1, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdb3v"]
+width = 256
+height = 256
+seamless = true
+color_ramp = SubResource("Gradient_psjjy")
+noise = ExtResource("2_p3v2e")
+
+[sub_resource type="Environment" id="Environment_ojru1"]
+background_mode = 2
+background_color = Color(0.4, 0.568627, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.776471, 0.776471, 0.776471, 1)
+reflected_light_source = 1
+
+[node name="WorldLoader" type="Node3D"]
+script = ExtResource("1_0t1p0")
+player_s = ExtResource("2_7xhgf")
+pickable_sc = ExtResource("3_kpg04")
+output_lb = ExtResource("5_8g62o")
+sky_grad = SubResource("Gradient_quepg")
+sky_mat = SubResource("ProceduralSkyMaterial_q31er")
+sun_c = SubResource("Gradient_2e1e5")
+sun_ins = SubResource("Curve_w3dhi")
+moon_c = SubResource("Gradient_m40k4")
+moon_ins = SubResource("Curve_ddx5n")
+sky_top_c = SubResource("Gradient_sb4yk")
+sky_horizon_c = SubResource("Gradient_quepg")
+sky_texture = SubResource("NoiseTexture2D_fdb3v")
+
+[node name="W_ENV" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ojru1")
+
+[node name="SUN" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 100, 0)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+directional_shadow_mode = 0
+directional_shadow_pancake_size = 0.0
+
+[node name="MOON" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 100, 0)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+directional_shadow_mode = 0
+directional_shadow_pancake_size = 0.0
+sky_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0617284
+anchor_right = 0.000868056
+anchor_bottom = 0.0972222
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.154321
+anchor_right = 0.0347222
+anchor_bottom = 0.216049
+offset_right = 260.0
+offset_bottom = 160.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SCont" type="ScrollContainer" parent="CanvasLayer/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vbox" type="VBoxContainer" parent="CanvasLayer/Control/Panel/SCont"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("akm", "arit", "awm", "botol_air", "bullet_ammo", "donat", "golok", "grenade", "kapak", "medkit", "mp5", "pistol", "rocket_ammo", "rpg"), [ExtResource("4_esndl"), ExtResource("4_rp1ae"), ExtResource("6_kpsen"), ExtResource("7_aqmec"), ExtResource("8_luikt"), ExtResource("9_vfu6w"), ExtResource("4_va0po"), ExtResource("11_r65i1"), ExtResource("6_rjjr2"), ExtResource("13_7nexk"), ExtResource("14_eb4eo"), ExtResource("15_x1hc3"), ExtResource("16_5bjqp"), ExtResource("17_fae4h")]]
+
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="Control" type="Control" parent="DialogueLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="DialogueLayer/Control"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.799383
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 130.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hbox" type="HBoxContainer" parent="DialogueLayer/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="Label" parent="DialogueLayer/Control/Panel/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sc" type="ScrollContainer" parent="DialogueLayer/Control/Panel/Hbox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Vbox" type="VBoxContainer" parent="DialogueLayer/Control/Panel/Hbox/Sc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_i1s2w")
+volume_db = -12.0
+autoplay = true
+mix_target = 1
+
+[node name="output_tm" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="output_tm" to="." method="_on_output_tm_timeout"]
