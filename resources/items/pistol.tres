@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="GunItem" load_steps=5 format=3 uid="uid://o5u7f1qqqv61"]
+
+[ext_resource type="Script" path="res://resources/script_inv/items/gun.gd" id="1_6vyx5"]
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_errwf"]
+[ext_resource type="PackedScene" uid="uid://b4oa4exekhgg5" path="res://resources/meshes/items/pistol.tscn" id="2_uoubm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rmbb"]
+atlas = ExtResource("1_errwf")
+region = Rect2(213, 0, 213, 213)
+
+[resource]
+script = ExtResource("1_6vyx5")
+max_ammo = 20
+ammo = 20
+bullet_damage = 14
+rate_of_fire = 4
+reload_time = 0.8
+max_range = 40.0
+name = "Pistol"
+unique_name = "pistol"
+icon = SubResource("AtlasTexture_3rmbb")
+stack = false
+cooldown = 1.0
+mesh3d = ExtResource("2_uoubm")
+pos = Vector3(0.0543138, 1.32936, 0.220281)
+rot = Vector3(1.5708, -2.56582e-15, 0)

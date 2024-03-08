@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DrinkItem" load_steps=5 format=3 uid="uid://cwynwawaa05a0"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_4vl0t"]
+[ext_resource type="Script" path="res://resources/script_inv/items/drink.gd" id="1_qwvxv"]
+[ext_resource type="PackedScene" uid="uid://b05ulli84ev4l" path="res://resources/meshes/items/botol_air.tscn" id="2_6war2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2fhs"]
+atlas = ExtResource("1_4vl0t")
+region = Rect2(1065, 0, 213, 213)
+
+[resource]
+script = ExtResource("1_qwvxv")
+effect = ""
+name = "Botol Air"
+unique_name = "botol_air"
+icon = SubResource("AtlasTexture_p2fhs")
+stack = true
+cooldown = 0.75
+mesh3d = ExtResource("2_6war2")
+pos = Vector3(0.0320344, 1.02108, 1.82588e-08)
+rot = Vector3(1.5708, 7.52482e-15, 0)

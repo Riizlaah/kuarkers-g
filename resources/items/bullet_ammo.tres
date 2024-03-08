@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AmmoItem" load_steps=5 format=3 uid="uid://ghtpampw0p4t"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_083bj"]
+[ext_resource type="Script" path="res://resources/script_inv/items/ammo.gd" id="1_spr78"]
+[ext_resource type="PackedScene" uid="uid://bvjvp51jpibhn" path="res://resources/meshes/items/ammo.tscn" id="2_nadb1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yep7"]
+atlas = ExtResource("1_083bj")
+region = Rect2(213, 213, 213, 213)
+
+[resource]
+script = ExtResource("1_spr78")
+type = "Bullet"
+name = "Peluru Biasa"
+unique_name = "bullet_ammo"
+icon = SubResource("AtlasTexture_6yep7")
+stack = true
+cooldown = 2.0
+mesh3d = ExtResource("2_nadb1")
+pos = Vector3(0.0512946, 1.02447, 1.99685e-08)
+rot = Vector3(1.5708, 5.34546e-16, 0)

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="GunItem" load_steps=5 format=3 uid="uid://bl6lym335k431"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_627xf"]
+[ext_resource type="Script" path="res://resources/script_inv/items/gun.gd" id="1_suyya"]
+[ext_resource type="PackedScene" uid="uid://rs7mdxt8mobd" path="res://resources/meshes/items/akm.tscn" id="2_10023"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixnx3"]
+atlas = ExtResource("1_627xf")
+region = Rect2(639, 213, 213, 213)
+
+[resource]
+script = ExtResource("1_suyya")
+max_ammo = 40
+ammo = 40
+bullet_damage = 25
+rate_of_fire = 7
+reload_time = 1.5
+max_range = 60.0
+name = "AKM"
+unique_name = "akm"
+icon = SubResource("AtlasTexture_ixnx3")
+stack = false
+cooldown = 1.0
+mesh3d = ExtResource("2_10023")
+pos = Vector3(0.0793543, 1.38726, 0.261143)
+rot = Vector3(1.5708, 0.174533, 0)

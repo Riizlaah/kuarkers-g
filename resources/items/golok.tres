@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MeleeItem" load_steps=5 format=3 uid="uid://c0imxiks3tao4"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_akf02"]
+[ext_resource type="PackedScene" uid="uid://ceohmlljanax1" path="res://resources/meshes/items/golok.tscn" id="2_dat1f"]
+[ext_resource type="Script" path="res://resources/script_inv/items/melee.gd" id="2_dfpl2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk1e5"]
+atlas = ExtResource("1_akf02")
+region = Rect2(0, 0, 213, 213)
+
+[resource]
+script = ExtResource("2_dfpl2")
+melee_damage = 65
+throwable_melee = false
+name = "Golok"
+unique_name = "golok"
+icon = SubResource("AtlasTexture_pk1e5")
+stack = false
+cooldown = 1.0
+mesh3d = ExtResource("2_dat1f")
+pos = Vector3(0.171724, 1.04571, 1)
+rot = Vector3(1.5708, 0.174533, 0)

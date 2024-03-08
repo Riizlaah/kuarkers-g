@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c63k70x8w8r5w"]
+
+[ext_resource type="ArrayMesh" uid="uid://b4drfewnaxbug" path="res://resources/meshes/items/rocket.res" id="1_h4ggb"]
+
+[node name="rocket" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="rocket" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.19209e-07, -1, -8.9407e-08, 0.707107, 0, -0.707107, 0.707107, -1.49012e-07, 0.707107, 0, 0, 0)
+mesh = ExtResource("1_h4ggb")
+skeleton = NodePath("")

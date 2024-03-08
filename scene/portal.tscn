@@ -1,24 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkjejotjgf0xo"]
+[gd_scene load_steps=4 format=3 uid="uid://bi8etxfijq28r"]
 
-[ext_resource type="Script" path="res://script/portal.gd" id="1_fo38k"]
-[ext_resource type="Texture2D" uid="uid://bisvb3hbytb3b" path="res://Texture/3d/portal.png" id="1_ibkda"]
+[ext_resource type="Script" path="res://script/portal.gd" id="1_bfjd0"]
+[ext_resource type="Texture2D" uid="uid://bisvb3hbytb3b" path="res://resources/texture/3d/portal.png" id="1_pucb7"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s2dht"]
-size = Vector3(2, 3.7, 0.05)
+[sub_resource type="BoxShape3D" id="BoxShape3D_cg7cr"]
+size = Vector3(3.3, 4.8, 0.15)
 
-[node name="Portal" type="Node3D"]
-script = ExtResource("1_fo38k")
-
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Portal" type="Area3D"]
 collision_layer = 0
 collision_mask = 4
-
-[node name="Colls" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_s2dht")
+script = ExtResource("1_bfjd0")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-pixel_size = 0.008
-texture = ExtResource("1_ibkda")
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+texture = ExtResource("1_pucb7")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Colls" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_cg7cr")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, 0.1)
+pixel_size = 0.01
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "Yuhuu"
+font_size = 64
+outline_size = 32
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4.25, -0.1)
+pixel_size = 0.01
+modulate = Color(1, 1, 0, 1)
+text = "Yuhuu"
+font_size = 64
+outline_size = 32
+
+[connection signal="body_entered" from="." to="." method="_on_portal_entered"]

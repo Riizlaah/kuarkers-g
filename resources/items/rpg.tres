@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ExLauncherItem" load_steps=5 format=3 uid="uid://cljlhyvmytgf6"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_c3gua"]
+[ext_resource type="Script" path="res://resources/script_inv/items/ex_launcher.gd" id="1_ro8i2"]
+[ext_resource type="PackedScene" uid="uid://dgm3huybhc7si" path="res://resources/meshes/items/rpg.tscn" id="2_nqlx3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk578"]
+atlas = ExtResource("1_c3gua")
+region = Rect2(1065, 213, 213, 213)
+
+[resource]
+script = ExtResource("1_ro8i2")
+max_ammo = 5
+ammo = 5
+type = "Rocket"
+name = "RPG"
+unique_name = "rpg"
+icon = SubResource("AtlasTexture_uk578")
+stack = false
+cooldown = 2.0
+mesh3d = ExtResource("2_nqlx3")
+pos = Vector3(-0.0390784, 0.221624, 0.438827)
+rot = Vector3(1.5708, 0.0174534, 0)

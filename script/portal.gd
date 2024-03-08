@@ -1,8 +1,13 @@
+extends Area3D
 class_name Portal
-extends Node3D
 
-@export var destination: Portal
+@export var dest: Portal
+@export var portal_title := "Portal"
 
-func _on_area_3d_body_entered(body: Node3D):
-	var glob_pos = (destination.global_transform.basis * (destination.global_position) +(body.global_transform.basis * Vector3(0,0,-1.5)))
+func _ready():
+	$Label3D.text = portal_title
+	$Label3D2.text = portal_title
+
+func _on_portal_entered(body: Node3D):
+	var glob_pos = (dest.global_position + -body.global_basis.z) + (body.global_basis * Vector3(0, 0, -2))
 	body.global_position = glob_pos

@@ -2,6 +2,4 @@
 
 [resource]
 noise_type = 0
-frequency = 0.02
-fractal_lacunarity = 1.5
-fractal_gain = 0.6
+frequency = 0.0075

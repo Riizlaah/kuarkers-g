@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MeleeItem" load_steps=5 format=3 uid="uid://dmxvvydj6nlx2"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_rskxv"]
+[ext_resource type="PackedScene" uid="uid://cpsbc8ahdhh8g" path="res://resources/meshes/items/arit.tscn" id="2_4poiv"]
+[ext_resource type="Script" path="res://resources/script_inv/items/melee.gd" id="2_dsdqo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwvk4"]
+atlas = ExtResource("1_rskxv")
+region = Rect2(639, 0, 213, 213)
+
+[resource]
+script = ExtResource("2_dsdqo")
+melee_damage = 45
+throwable_melee = true
+name = "Arit"
+unique_name = "arit"
+icon = SubResource("AtlasTexture_kwvk4")
+stack = false
+cooldown = 0.5
+mesh3d = ExtResource("2_4poiv")
+pos = Vector3(0.146865, 0.651612, 0.916797)
+rot = Vector3(1.5708, 0.174533, 0)

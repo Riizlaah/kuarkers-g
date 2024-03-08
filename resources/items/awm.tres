@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="GunItem" load_steps=5 format=3 uid="uid://na7phkq2anfv"]
+
+[ext_resource type="Script" path="res://resources/script_inv/items/gun.gd" id="1_qct0u"]
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_ynyk4"]
+[ext_resource type="PackedScene" uid="uid://oegun2abbbhi" path="res://resources/meshes/items/awm.tscn" id="2_dce7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxjhb"]
+atlas = ExtResource("1_ynyk4")
+region = Rect2(426, 213, 213, 213)
+
+[resource]
+script = ExtResource("1_qct0u")
+max_ammo = 10
+ammo = 10
+bullet_damage = 220
+rate_of_fire = 1
+reload_time = 2.0
+max_range = 150.0
+name = "AWM"
+unique_name = "awm"
+icon = SubResource("AtlasTexture_yxjhb")
+stack = false
+cooldown = 1.0
+mesh3d = ExtResource("2_dce7p")
+pos = Vector3(-0.0605795, 1.20959, 0.118502)
+rot = Vector3(1.5708, -0.00174534, 0)

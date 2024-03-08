@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://8evfvvohtaou"]
+
+[ext_resource type="Texture2D" uid="uid://cfoe52wuc5cgu" path="res://resources/texture/inv/active_slot.png" id="1_bxgwu"]
+[ext_resource type="Script" path="res://script/inv_and_items/slot_interface.gd" id="1_xjf7r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mo71i"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+
+[node name="SlotInterface" type="PanelContainer"]
+custom_minimum_size = Vector2(75, 75)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mo71i")
+script = ExtResource("1_xjf7r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_bxgwu")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "99"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[connection signal="gui_input" from="Control" to="." method="_on_slot_input"]

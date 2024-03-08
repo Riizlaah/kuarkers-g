@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MeleeItem" load_steps=5 format=3 uid="uid://b3iaejqugv5rb"]
+
+[ext_resource type="Texture2D" uid="uid://cq4b5ptwpfv5k" path="res://resources/texture/inv/tekstur2.png" id="1_wf1d7"]
+[ext_resource type="Script" path="res://resources/script_inv/items/melee.gd" id="2_a4nyr"]
+[ext_resource type="PackedScene" uid="uid://bw04e582blpl1" path="res://resources/meshes/items/kapak.tscn" id="2_xdy2o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yixe"]
+atlas = ExtResource("1_wf1d7")
+region = Rect2(426, 0, 213, 213)
+
+[resource]
+script = ExtResource("2_a4nyr")
+melee_damage = 55
+throwable_melee = true
+name = "Kapak"
+unique_name = "kapak"
+icon = SubResource("AtlasTexture_0yixe")
+stack = false
+cooldown = 2.0
+mesh3d = ExtResource("2_xdy2o")
+pos = Vector3(0.0267265, 1.23544, 1.34645)
+rot = Vector3(1.5708, -5.92119e-15, 0)

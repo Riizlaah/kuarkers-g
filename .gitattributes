@@ -1,6 +1,2 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
-release/Kuarkers-1.1.0.apk filter=lfs diff=lfs merge=lfs -text
-release/Kuarkers-1.1.1.apk filter=lfs diff=lfs merge=lfs -text
-*.apk filter=lfs diff=lfs merge=lfs -text
-release/Kuarkers-1.2.0.apk filter=lfs diff=lfs merge=lfs -text
