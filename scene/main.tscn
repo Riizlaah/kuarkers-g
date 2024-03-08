@@ -258,7 +258,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qhviq")
-texture_arr = Array[Texture]([ExtResource("2_rwayh"), ExtResource("4_vqg2r"), ExtResource("4_n2ote"), ExtResource("5_fuk0a"), ExtResource("6_reqyy"), ExtResource("7_exhgg")])
+texture_arr = Array[Texture2D]([ExtResource("2_rwayh"), ExtResource("4_vqg2r"), ExtResource("4_n2ote"), ExtResource("5_fuk0a"), ExtResource("6_reqyy"), ExtResource("7_exhgg")])
 metadata/_edit_use_anchors_ = true
 
 [node name="bg_texture" type="TextureRect" parent="."]
