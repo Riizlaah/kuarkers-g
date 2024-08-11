@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cevggjk66532k"]
+
+[ext_resource type="Script" path="res://script/proc_gen/bp_3d.gd" id="1_1myrg"]
+
+[node name="BasePlaceable3D" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_1myrg")
+stone_type = -1
+
+[node name="Mesh" type="MeshInstance3D" parent="."]

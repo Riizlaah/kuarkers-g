@@ -22,5 +22,5 @@ func _on_countdown_timeout():
 	explod.radius = ex_range
 	explod.damage = damage
 	explod.position = global_position
-	get_node("/root/WorldLoader").add_child(explod)
+	GManager.world.add_child(explod)
 	queue_free()

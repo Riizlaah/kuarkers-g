@@ -19,5 +19,5 @@ func _on_contact(_body):
 	exar.position = global_position
 	exar.damage = ex_damage
 	exar.radius = ex_radius
-	get_node("/root/WorldLoader").add_child(exar)
+	GManager.world.add_child(exar)
 	queue_free()

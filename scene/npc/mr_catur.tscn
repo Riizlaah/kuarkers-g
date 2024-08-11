@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d13x34ufsddd2" path="res://resources/texture/3d/mr.catur.png" id="1_ja7i3"]
 [ext_resource type="Script" path="res://script/npc/mr_catur.gd" id="1_odyd6"]
-[ext_resource type="ArrayMesh" uid="uid://cwvpatf5wehx5" path="res://resources/meshes/char3_Cube_002.res" id="2_jqvqs"]
+[ext_resource type="ArrayMesh" uid="uid://cwvpatf5wehx5" path="res://resources/meshes/char3.res" id="2_jqvqs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_04fg7"]
 size = Vector3(2.5, 6.5, 1)

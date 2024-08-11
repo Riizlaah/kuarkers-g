@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://djqv013cvnopo"]
+
+[ext_resource type="Script" path="res://script/world_itf.gd" id="1_owbiy"]
+[ext_resource type="Texture2D" uid="uid://cttbkjff3mjco" path="res://resources/texture/main-menu/dummy-world.png" id="2_q50o7"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="2_w30pe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5xpe"]
+bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_325p1"]
+content_margin_left = 10.0
+content_margin_top = 3.0
+content_margin_right = 10.0
+content_margin_bottom = 3.0
+bg_color = Color(0.254902, 0.254902, 0.254902, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n0n8"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(0, 250)
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l5xpe")
+script = ExtResource("1_owbiy")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="Control" parent="Vbox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="thumbn" type="TextureRect" parent="Vbox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+texture = ExtResource("2_q50o7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="w_name" type="Label" parent="Vbox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.560784, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_w30pe")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_325p1")
+text = "skibidi"
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="w_info" type="Label" parent="Vbox"]
+custom_minimum_size = Vector2(0, 79)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_w30pe")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxFlat_7n0n8")
+text = "Mode Survival; 2 tahun yang lalu;"
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

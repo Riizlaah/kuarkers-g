@@ -1,6 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://ciadt50wmpngo"]
+[gd_scene load_steps=35 format=3 uid="uid://ciadt50wmpngo"]
 
-[ext_resource type="Script" path="res://script/world.gd" id="1_0t1p0"]
+[ext_resource type="Script" path="res://script/world_loader.gd" id="1_ulbhy"]
 [ext_resource type="PackedScene" uid="uid://d2egsd8cal7nn" path="res://scene/player.tscn" id="2_7xhgf"]
 [ext_resource type="FastNoiseLite" uid="uid://bw5ndyhrr5lfh" path="res://resources/other/Noise1.tres" id="2_p3v2e"]
 [ext_resource type="PackedScene" uid="uid://c6sbru4m16p17" path="res://scene/pickable3d.tscn" id="3_kpg04"]
@@ -8,8 +8,10 @@
 [ext_resource type="Resource" uid="uid://dmxvvydj6nlx2" path="res://resources/items/arit.tres" id="4_rp1ae"]
 [ext_resource type="Resource" uid="uid://c0imxiks3tao4" path="res://resources/items/golok.tres" id="4_va0po"]
 [ext_resource type="PackedScene" uid="uid://db686kw62urlo" path="res://scene/output_label.tscn" id="5_8g62o"]
+[ext_resource type="PackedScene" uid="uid://cqdx5p1o0hwn" path="res://scene/proc_gen/inf_terrain.tscn" id="5_66tax"]
 [ext_resource type="Resource" uid="uid://na7phkq2anfv" path="res://resources/items/awm.tres" id="6_kpsen"]
 [ext_resource type="Resource" uid="uid://b3iaejqugv5rb" path="res://resources/items/kapak.tres" id="6_rjjr2"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="6_wvknk"]
 [ext_resource type="Resource" uid="uid://cwynwawaa05a0" path="res://resources/items/botol_air.tres" id="7_aqmec"]
 [ext_resource type="Resource" uid="uid://ghtpampw0p4t" path="res://resources/items/bullet_ammo.tres" id="8_luikt"]
 [ext_resource type="Resource" uid="uid://b0i3imimwbxvy" path="res://resources/items/donat.tres" id="9_vfu6w"]
@@ -20,6 +22,8 @@
 [ext_resource type="Resource" uid="uid://b8jt1ex3ktyfl" path="res://resources/items/rocket_ammo.tres" id="16_5bjqp"]
 [ext_resource type="Resource" uid="uid://cljlhyvmytgf6" path="res://resources/items/rpg.tres" id="17_fae4h"]
 [ext_resource type="AudioStream" uid="uid://bijtyp8j7coc7" path="res://resources/music/backsound2-kuark.mp3" id="19_i1s2w"]
+[ext_resource type="Script" path="res://script/chat_manager.gd" id="21_hdmeu"]
+[ext_resource type="Script" path="res://script/server_broadcaster.gd" id="24_7dmxd"]
 
 [sub_resource type="Gradient" id="Gradient_quepg"]
 offsets = PackedFloat32Array(0.173554, 0.264331, 0.355372, 0.652893, 0.735537, 0.809917)
@@ -65,10 +69,11 @@ ambient_light_color = Color(0.776471, 0.776471, 0.776471, 1)
 reflected_light_source = 1
 
 [node name="WorldLoader" type="Node3D"]
-script = ExtResource("1_0t1p0")
+script = ExtResource("1_ulbhy")
 player_s = ExtResource("2_7xhgf")
 pickable_sc = ExtResource("3_kpg04")
 output_lb = ExtResource("5_8g62o")
+proc_gen = ExtResource("5_66tax")
 sky_grad = SubResource("Gradient_quepg")
 sky_mat = SubResource("ProceduralSkyMaterial_q31er")
 sun_c = SubResource("Gradient_2e1e5")
@@ -109,14 +114,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.0617284
-anchor_right = 0.000868056
-anchor_bottom = 0.0972222
-metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control"]
 visible = false
@@ -201,4 +198,65 @@ mix_target = 1
 wait_time = 2.0
 one_shot = true
 
+[node name="ChatManager" type="Node" parent="." node_paths=PackedStringArray("world_node")]
+script = ExtResource("21_hdmeu")
+world_node = NodePath("..")
+
+[node name="Loading" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Loading"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Loading/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Loading/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("6_wvknk")
+theme_override_font_sizes/font_size = 64
+text = "Loading..."
+
+[node name="players" type="Node3D" parent="."]
+
+[node name="MPSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scene/player.tscn")
+spawn_path = NodePath("../players")
+
+[node name="Broadcaster" type="Node" parent="."]
+script = ExtResource("24_7dmxd")
+
+[node name="Timer" type="Timer" parent="Broadcaster"]
+wait_time = 0.5
+
+[node name="Autosave" type="Timer" parent="."]
+wait_time = 180.0
+autostart = true
+
 [connection signal="timeout" from="output_tm" to="." method="_on_output_tm_timeout"]
+[connection signal="timeout" from="Broadcaster/Timer" to="Broadcaster" method="_on_broadcasting"]
+[connection signal="timeout" from="Autosave" to="." method="_autosave"]

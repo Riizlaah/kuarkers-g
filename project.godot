@@ -11,19 +11,19 @@ config_version=5
 [application]
 
 config/name="Kuarkers"
-config/description="Tidak ada deskripsi khusus"
+config/description="Game open world tanpa tujuan"
 run/main_scene="res://scene/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-run/max_fps=120
-boot_splash/bg_color=Color(0.109804, 0.109804, 0.109804, 1)
+boot_splash/bg_color=Color(0.176471, 0.176471, 0.176471, 1)
 boot_splash/image="res://resources/texture/splash.png"
 config/icon="res://icon.png"
-boot_splash/minimum_display_time=500
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
 Settings="*res://script/autoload/settings.gd"
 GManager="*res://script/autoload/gmanager.gd"
+FileSystem="*res://script/autoload/file_system.gd"
 
 [filesystem]
 
@@ -116,8 +116,14 @@ pointing/emulate_touch_from_mouse=true
 3d_physics/layer_5="Car"
 3d_physics/layer_6="NPC"
 
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
+jolt_3d/collisions/areas_detect_static_bodies=true
+
 [rendering]
 
 renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+global_illumination/gi/use_half_resolution=true

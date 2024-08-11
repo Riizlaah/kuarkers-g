@@ -32,7 +32,7 @@ var points_pos : PackedVector3Array = []
 var gravity := 10.0
 var dir := Vector3.ZERO
 
-@onready var world_loader = get_node("/root/WorldLoader")
+@onready var world_loader = GManager.world
 
 func _enter_tree():
 	set_multiplayer_authority(1)
@@ -59,9 +59,9 @@ func _ready():
 func _ready2():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !can_walk: return
-	var is_reaching_point = Vector2i(global_position.x, global_position.z) == Vector2i(target_pos.x, target_pos.z)
+	var is_reaching_point = global_position.round() == target_pos.round()
 	if(!using_path and is_reaching_point == true):
 		rand_target()
 	elif(using_path == true and is_reaching_point == true):
@@ -142,3 +142,15 @@ func _sync_status():
 
 func _sync_dialogues():
 	world_loader.sync_npc_dialogues.rpc(name, dialogues)
+
+func gen_uuid():
+	randomize()
+	const chars = "0123456789abcdef"
+	var uuid = ""
+	var segments = [2, 4, 8]
+	for segment in segments:
+		for i in segment:
+			uuid += chars[randi() % chars.length()]
+		uuid += "-"
+	uuid = uuid.substr(0, uuid.length() - 1)
+	return uuid

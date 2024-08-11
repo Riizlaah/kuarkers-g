@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://hnxs1yt21trv"]
+
+[ext_resource type="Script" path="res://script/confirm.gd" id="1_krt7l"]
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_xmg57"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgakk"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.286275, 0.286275, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkcvn"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[node name="confirm" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.117647, 0.117647, 0.415686)
+script = ExtResource("1_krt7l")
+
+[node name="Confirm" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="Vbox" type="VBoxContainer" parent="Confirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Control" type="Control" parent="Confirm/Vbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Confirm/Vbox"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_xmg57")
+theme_override_font_sizes/font_size = 36
+text = "Anda Yakin ingin menghapus dunia ''"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Hbox" type="HBoxContainer" parent="Confirm/Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Button" type="Button" parent="Confirm/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_xmg57")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bkcvn")
+text = "Batal"
+
+[node name="Button2" type="Button" parent="Confirm/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_xmg57")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bkcvn")
+text = "OK"
+
+[node name="Control2" type="Control" parent="Confirm/Vbox"]
+layout_mode = 2
+
+[connection signal="pressed" from="Confirm/Vbox/Hbox/Button" to="." method="_on_cancel"]
+[connection signal="pressed" from="Confirm/Vbox/Hbox/Button2" to="." method="_on_confirmed"]

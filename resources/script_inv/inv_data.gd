@@ -64,6 +64,7 @@ func grab_slot_data(idx: int):
 	return null
 
 func drop_slot_data(grabbed_slotd: SlotData, idx: int):
+	var slot_d
 	if !is_instance_valid(slot_datas[idx].item_data):
 		slot_datas[idx] = grabbed_slotd
 		update()
@@ -71,15 +72,39 @@ func drop_slot_data(grabbed_slotd: SlotData, idx: int):
 	if slot_datas[idx].can_merge(grabbed_slotd) == true:
 		slot_datas[idx].merge(grabbed_slotd)
 		if slot_datas[idx].rest > 0:
-			var slot_d = SlotData.new()
+			slot_d = SlotData.new()
 			slot_d.item_data = slot_datas[idx].item_data
 			slot_d.stack_count = slot_datas[idx].rest
 			update()
 			return slot_d
 		update()
 		return null
-	var slot_d = slot_datas[idx]
+	slot_d = slot_datas[idx]
 	slot_datas[idx] = grabbed_slotd
 	slot_d.active = false
 	update()
 	return slot_d
+
+func serialize():
+	var datas = []
+	for slot in slot_datas:
+		var item_name = ''
+		if is_instance_valid(slot.item_data): item_name = slot.item_data.unique_name 
+		datas.append({
+			'item': item_name,
+			'count': slot.stack_count,
+			#'active': slot.active
+		})
+	return datas
+
+func deserialize(datas, items: Dictionary):
+	for idx in slot_datas.size():
+		#slot_datas[idx].active = datas[idx].active
+		slot_datas[idx].item_data = items[datas[idx].item]
+		slot_datas[idx].stack_count = datas[idx].count
+
+func get_empty_slot_idx():
+	for idx in slot_datas.size():
+		if is_instance_valid(slot_datas[idx].item_data): continue
+		return idx
+	return -1

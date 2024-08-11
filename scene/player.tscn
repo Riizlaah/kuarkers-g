@@ -1,9 +1,10 @@
-[gd_scene load_steps=51 format=3 uid="uid://d2egsd8cal7nn"]
+[gd_scene load_steps=55 format=3 uid="uid://d2egsd8cal7nn"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_neciv"]
 [ext_resource type="Texture2D" uid="uid://b7ym4d3jrfsyw" path="res://resources/texture/hud/crosshair.png" id="3_guvdv"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/joystick/virtual_joystick.tscn" id="3_juqq6"]
 [ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="4_f12iw"]
+[ext_resource type="Texture2D" uid="uid://tbgahk1wuige" path="res://resources/texture/hud/hurt.png" id="5_tcg8s"]
 [ext_resource type="PackedScene" uid="uid://cn58mwus4rrv4" path="res://scene/inv_interface.tscn" id="6_1txhr"]
 [ext_resource type="Texture2D" uid="uid://bu6q2qqocons7" path="res://resources/texture/hud/chat.png" id="6_2fsl7"]
 [ext_resource type="Texture2D" uid="uid://c8a11dk3bi2cy" path="res://resources/texture/hud/pause.png" id="6_07cq3"]
@@ -16,12 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://8evfvvohtaou" path="res://scene/slot_interface.tscn" id="7_qk4g4"]
 [ext_resource type="Texture2D" uid="uid://cth55d6iknfyw" path="res://resources/texture/inv/chest.png" id="8_jpht3"]
 [ext_resource type="Texture2D" uid="uid://btreegwqqgpuk" path="res://resources/texture/hud/jump.png" id="8_qam66"]
-[ext_resource type="ArrayMesh" uid="uid://cwvpatf5wehx5" path="res://resources/meshes/char3_Cube_002.res" id="11_0fexi"]
+[ext_resource type="ArrayMesh" uid="uid://cwvpatf5wehx5" path="res://resources/meshes/char3.res" id="11_0fexi"]
 [ext_resource type="Animation" uid="uid://1b6jrq8g33xw" path="res://resources/other/attack_melee.res" id="12_wn8n1"]
 [ext_resource type="Animation" uid="uid://cdoulg58l3ij2" path="res://resources/other/attack_null.res" id="13_ngdje"]
 [ext_resource type="PackedScene" uid="uid://iubq1lg5c1yh" path="res://scene/chat.tscn" id="13_qoqkk"]
 [ext_resource type="Animation" uid="uid://c34ecfyywoslt" path="res://resources/other/eat.res" id="14_uwwfv"]
 [ext_resource type="Animation" uid="uid://cdfcr0f0nwseu" path="res://resources/other/idle.res" id="15_om47w"]
+[ext_resource type="Texture2D" uid="uid://dguutk7g17w0x" path="res://resources/texture/hud/ch_pov.png" id="16_afvbi"]
 [ext_resource type="Animation" uid="uid://dfmlwiakyuevv" path="res://resources/other/reset.res" id="16_vt8wm"]
 [ext_resource type="Animation" uid="uid://nwfgm5syg8io" path="res://resources/other/walk.res" id="17_yw400"]
 [ext_resource type="AudioStream" uid="uid://dogcuf2eye2qa" path="res://resources/music/sound_eff/shoot.ogg" id="25_36rbj"]
@@ -141,10 +143,10 @@ bg_color = Color(0.258824, 0.258824, 0.258824, 1)
 bg_color = Color(0.317647, 0.317647, 0.317647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o67mn"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -152,15 +154,37 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ea4ds"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgqc1"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw1k4"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dmrxx"]
 properties/0/path = NodePath(".:hp")
@@ -168,13 +192,13 @@ properties/0/spawn = true
 properties/0/replication_mode = 2
 properties/1/path = NodePath(".:position")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
 properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath("Armature/Skeleton3D/Head:rotation")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 
 [sub_resource type="Animation" id="Animation_medu4"]
 length = 0.001
@@ -193,7 +217,8 @@ _data = {
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 57
-floor_max_angle = 1.22173
+floor_max_angle = 1.309
+safe_margin = 0.1
 script = ExtResource("1_neciv")
 gradient_hp = SubResource("Gradient_43lep")
 
@@ -219,7 +244,7 @@ bones/2/name = "Bone.002"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.999792, 0.0204119, -2.34381e-07, -0.0204119, 0.999792, 3.64153e-09, 2.34407e-07, 1.14339e-09, 1, -3.72529e-08, 0.877768, 0)
 bones/2/enabled = true
-bones/2/position = Vector3(-3.72529e-08, 0.877768, 0)
+bones/2/position = Vector3(-3.72529e-08, 0.877768, -4.44089e-16)
 bones/2/rotation = Quaternion(-0.00853709, 0.0130557, 0.619142, 0.785124)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Bone.003"
@@ -227,7 +252,7 @@ bones/3/parent = 2
 bones/3/rest = Transform3D(0.999088, 0.042692, -4.45636e-07, -0.042692, 0.999088, 2.66658e-08, 4.46368e-07, -7.61637e-09, 1, -5.21541e-08, 1.0375, 3.37508e-14)
 bones/3/enabled = true
 bones/3/position = Vector3(-5.21541e-08, 1.0375, 3.37508e-14)
-bones/3/rotation = Quaternion(-8.5725e-09, -2.23052e-07, -0.0213509, 0.999772)
+bones/3/rotation = Quaternion(-8.34718e-09, -2.23406e-07, -0.0213509, 0.999772)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Bone.015"
 bones/4/parent = 3
@@ -248,7 +273,7 @@ bones/6/parent = 5
 bones/6/rest = Transform3D(0.999569, -0.029373, -3.67695e-08, 0.029373, 0.999569, 1.92152e-09, 3.66971e-08, -3.00072e-09, 1, 2.98023e-08, 0.87777, -2.66454e-15)
 bones/6/enabled = true
 bones/6/position = Vector3(2.98023e-08, 0.87777, -2.66454e-15)
-bones/6/rotation = Quaternion(3.86691e-07, 8.82123e-09, -0.631467, 0.775403)
+bones/6/rotation = Quaternion(0.0594753, -0.0637092, -0.629064, 0.772452)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "Bone.012"
 bones/7/parent = 6
@@ -276,7 +301,7 @@ bones/10/parent = 9
 bones/10/rest = Transform3D(1, -2.33142e-08, -1.17018e-07, 5.83106e-08, 0.951125, 0.308807, 1.04099e-07, -0.308807, 0.951125, 0, 1.07703, 0)
 bones/10/enabled = true
 bones/10/position = Vector3(0, 1.07703, 0)
-bones/10/rotation = Quaternion(-0.156325, -5.59672e-08, 2.06602e-08, 0.987706)
+bones/10/rotation = Quaternion(-0.156288, -0.00487361, -0.0214376, 0.987467)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "Bone.007"
 bones/11/parent = 10
@@ -297,7 +322,7 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(1, -5.03109e-08, -1.33054e-07, 8.89398e-08, 0.951125, 0.308807, 1.11014e-07, -0.308807, 0.951125, 0, 1.07703, 0)
 bones/13/enabled = true
 bones/13/position = Vector3(0, 1.07703, 0)
-bones/13/rotation = Quaternion(-0.156325, -6.17765e-08, 3.5246e-08, 0.987706)
+bones/13/rotation = Quaternion(-0.156288, -0.00487359, -0.0214375, 0.987467)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "Bone.009"
 bones/14/parent = 13
@@ -331,13 +356,11 @@ bone_name = "Bone.014"
 bone_idx = 16
 override_pose = true
 
+[node name="ray_pivot" type="Node3D" parent="Armature/Skeleton3D/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527, 0.5)
+
 [node name="Camera3D" type="Camera3D" parent="Armature/Skeleton3D/Head"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.971e-09, 0.527376, 0.0568616)
-
-[node name="RayCast3D" type="RayCast3D" parent="Armature/Skeleton3D/Head/Camera3D"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-target_position = Vector3(0, 0, 7)
-collision_mask = 44
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Armature/Skeleton3D/Head/Camera3D"]
 
@@ -349,18 +372,18 @@ font_size = 72
 [node name="SpringArm3D" type="SpringArm3D" parent="Armature/Skeleton3D/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SeparationRayShape3D_hk7u5")
-spring_length = 8.5
+spring_length = 11.5
 
 [node name="Camera3D2" type="Camera3D" parent="Armature/Skeleton3D/Head/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018, 8.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018, 11.5)
 
 [node name="SpringArm3D2" type="SpringArm3D" parent="Armature/Skeleton3D/Head"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
 shape = SubResource("SeparationRayShape3D_hk7u5")
-spring_length = 5.0
+spring_length = 12.5
 
 [node name="Camera3D2" type="Camera3D" parent="Armature/Skeleton3D/Head/SpringArm3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986211, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986, 12.5)
 
 [node name="Handup" type="BoneAttachment3D" parent="Armature/Skeleton3D"]
 transform = Transform3D(-0.984744, -0.171379, -0.0301394, 0.171212, -0.985201, 0.0080442, -0.031072, 0.00276124, 0.999513, -0.87602, 0.644634, -7.43893e-09)
@@ -368,7 +391,7 @@ bone_name = "Bone.002"
 bone_idx = 2
 
 [node name="Hand" type="BoneAttachment3D" parent="Armature/Skeleton3D/Handup"]
-transform = Transform3D(-0.97653, -0.213263, -0.030139, 0.213116, -0.976994, 0.0080441, -0.0311611, 0.00143218, 0.999513, -1.05383, -0.377513, 0.00286478)
+transform = Transform3D(0.999088, 0.0426921, -4.47035e-07, -0.0426921, 0.999088, 2.65427e-08, 4.48897e-07, -7.10133e-09, 1, 0, 1.0375, 0)
 bone_name = "Bone.003"
 bone_idx = 3
 use_external_skeleton = true
@@ -389,6 +412,11 @@ mesh = SubResource("BoxMesh_6vbl8")
 [node name="Colls" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95, 0)
 shape = SubResource("BoxShape3D_iga3g")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.74228e-08, 1.72738, -0.556862)
+target_position = Vector3(0, 0, -7)
+collision_mask = 44
 
 [node name="Layer1" type="CanvasLayer" parent="."]
 layer = 0
@@ -411,6 +439,17 @@ grow_vertical = 2
 texture = ExtResource("3_guvdv")
 expand_mode = 1
 stretch_mode = 3
+
+[node name="Hurt" type="TextureRect" parent="Layer1/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_tcg8s")
+expand_mode = 1
 
 [node name="VJ" parent="Layer1/Control" instance=ExtResource("3_juqq6")]
 layout_mode = 1
@@ -441,7 +480,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fw6bl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PosLabel" type="Label" parent="Layer1/Control"]
+[node name="InfoLb" type="Label" parent="Layer1/Control"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
@@ -677,9 +716,10 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Back" type="Button" parent="Layer1/Control/PausePanel/Vbox"]
+[node name="continue_game" type="Button" parent="Layer1/Control/PausePanel/Vbox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_f12iw")
@@ -687,9 +727,36 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_o67mn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_o67mn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ea4ds")
-text = "Kembali"
+text = "Lanjutkan Permainan"
+
+[node name="save_game" type="Button" parent="Layer1/Control/PausePanel/Vbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_f12iw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_o67mn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o67mn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ea4ds")
+text = "Simpan Dan Keluar"
+
+[node name="game_addr" type="Label" parent="Layer1/Control/PausePanel/Vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
+theme_override_fonts/font = ExtResource("4_f12iw")
+theme_override_font_sizes/font_size = 26
+
+[node name="Button" type="Button" parent="Layer1/Control/PausePanel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+focus_mode = 0
+icon = ExtResource("16_afvbi")
+expand_icon = true
 
 [node name="Pause" type="CheckButton" parent="Layer1/Control"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -709,6 +776,7 @@ visible = false
 [node name="Panel" parent="ChatLayer" instance=ExtResource("13_qoqkk")]
 
 [node name="death_sc" type="CanvasLayer" parent="."]
+layer = 3
 visible = false
 
 [node name="Control" type="Panel" parent="death_sc"]
@@ -732,17 +800,22 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_f12iw")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 56
 text = "Kamu Mati"
 
 [node name="Button" type="Button" parent="death_sc/Control/Vbox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_f12iw")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jgqc1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jgqc1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dw1k4")
 text = "Respawn"
 
 [node name="MSync" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.1
+delta_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_dmrxx")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
@@ -778,15 +851,23 @@ unit_size = 20.0
 [node name="GrenadeThrow" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("31_c7ayi")
 
+[node name="ImmuneTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="toggled" from="Layer1/Control/RUN" to="." method="_on_run_toggled"]
 [connection signal="pressed" from="Layer1/Control/Chat" to="." method="_on_chat_pressed"]
 [connection signal="visibility_changed" from="Layer1/Control/Panel2" to="." method="_on_sec_inv_visible"]
 [connection signal="pressed" from="Layer1/Control/Panel2/Panel/Vbox/Button" to="." method="drop_single_active_slot"]
 [connection signal="pressed" from="Layer1/Control/Panel2/Panel/Vbox/Button2" to="." method="drop_active_slot"]
 [connection signal="pressed" from="Layer1/Control/Panel/Hbox/Button" to="." method="_on_open_inv"]
-[connection signal="pressed" from="Layer1/Control/PausePanel/Vbox/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Layer1/Control/PausePanel/Vbox/continue_game" to="." method="_on_paused"]
+[connection signal="pressed" from="Layer1/Control/PausePanel/Vbox/save_game" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Layer1/Control/PausePanel/Button" to="." method="_change_view"]
 [connection signal="pressed" from="Layer1/Control/Pause" to="." method="_on_paused"]
 [connection signal="visibility_changed" from="ChatLayer" to="." method="_on_chat_layer_visibility_changed"]
 [connection signal="pressed" from="death_sc/Control/Vbox/Button" to="." method="_on_respawn"]
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
+[connection signal="current_animation_changed" from="Animation" to="." method="_on_current_animation_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_cooldown_finished"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_effect_timeout"]
+[connection signal="timeout" from="ImmuneTimer" to="." method="_on_immune_timer_timeout"]

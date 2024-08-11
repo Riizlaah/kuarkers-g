@@ -1,31 +1,39 @@
-[gd_scene load_steps=42 format=3 uid="uid://h48kruqrygb"]
+[gd_scene load_steps=72 format=3 uid="uid://h48kruqrygb"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_qjerj"]
 [ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_sj1e0"]
 [ext_resource type="Texture2D" uid="uid://bd7mkuuguoip7" path="res://resources/texture/main-menu/game_bg1.jpg" id="2_60m0e"]
-[ext_resource type="Texture2D" uid="uid://d3f6c3n6dq2jm" path="res://resources/texture/main-menu/quit.png" id="2_qajmw"]
-[ext_resource type="Texture2D" uid="uid://bxf2c6ehqn45d" path="res://resources/texture/main-menu/setting.png" id="3_7muib"]
 [ext_resource type="Texture2D" uid="uid://c2etg6rom0f7k" path="res://resources/texture/main-menu/game_bg2.png" id="3_mmsr7"]
-[ext_resource type="Texture2D" uid="uid://bcg5125f3o622" path="res://resources/texture/main-menu/play.png" id="4_8yiy6"]
 [ext_resource type="Texture2D" uid="uid://bbehrvboh4xs1" path="res://resources/texture/main-menu/game_bg3.png" id="4_35udb"]
 [ext_resource type="Texture2D" uid="uid://bwvgcpnf7s8cn" path="res://resources/texture/main-menu/close.png" id="5_7iitw"]
 [ext_resource type="Texture2D" uid="uid://dnjjq283kairk" path="res://resources/texture/main-menu/game_bg4.png" id="5_n7r1d"]
-[ext_resource type="Texture2D" uid="uid://df5mdlsi2l05q" path="res://resources/texture/main-menu/refresh.png" id="5_yya07"]
 [ext_resource type="Texture2D" uid="uid://p1km7mpypa1h" path="res://resources/texture/main-menu/game_bg5.png" id="6_j3qcc"]
 [ext_resource type="Texture2D" uid="uid://d31x4pmnabonh" path="res://resources/texture/main-menu/game_bg6.png" id="7_kk2qq"]
-[ext_resource type="Script" path="res://script/playmenu.gd" id="12_2rcby"]
+[ext_resource type="Script" path="res://script/world_manager.gd" id="10_jmlv7"]
+[ext_resource type="Texture2D" uid="uid://cttbkjff3mjco" path="res://resources/texture/main-menu/dummy-world.png" id="11_ovk34"]
+[ext_resource type="Script" path="res://script/server_scanner.gd" id="12_4mlk8"]
+[ext_resource type="Script" path="res://script/confirm.gd" id="13_52jfw"]
+[ext_resource type="PackedScene" uid="uid://hnxs1yt21trv" path="res://scene/confirm.tscn" id="14_0u3dk"]
 [ext_resource type="Script" path="res://script/settings_menu.gd" id="15_57gnj"]
 [ext_resource type="AudioStream" uid="uid://dxbjr4lvk1rj6" path="res://resources/music/backsound-kuark.mp3" id="16_13x8s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2r43"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
 bg_color = Color(0.74902, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iytjc"]
-bg_color = Color(0.858824, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21pdn"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.823529, 0, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -40,20 +48,32 @@ unicode = 113
 events = [SubResource("InputEventKey_yjnli")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_056qq"]
-bg_color = Color(0, 0.556863, 0, 1)
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.890196, 0.623529, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7k7ny"]
-bg_color = Color(0, 0.643137, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqom0"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.976471, 0.686275, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2sy7"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
 bg_color = Color(0, 0.72549, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -61,101 +81,277 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4hnh"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
 bg_color = Color(0, 0.839216, 0, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmbmy"]
-content_margin_left = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o842t"]
+content_margin_left = 15.0
 content_margin_top = 10.0
-content_margin_right = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2aabq"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 10.0
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv7uc"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
 content_margin_bottom = 10.0
 bg_color = Color(0.27451, 0.27451, 0.27451, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8q50"]
-content_margin_left = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcywg"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ns10p"]
+content_margin_left = 15.0
 content_margin_top = 10.0
-content_margin_right = 10.0
+content_margin_right = 15.0
 content_margin_bottom = 10.0
-bg_color = Color(0.333333, 0.333333, 0.333333, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color(0, 0.447059, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8pp3"]
-content_margin_top = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80wey"]
-content_margin_left = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osr3j"]
+content_margin_left = 15.0
 content_margin_top = 10.0
-content_margin_right = 10.0
+content_margin_right = 15.0
 content_margin_bottom = 10.0
-bg_color = Color(0.913725, 0, 0, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
+bg_color = Color(0, 0.545098, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6jrk"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.972549, 0, 0, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2v2if"]
+content_margin_left = 5.0
+bg_color = Color(0.498039, 0.498039, 0.498039, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku4mw"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0.670588, 0, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t42ja"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6j40t"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
 bg_color = Color(0, 0.764706, 0, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv6os"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd8l8"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0.909804, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au4gr"]
-content_margin_left = 5.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mm8d"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.929412, 0.631373, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6sb0l"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.929412, 0.733333, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce6wk"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.882353, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2roub"]
+content_margin_left = 15.0
+content_margin_top = 0.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(0.980392, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4t8v"]
 content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.662745, 0.662745, 0.662745, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlpfd"]
+border_width_top = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feemb"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.294118, 0.294118, 0.294118, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4eoi"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.368627, 0.368627, 0.368627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo4uk"]
+border_width_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgxd3"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71rgw"]
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8jdu"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1g2u"]
+content_margin_left = 5.0
+content_margin_right = 10.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa0a4"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.117647, 0.717647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_intj4"]
+content_margin_left = 0.0
+content_margin_right = 15.0
+bg_color = Color(0.129412, 0.839216, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojxwx"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.305882, 0.305882, 0.305882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgp4d"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.223529, 0.223529, 0.223529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yui3"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75lu6"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.278431, 0.278431, 0.278431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4tls"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5si6"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n231l"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iom0s"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov2bm"]
+bg_color = Color(0.299547, 0.299547, 0.299547, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ks1u"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_176dl"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgakk"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.286275, 0.286275, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkcvn"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4gow"]
 content_margin_left = 15.0
@@ -224,6 +420,12 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bww0u"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4llo"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -253,6 +455,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -33.0
+offset_right = 128.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+text = "Riizlaah"
+
 [node name="Mcont" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -263,7 +477,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_bottom = 42
 
 [node name="Vbox" type="VBoxContainer" parent="Mcont"]
 layout_mode = 2
@@ -275,53 +489,42 @@ theme_override_font_sizes/font_size = 72
 text = "Kuarkers"
 
 [node name="Hbox" type="HBoxContainer" parent="Mcont/Vbox"]
-custom_minimum_size = Vector2(0, 140)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 10
 
 [node name="quit" type="Button" parent="Mcont/Vbox/Hbox"]
-custom_minimum_size = Vector2(140, 0)
-layout_mode = 2
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_y2r43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_y2r43")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_iytjc")
-shortcut = SubResource("Shortcut_8lr4p")
-icon = ExtResource("2_qajmw")
-expand_icon = true
-
-[node name="setting" type="Button" parent="Mcont/Vbox/Hbox"]
-custom_minimum_size = Vector2(140, 0)
-layout_mode = 2
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_056qq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_056qq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7k7ny")
-icon = ExtResource("3_7muib")
-expand_icon = true
-
-[node name="play" type="Button" parent="Mcont/Vbox/Hbox"]
-custom_minimum_size = Vector2(140, 0)
-layout_mode = 2
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_p2sy7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p2sy7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_i4hnh")
-icon = ExtResource("4_8yiy6")
-expand_icon = true
-
-[node name="quick_host" type="Button" parent="Mcont/Vbox/Hbox"]
-self_modulate = Color(0.615686, 0.615686, 0.615686, 1)
-custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2r43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y2r43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_21pdn")
+shortcut = SubResource("Shortcut_8lr4p")
+text = "Keluar"
+expand_icon = true
+
+[node name="setting" type="Button" parent="Mcont/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_056qq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_056qq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uqom0")
+text = "Pengaturan"
+expand_icon = true
+
+[node name="play" type="Button" parent="Mcont/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_p2sy7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p2sy7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i4hnh")
-text = "Quick Host  "
-icon = ExtResource("4_8yiy6")
+text = "Main"
 expand_icon = true
 
 [node name="Label" type="Label" parent="Mcont/Vbox/Hbox"]
@@ -329,188 +532,381 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 48
-text = "Kuarkers@v1.3.0
-Vulkan"
+text = "Kuarkers@v1.3.1"
 
-[node name="PlayMenu" type="ColorRect" parent="Mcont"]
+[node name="PlayMenu" type="Control" parent="Mcont"]
 visible = false
 layout_mode = 2
-color = Color(0.109804, 0.109804, 0.109804, 1)
-script = ExtResource("12_2rcby")
 
-[node name="Mcont" type="MarginContainer" parent="Mcont/PlayMenu"]
+[node name="TabContainer" type="TabContainer" parent="Mcont/PlayMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/side_margin = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o842t")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_2aabq")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_yv7uc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hcywg")
+tab_focus_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Mcont/PlayMenu/Mcont"]
+[node name="Dunia" type="MarginContainer" parent="Mcont/PlayMenu/TabContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 10
-alignment = 1
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("10_jmlv7")
 
-[node name="Button" type="Button" parent="Mcont/PlayMenu/Mcont/HBoxContainer"]
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/TabContainer/Dunia"]
 layout_mode = 2
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox"]
+layout_mode = 2
+
+[node name="mkworld" type="Button" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_tmbmy")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tmbmy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s8q50")
-text = "Cari Room"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ns10p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ns10p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_osr3j")
+text = "Buat Dunia"
 
-[node name="Label" type="Label" parent="Mcont/PlayMenu/Mcont/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
-text = "Atau"
-
-[node name="Button2" type="Button" parent="Mcont/PlayMenu/Mcont/HBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_tmbmy")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tmbmy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s8q50")
-text = "Buat Room"
-
-[node name="Room" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont"]
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Control" type="Control" parent="Mcont/PlayMenu/Mcont/Room"]
-custom_minimum_size = Vector2(0, 30)
+[node name="VSeparator" type="VSeparator" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox"]
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_2v2if")
 
-[node name="room_info" type="Label" parent="Mcont/PlayMenu/Mcont/Room"]
+[node name="play_w" type="Button" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 32
-text = "Nama Room : blabla"
-
-[node name="HSeparator" type="HSeparator" parent="Mcont/PlayMenu/Mcont/Room"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_n8pp3")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Mcont/PlayMenu/Mcont/Room"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Button2" type="Button" parent="Mcont/PlayMenu/Mcont/Room/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_80wey")
-theme_override_styles/hover = SubResource("StyleBoxFlat_80wey")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y6jrk")
-text = "Keluar"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_6j40t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6j40t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pd8l8")
+text = "Main"
 
-[node name="Play" type="Button" parent="Mcont/PlayMenu/Mcont/Room/HBoxContainer"]
-visible = false
+[node name="edit_w" type="Button" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox"]
 layout_mode = 2
-size_flags_horizontal = 3
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_ku4mw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ku4mw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_t42ja")
-text = "Mulai"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mm8d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8mm8d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6sb0l")
+text = "Edit"
 
-[node name="HSeparator2" type="HSeparator" parent="Mcont/PlayMenu/Mcont/Room"]
+[node name="del_w" type="Button" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_n8pp3")
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ce6wk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ce6wk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2roub")
+text = "Hapus"
 
-[node name="Control2" type="Control" parent="Mcont/PlayMenu/Mcont/Room"]
+[node name="HSeparator" type="HSeparator" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_b4t8v")
 
-[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/Mcont/Room"]
+[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="PlayerList" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont/Room/Scont"]
+[node name="Gcont" type="GridContainer" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Scont"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Multiplayer" type="MarginContainer" parent="Mcont/PlayMenu/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("12_4mlk8")
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/TabContainer/Multiplayer"]
+layout_mode = 2
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox/Vbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 40
+text = "List Server LAN"
+horizontal_alignment = 1
+
+[node name="Hsep" type="HSeparator" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox/Vbox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_qlpfd")
+
+[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox/Vbox/Scont"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="direct_join" type="Button" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox/Vbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_feemb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_feemb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4eoi")
+text = "Join Secara Langsung"
+
+[node name="Vsep" type="VSeparator" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox"]
+visible = false
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_oo4uk")
+
+[node name="Vbox2" type="VBoxContainer" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConnectionTimedOut" type="Timer" parent="Mcont/PlayMenu/TabContainer/Multiplayer"]
+wait_time = 5.0
+
+[node name="mkworld_view" type="Panel" parent="Mcont/PlayMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jgxd3")
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/mkworld_view"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Mcont/PlayMenu/mkworld_view/Vbox"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_71rgw")
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/mkworld_view/Vbox/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 11
+
+[node name="prev" type="Button" parent="Mcont/PlayMenu/mkworld_view/Vbox/Panel/Hbox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_u8jdu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u8jdu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o1g2u")
+text = "<="
+expand_icon = true
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/mkworld_view/Vbox/Panel/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+text = "Buat Dunia..."
+vertical_alignment = 1
+
+[node name="continue" type="Button" parent="Mcont/PlayMenu/mkworld_view/Vbox/Panel/Hbox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_fa0a4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fa0a4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_intj4")
+text = "Buat Dunia"
+expand_icon = true
+
+[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/mkworld_view/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="RoomFinder" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont"]
-visible = false
-layout_mode = 2
-alignment = 1
-
-[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Button2" type="Button" parent="Mcont/PlayMenu/Mcont/RoomFinder/Hbox"]
-layout_mode = 2
-size_flags_horizontal = 0
-focus_mode = 0
-theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_80wey")
-theme_override_styles/hover = SubResource("StyleBoxFlat_80wey")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y6jrk")
-text = "Kembali"
-
-[node name="Button" type="Button" parent="Mcont/PlayMenu/Mcont/RoomFinder/Hbox"]
-custom_minimum_size = Vector2(135, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-focus_mode = 0
-theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_xv6os")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xv6os")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_au4gr")
-text = "Refresh"
-icon = ExtResource("5_yya07")
-expand_icon = true
-
-[node name="Label" type="Label" parent="Mcont/PlayMenu/Mcont/RoomFinder/Hbox"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 32
-text = "Cari Room"
-
-[node name="Control" type="Control" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
-custom_minimum_size = Vector2(0, 20)
+[node name="margin" type="Control" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox"]
 layout_mode = 2
 
-[node name="Scont" type="ScrollContainer" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-
-[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/Mcont/RoomFinder/Scont"]
+[node name="Vbox2" type="VBoxContainer" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/separation = 20
 
-[node name="rnf" type="Label" parent="Mcont/PlayMenu/Mcont/RoomFinder"]
-visible = false
+[node name="margin3" type="Control" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox2"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.768627, 0.768627, 0.768627, 0.486275)
+
+[node name="texture" type="TextureRect" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox2"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = ExtResource("11_ovk34")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox2"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.466667, 0.466667, 0.466667, 1)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 20
+text = "*Thumbnail awal, nanti akan diganti saat menyimpan dunia"
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_2v2if")
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox"]
+layout_mode = 2
+
+[node name="world_name" type="LineEdit" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
-text = "Room Tidak Ditemukan"
+theme_override_styles/normal = SubResource("StyleBoxFlat_ojxwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ojxwx")
+text = "Dunia."
+placeholder_text = "Nama Dunia..."
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
+layout_mode = 2
+
+[node name="world_seed" type="LineEdit" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ojxwx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ojxwx")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_bgp4d")
+placeholder_text = "Seed..."
+
+[node name="rand_seed" type="Button" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yui3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2yui3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_75lu6")
+text = "ACAK"
+
+[node name="Label2" type="Label" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.466667, 0.466667, 0.466667, 1)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+text = "Mode:"
+
+[node name="world_gm" type="OptionButton" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/arrow_margin = 15
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c5si6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n231l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c5si6")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_n231l")
+item_count = 1
+selected = 0
+popup/item_0/text = "Mode Survival"
+popup/item_0/id = 0
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.466667, 0.466667, 0.466667, 1)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+text = "Tipe Dunia:"
+
+[node name="world_type" type="OptionButton" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/arrow_margin = 15
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c5si6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n231l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c5si6")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_n231l")
+item_count = 4
+selected = 0
+popup/item_0/text = "Tak Terbatas"
+popup/item_0/id = 0
+popup/item_1/text = "Datar, Tak terbatas"
+popup/item_1/id = 1
+popup/item_2/text = "Pegunungan(terbatas)"
+popup/item_2/id = 2
+popup/item_3/text = "Perkotaan(terbatas)"
+popup/item_3/id = 3
+
+[node name="margin2" type="Control" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox"]
+layout_mode = 2
 
 [node name="Close" type="Button" parent="Mcont/PlayMenu"]
 custom_minimum_size = Vector2(64, 64)
@@ -522,15 +918,108 @@ offset_left = -64.0
 offset_bottom = 64.0
 grow_horizontal = 0
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_iom0s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iom0s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ov2bm")
 icon = ExtResource("5_7iitw")
 expand_icon = true
 
-[node name="BRTimer" type="Timer" parent="Mcont/PlayMenu"]
-wait_time = 0.05
+[node name="direct_join_window" type="ColorRect" parent="Mcont/PlayMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.117647, 0.117647, 0.415686)
+script = ExtResource("13_52jfw")
 
-[node name="SettingsMenu" type="TabContainer" parent="Mcont"]
+[node name="Confirm" type="ColorRect" parent="Mcont/PlayMenu/direct_join_window"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/direct_join_window/Confirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="game_addr" type="LineEdit" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox"]
+custom_minimum_size = Vector2(475, 65)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ks1u")
+theme_override_styles/focus = SubResource("StyleBoxFlat_176dl")
+placeholder_text = "Alamat Game..."
+
+[node name="Label" type="Label" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.0784314, 0.0470588, 1)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 27
+text = "Alamat game belum valid.
+Contoh: 127.0.0.1;25786"
+horizontal_alignment = 1
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Button" type="Button" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bkcvn")
+text = "Batal"
+
+[node name="Button2" type="Button" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox/Hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kgakk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bkcvn")
+disabled = true
+text = "OK"
+
+[node name="SettingsMenu" type="Control" parent="Mcont"]
 visible = false
 layout_mode = 2
+
+[node name="TabCont" type="TabContainer" parent="Mcont/SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/side_margin = 0
 theme_override_font_sizes/font_size = 28
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o4gow")
@@ -541,11 +1030,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8vy34")
 theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_8vy34")
 script = ExtResource("15_57gnj")
 
-[node name="Umum" type="VBoxContainer" parent="Mcont/SettingsMenu"]
+[node name="Umum" type="VBoxContainer" parent="Mcont/SettingsMenu/TabCont"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="LineEdit" type="LineEdit" parent="Mcont/SettingsMenu/Umum"]
+[node name="LineEdit" type="LineEdit" parent="Mcont/SettingsMenu/TabCont/Umum"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
@@ -553,10 +1042,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_i2to0")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pdhb7")
 placeholder_text = "Nama Pemain...(Heker)"
 
-[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/Umum"]
+[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Umum"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mcont/SettingsMenu/Umum/Hbox"]
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Umum/Hbox"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
@@ -564,7 +1053,7 @@ theme_override_font_sizes/font_size = 30
 text = "Sensivitas[ 100 ] : "
 horizontal_alignment = 3
 
-[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/Umum/Hbox"]
+[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/TabCont/Umum/Hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -573,16 +1062,16 @@ max_value = 200.0
 value = 100.0
 ticks_on_borders = true
 
-[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/Umum"]
+[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Umum"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mcont/SettingsMenu/Umum/Hbox2"]
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Umum/Hbox2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 30
 text = "Warna Pemain : "
 
-[node name="PColor" type="ColorPickerButton" parent="Mcont/SettingsMenu/Umum/Hbox2"]
+[node name="PColor" type="ColorPickerButton" parent="Mcont/SettingsMenu/TabCont/Umum/Hbox2"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -593,15 +1082,15 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_k4fn2")
 color = Color(1, 1, 1, 1)
 edit_alpha = false
 
-[node name="Grafik" type="VBoxContainer" parent="Mcont/SettingsMenu"]
+[node name="Grafik" type="VBoxContainer" parent="Mcont/SettingsMenu/TabCont"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/Grafik"]
+[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Grafik"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik/Hbox"]
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
@@ -609,7 +1098,7 @@ theme_override_font_sizes/font_size = 30
 text = "Skala 3D[ 1x ] : "
 horizontal_alignment = 3
 
-[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/Grafik/Hbox"]
+[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -618,30 +1107,29 @@ max_value = 2.0
 step = 0.05
 value = 1.0
 
-[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/Grafik"]
+[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Grafik"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik/Hbox2"]
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox2"]
 custom_minimum_size = Vector2(375, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 30
-text = "Jarak Pandang[ 200m ] : "
+text = "Jarak Pandang[ ~8 chunk ] : "
 horizontal_alignment = 3
 
-[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/Grafik/Hbox2"]
+[node name="HSlider" type="HSlider" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-min_value = 100.0
-max_value = 2000.0
-step = 50.0
-value = 200.0
+min_value = 2.0
+max_value = 64.0
+value = 2.0
 
-[node name="Hbox3" type="HBoxContainer" parent="Mcont/SettingsMenu/Grafik"]
+[node name="Hbox3" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Grafik"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik/Hbox3"]
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox3"]
 custom_minimum_size = Vector2(375, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
@@ -649,7 +1137,7 @@ theme_override_font_sizes/font_size = 30
 text = "Kualitas Langit : "
 horizontal_alignment = 3
 
-[node name="sky_graphic" type="OptionButton" parent="Mcont/SettingsMenu/Grafik/Hbox3"]
+[node name="sky_graphic" type="OptionButton" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox3"]
 layout_mode = 2
 item_count = 3
 selected = 0
@@ -660,22 +1148,82 @@ popup/item_1/id = 1
 popup/item_2/text = "Bagus"
 popup/item_2/id = 2
 
-[node name="Label" type="Label" parent="Mcont/SettingsMenu/Grafik"]
-modulate = Color(0.658824, 0.658824, 0.658824, 1)
+[node name="Info" type="VBoxContainer" parent="Mcont/SettingsMenu/TabCont"]
+visible = false
 layout_mode = 2
-text = "*Pengaturan Skala 3D mungkin tidak akan mempengaruhi permainan jika memakai versi OpenGL"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 80.0
-grow_vertical = 0
+[node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Info"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = -1
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Info/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
-theme_override_font_sizes/font_size = 20
-text = "Riizlaah"
+theme_override_font_sizes/font_size = 24
+text = "Dibuat dengan "
+
+[node name="LinkButton" type="LinkButton" parent="Mcont/SettingsMenu/TabCont/Info/Hbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.654902, 0.827451, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.654902, 0.827451, 1)
+theme_override_colors/font_hover_color = Color(0, 0.654902, 0.827451, 1)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+text = "Godot"
+underline = 1
+uri = "https://godotengine.org"
+
+[node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Info"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = -1
+
+[node name="Label" type="Label" parent="Mcont/SettingsMenu/TabCont/Info/Hbox2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+text = "Game ini merupakan Projek Open Source. Source Code ada di "
+
+[node name="LinkButton" type="LinkButton" parent="Mcont/SettingsMenu/TabCont/Info/Hbox2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.654902, 0.827451, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.654902, 0.827451, 1)
+theme_override_colors/font_hover_color = Color(0, 0.654902, 0.827451, 1)
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+text = "sini"
+underline = 1
+uri = "https://github.com/Riizlaah/kuarkers-g"
+
+[node name="game_info" type="Label" parent="Mcont/SettingsMenu/TabCont/Info"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 24
+
+[node name="Close" type="Button" parent="Mcont/SettingsMenu"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_bww0u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bww0u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f4llo")
+icon = ExtResource("5_7iitw")
+expand_icon = true
+
+[node name="del_confirmation" parent="." instance=ExtResource("14_0u3dk")]
+visible = false
+layout_mode = 1
 
 [node name="Label2" type="Label" parent="."]
 visible = false
@@ -695,24 +1243,62 @@ volume_db = -8.0
 autoplay = true
 mix_target = 1
 
-[connection signal="gui_input" from="Mcont" to="Mcont/SettingsMenu" method="_on_mcont_gui_input"]
+[node name="MPSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scene/world_loader.tscn")
+spawn_path = NodePath("../Level")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -38.5
+offset_right = 190.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 76
+text = "Loading..."
+
+[connection signal="gui_input" from="Mcont" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_mcont_gui_input"]
 [connection signal="pressed" from="Mcont/Vbox/Hbox/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Mcont/Vbox/Hbox/setting" to="." method="_on_setting"]
 [connection signal="pressed" from="Mcont/Vbox/Hbox/play" to="." method="_on_play"]
-[connection signal="pressed" from="Mcont/Vbox/Hbox/quick_host" to="Mcont/PlayMenu" method="_on_create_room"]
-[connection signal="pressed" from="Mcont/PlayMenu/Mcont/HBoxContainer/Button" to="Mcont/PlayMenu" method="_on_find_room"]
-[connection signal="pressed" from="Mcont/PlayMenu/Mcont/HBoxContainer/Button2" to="Mcont/PlayMenu" method="_on_create_room"]
-[connection signal="pressed" from="Mcont/PlayMenu/Mcont/Room/HBoxContainer/Button2" to="Mcont/PlayMenu" method="_on_quit_room"]
-[connection signal="pressed" from="Mcont/PlayMenu/Mcont/Room/HBoxContainer/Play" to="Mcont/PlayMenu" method="_on_start_game_pressed"]
-[connection signal="pressed" from="Mcont/PlayMenu/Mcont/RoomFinder/Hbox/Button2" to="Mcont/PlayMenu" method="_on_back_to_choice"]
-[connection signal="pressed" from="Mcont/PlayMenu/Mcont/RoomFinder/Hbox/Button" to="Mcont/PlayMenu" method="_on_refresh_room"]
-[connection signal="pressed" from="Mcont/PlayMenu/Close" to="Mcont/PlayMenu" method="_on_close_pressed"]
-[connection signal="timeout" from="Mcont/PlayMenu/BRTimer" to="Mcont/PlayMenu" method="_on_broadcasting"]
-[connection signal="mouse_entered" from="Mcont/SettingsMenu" to="Mcont/SettingsMenu" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Mcont/SettingsMenu" to="Mcont/SettingsMenu" method="_on_mouse_exited"]
-[connection signal="text_changed" from="Mcont/SettingsMenu/Umum/LineEdit" to="Mcont/SettingsMenu" method="_on_pname_ch"]
-[connection signal="value_changed" from="Mcont/SettingsMenu/Umum/Hbox/HSlider" to="Mcont/SettingsMenu" method="_on_senv_ch"]
-[connection signal="color_changed" from="Mcont/SettingsMenu/Umum/Hbox2/PColor" to="Mcont/SettingsMenu" method="_on_pcolor_ch"]
-[connection signal="value_changed" from="Mcont/SettingsMenu/Grafik/Hbox/HSlider" to="Mcont/SettingsMenu" method="_on_scale3d_ch"]
-[connection signal="value_changed" from="Mcont/SettingsMenu/Grafik/Hbox2/HSlider" to="Mcont/SettingsMenu" method="_on_viewr_ch"]
-[connection signal="item_selected" from="Mcont/SettingsMenu/Grafik/Hbox3/sky_graphic" to="Mcont/SettingsMenu" method="_on_sky_graphic_selected"]
+[connection signal="tab_clicked" from="Mcont/PlayMenu/TabContainer" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_tab_clicked"]
+[connection signal="pressed" from="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/mkworld" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_mkworld_pressed"]
+[connection signal="pressed" from="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox/play_w" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_play_world"]
+[connection signal="pressed" from="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox/edit_w" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_edit_world"]
+[connection signal="pressed" from="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox/del_w" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_del_world"]
+[connection signal="pressed" from="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox/Vbox/direct_join" to="Mcont/PlayMenu/TabContainer/Multiplayer" method="_on_direct_join_pressed"]
+[connection signal="timeout" from="Mcont/PlayMenu/TabContainer/Multiplayer/ConnectionTimedOut" to="Mcont/PlayMenu/TabContainer/Multiplayer" method="_on_connection_timed_out"]
+[connection signal="pressed" from="Mcont/PlayMenu/mkworld_view/Vbox/Panel/Hbox/prev" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_back_to_wman_pressed"]
+[connection signal="pressed" from="Mcont/PlayMenu/mkworld_view/Vbox/Panel/Hbox/continue" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_continue_mkworld_pressed"]
+[connection signal="pressed" from="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox/Hbox/rand_seed" to="Mcont/PlayMenu/TabContainer/Dunia" method="_rand_seed"]
+[connection signal="pressed" from="Mcont/PlayMenu/Close" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_close_pressed"]
+[connection signal="confirmed" from="Mcont/PlayMenu/direct_join_window" to="Mcont/PlayMenu/TabContainer/Multiplayer" method="_on_direct_join_confirmed"]
+[connection signal="text_changed" from="Mcont/PlayMenu/direct_join_window/Confirm/Vbox/game_addr" to="Mcont/PlayMenu/TabContainer/Multiplayer" method="_on_game_addr_text_changed"]
+[connection signal="pressed" from="Mcont/PlayMenu/direct_join_window/Confirm/Vbox/Hbox/Button" to="Mcont/PlayMenu/direct_join_window" method="_on_cancel"]
+[connection signal="pressed" from="Mcont/PlayMenu/direct_join_window/Confirm/Vbox/Hbox/Button2" to="Mcont/PlayMenu/direct_join_window" method="_on_confirmed"]
+[connection signal="text_changed" from="Mcont/SettingsMenu/TabCont/Umum/LineEdit" to="Mcont/SettingsMenu/TabCont" method="_on_pname_ch"]
+[connection signal="value_changed" from="Mcont/SettingsMenu/TabCont/Umum/Hbox/HSlider" to="Mcont/SettingsMenu/TabCont" method="_on_senv_ch"]
+[connection signal="color_changed" from="Mcont/SettingsMenu/TabCont/Umum/Hbox2/PColor" to="Mcont/SettingsMenu/TabCont" method="_on_pcolor_ch"]
+[connection signal="value_changed" from="Mcont/SettingsMenu/TabCont/Grafik/Hbox/HSlider" to="Mcont/SettingsMenu/TabCont" method="_on_scale3d_ch"]
+[connection signal="value_changed" from="Mcont/SettingsMenu/TabCont/Grafik/Hbox2/HSlider" to="Mcont/SettingsMenu/TabCont" method="_on_viewr_ch"]
+[connection signal="item_selected" from="Mcont/SettingsMenu/TabCont/Grafik/Hbox3/sky_graphic" to="Mcont/SettingsMenu/TabCont" method="_on_sky_graphic_selected"]
+[connection signal="pressed" from="Mcont/SettingsMenu/Close" to="Mcont/SettingsMenu/TabCont" method="_on_close_pressed"]
+[connection signal="confirmed" from="del_confirmation" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_delete_confirmed"]

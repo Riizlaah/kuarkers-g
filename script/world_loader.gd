@@ -1,7 +1,9 @@
 extends Node3D
-class_name WorldBase
+class_name WorldLoader
 
 signal receive_msg(msg: String)
+signal save_completed
+signal w_added
 
 const times = [0.23, 0.48, 0.725, 0.78, 0.98]
 const throw_i = preload("res://scene/throwable_melee.tscn")
@@ -11,31 +13,40 @@ const rocket_s = preload("res://scene/rocket.tscn")
 @onready var sun = $SUN
 @onready var moon = $MOON
 @onready var w_env : WorldEnvironment = $W_ENV
-@onready var label = $CanvasLayer/Control/Label
 @onready var resource_preloader = $ResourcePreloader
 @onready var vbox = $CanvasLayer/Control/Panel/SCont/Vbox
 @onready var panel = $CanvasLayer/Control/Panel
 @onready var output_tm = $output_tm
 @onready var s_cont = $CanvasLayer/Control/Panel/SCont
+@onready var canvas_layer = $CanvasLayer
+@onready var broadcaster = $Broadcaster
+@onready var players = $players
+@onready var mp_spawner = $MPSpawner
 
 var noise = preload("res://resources/other/Noise1.tres")
 var main_menu = preload("res://scene/main_menu.tscn")
-var items: Dictionary = {'null': null}
+var items: Dictionary = {'': null}
 var time : float
 var time_rate : float
 var noise_offset := 0.05
 var items_arr: Array
-var world: Node3D
+var world: WorldTemplate
 var quests_started : Dictionary
-var players_node: Dictionary
+var player_nodes: Dictionary
 var chat_visible := false
+var world_spawn: Vector3
+var current_saved_data := {}
+var saved_player_datas := {}
+var world_added := false
 
 @export_category("Other")
+@export var texture_t: Texture2D
 @export var player_s : PackedScene
 @export var musuh: PackedScene
 @export var w_npc: PackedScene
 @export var pickable_sc: PackedScene
 @export var output_lb: PackedScene
+@export var proc_gen: PackedScene
 
 @export_category("Sky")
 @export var sky_grad: Gradient
@@ -51,19 +62,116 @@ var chat_visible := false
 @export var sky_texture: NoiseTexture2D
 
 func _ready():
+	GManager.world = self
+	GManager.stop_main_music()
+	load_items()
+	configure_graphics()
+	setup_signal()
+	if !multiplayer.is_server():
+		fetch_data.rpc_id(1, multiplayer.get_unique_id())
+		GManager.send_player_info.rpc_id(1, multiplayer.get_unique_id(), Settings.player_uuid, Settings.player_name, Settings.player_color.to_html())
+	else:
+		load_world()
+	time_rate = 1.0 / day_length
+	time = s_time
+	set_physics_process(false)
+
+@rpc("any_peer")
+func fetch_data(from):
+	var data = get_save_data()
+	send_data.rpc_id(from, data)
+
+@rpc("any_peer")
+func send_data(world_data):
+	GManager.world_data = world_data
+	load_world()
+
+func world_loaded():
+	$Loading.hide()
+	w_added.emit()
+	world_added = true
+	if multiplayer.is_server():
+		broadcaster.start_broadcast()
+		player_connected(1)
+		GManager.send_player_info(1, Settings.player_uuid, Settings.player_name, Settings.player_color.to_html())
+		world.players_added()
+		save_world(false)
+		return
+	world.players_added()
+
+func player_connected(id: int):
+	GManager.send_game_addr.rpc(GManager.game_addr)
+	var new_player = player_s.instantiate()
+	new_player.name = str(id)
+	new_player.position = world_spawn
+	players.add_child(new_player)
+	new_player.hide()
+	new_player.process_mode = Node.PROCESS_MODE_DISABLED
+
+func player_data_added(id: int):
+	var player: Player3D = players.get_node(str(id))
+	if !world_added: await w_added
+	player.set_player_data()
+	player.show()
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+
+func load_world():
+	seed(GManager.world_data.seed)
+	var world_type = GManager.world_data.type
+	if world_type < 1:
+		world_type = 1
+	if world_type > 3:
+		OS.alert("apa kamu modder?", "?")
+		get_tree().quit()
+		return
+	world = GManager.limited_worlds[world_type].instantiate()
+	add_child(world)
+
+func get_save_data():
+	if multiplayer.get_unique_id() != 1: return
+	var world_data = GManager.world_data
+	for player in player_nodes.values():
+		saved_player_datas[player.uuid] = {
+			'pos': player.position,
+			'rot': player.rotation,
+			'head_rot': player.get_head_rotation(),
+			'extra_data': player.get_data()
+		}
+	var curr_date = Time.get_datetime_dict_from_system()
+	curr_date.erase('weekday')
+	curr_date.erase('dst')
+	var save = {
+		'name': world_data.name,
+		'seed': world_data.seed,
+		'gamemode': world_data.gamemode,
+		'type': world_data.type,
+		'world_spawn': world_spawn,
+		'players': saved_player_datas,
+		'extra_data': world.save_world(),
+		'version': Settings.GAME_VERSION,
+		'date': curr_date
+	}
+	return save
+
+func save_world(with_img: bool):
+	var world_data = GManager.world_data
+	current_saved_data = get_save_data()
+	var save_dir = "world/"+world_data.save_dir
+	FileSystem.mkdir(save_dir)
+	FileSystem.write(save_dir+"/world.dat", current_saved_data)
+	if with_img == true:
+		player_nodes[GManager.players[1].name].hide_2d()
+		canvas_layer.hide()
+		await RenderingServer.frame_post_draw
+		get_viewport().get_texture().get_image().save_png(FileSystem.base_path+"/"+save_dir+"/world.png")
+	FileSystem.chdir_base()
+
+func load_items():
 	for res in resource_preloader.get_resource_list():
 		var item: ItemData = resource_preloader.get_resource(res)
 		items[res] = item
-	for item in items.values():
-		items_arr.append(item)
-	add_child(GManager.curr_world.instantiate())
-	var chat_manager = ChatManager.new()
-	chat_manager.name = "ChatManager"
-	add_child(chat_manager)
-	chat_manager.world_node = self
-	world = get_node("world")
-	time_rate = 1.0 / day_length
-	time = s_time
+
+func configure_graphics():
 	if Settings.sky_graphic == Settings.SkyGraphics.Low:
 		w_env.environment.background_mode = Environment.BG_COLOR
 	else:
@@ -72,33 +180,21 @@ func _ready():
 		w_env.environment.sky = Sky.new()
 		w_env.environment.sky.sky_material = sky_mat
 	get_viewport().scaling_3d_scale = Settings.scale_3d
-	for i in 3:
-		items_arr.shuffle()
-	for i in GManager.players:
-		var c_player = player_s.instantiate()
-		c_player.name = str(i)
-		c_player.color = Color.html(GManager.players[i].color)
-		c_player.player_name = GManager.players[i].name
-		c_player.inv_set.connect(inv_set)
-		receive_msg.connect(c_player.receive_msg)
-		add_child(c_player)
-		players_node[GManager.players[i].name] = c_player
+
+func setup_signal():
 	multiplayer.server_disconnected.connect(server_disconnected)
+	if multiplayer.is_server():
+		multiplayer.peer_connected.connect(player_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 	receive_msg.connect(receiving_msg)
 
-func inv_set(player):
-	player.set_inv_data(items_arr)
-
 func _process(delta):
 	time += time_rate * delta
-	if time > 1.0:
-		time = 0.0
+	if time > 1.0: time = 0.0
 	if Settings.sky_graphic == Settings.SkyGraphics.Low:
 		w_env.environment.set_bg_color(sky_horizon_c.sample(time))
-	else:
-		process_sky(delta)
-	label.text = "FPS: " + str(Engine.get_frames_per_second())
+		return
+	process_sky(delta)
 
 func process_sky(delta: float):
 	if Settings.sky_graphic == Settings.SkyGraphics.High:
@@ -112,7 +208,7 @@ func process_sky(delta: float):
 	moon.rotation_degrees.x = time * 360 + 270
 	moon.light_color = moon_c.sample(time)
 	moon.light_energy = moon_ins.sample(time)
-	#Visibility sun and moon
+	#visibility sun and moon
 	sun.visible = sun.light_energy > 0
 	moon.visible = moon.light_energy > 0
 	#Environment
@@ -121,16 +217,22 @@ func process_sky(delta: float):
 	sky_mat.set("ground_bottom_color", sky_top_c.sample(time))
 	sky_mat.set("ground_horizon_color", sky_horizon_c.sample(time))
 
+func peer_disconnected(id: int):
+	if multiplayer.is_server():
+		save_world(false)
+		await save_completed
+		players.get_node(str(id)).queue_free()
+	player_nodes.erase(GManager.players[id].name)
+	GManager.players.erase(id)
+
 @rpc("any_peer")
-func disconnect_player(id: int):
+func disconnect_peer(id):
 	multiplayer.multiplayer_peer.disconnect_peer(id)
 
-func peer_disconnected(id: int):
-	players_node.erase(GManager.players[id].name)
-	GManager.players.erase(id)
-	get_node(str(id)).queue_free()
-
 func server_disconnected():
+	if multiplayer.is_server():
+		await save_world(true)
+		broadcaster.stop_server()
 	GManager.players.clear()
 	multiplayer.multiplayer_peer = null
 	get_tree().change_scene_to_packed(main_menu)
@@ -187,15 +289,20 @@ func launch_rocket(glob_pos, dir):
 	rocket.launch(dir)
 
 @rpc("any_peer", "call_local", "reliable")
+func give_item(player_name, item_name, stack_count):
+	if stack_count > 1 and !items[item_name].stack: stack_count = 1
+	player_nodes[player_name].fill_empty_slot_with_item(items[item_name], stack_count)
+
+@rpc("any_peer", "call_local", "reliable")
 func sync_npc_hp(npc_name, hp):
-	world.get_node(npc_name).hp = hp
+	world.get_node("NPCs").get_node(npc_name).hp = hp
 
 @rpc("any_peer", "call_local", "reliable")
 func sync_npc_target(npc_name, target_name):
-	world.get_node(npc_name).target_node = get_node(target_name)
+	world.get_node("NPCs").get_node(npc_name).target_node = get_node(target_name)
 
 func sync_npc_dialogues(npc_name, dialogues):
-	world.get_node(npc_name).dialogues = dialogues
+	world.get_node("NPCs").get_node(npc_name).dialogues = dialogues
 
 func run_quest(player_name, quest):
 	get_node(player_name).dont_move()
@@ -225,3 +332,6 @@ func receiving_msg(msg):
 func _on_output_tm_timeout():
 	panel.hide()
 	for node in vbox.get_children(): node.queue_free()
+
+func _autosave():
+	save_world(false)

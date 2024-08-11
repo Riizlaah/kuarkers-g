@@ -27,8 +27,8 @@ func _ready():
 	old_hbox_pos = roundi(hbox.position.y)
 
 func _on_line_edit_clicked():
-	if !DisplayServer.has_feature(DisplayServer.FEATURE_VIRTUAL_KEYBOARD): return
-	hbox.position.y = get_viewport_rect().size.y - get_rect().size.y - DisplayServer.virtual_keyboard_get_height()
+	if Settings.os_name != 'Android': return
+	hbox.position.y -= (size.y * 0.5) + hbox.size.y
 
 func _on_line_edit_focus_exited():
 	hbox.position.y = old_hbox_pos

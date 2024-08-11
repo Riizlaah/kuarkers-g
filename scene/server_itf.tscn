@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3crwrumabudg"]
+
+[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="1_4kxu8"]
+[ext_resource type="Script" path="res://script/w_itf.gd" id="1_mrwca"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vk5lr"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.278431, 0.278431, 0.278431, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo4uk"]
+border_width_left = 3
+
+[node name="w_itf" type="Button"]
+custom_minimum_size = Vector2(0, 100)
+theme_override_styles/normal = SubResource("StyleBoxFlat_vk5lr")
+script = ExtResource("1_mrwca")
+
+[node name="Mcont" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="Hbox" type="HBoxContainer" parent="Mcont"]
+layout_mode = 2
+
+[node name="Vbox" type="VBoxContainer" parent="Mcont/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Mcont/Hbox/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_4kxu8")
+theme_override_font_sizes/font_size = 32
+text = "World Name
+"
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Label2" type="Label" parent="Mcont/Hbox/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_fonts/font = ExtResource("1_4kxu8")
+theme_override_font_sizes/font_size = 28
+text = "Host Name"
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Vsep2" type="VSeparator" parent="Mcont/Hbox"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_oo4uk")
+
+[node name="Vbox2" type="VBoxContainer" parent="Mcont/Hbox"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="Mcont/Hbox/Vbox2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.345098, 0.545098, 1, 1)
+theme_override_fonts/font = ExtResource("1_4kxu8")
+theme_override_font_sizes/font_size = 28
+text = "v1.3.2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Mcont/Hbox/Vbox2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0.686275, 0.337255, 1)
+theme_override_fonts/font = ExtResource("1_4kxu8")
+theme_override_font_sizes/font_size = 24
+text = "0 / 10 pemain"
+horizontal_alignment = 1
+vertical_alignment = 1

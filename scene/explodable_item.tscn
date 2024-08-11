@@ -5,6 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ghsq"]
 
 [node name="ExplodableItem" type="RigidBody3D"]
+collision_layer = 64
 script = ExtResource("1_2kgoi")
 
 [node name="Colls" type="CollisionShape3D" parent="."]

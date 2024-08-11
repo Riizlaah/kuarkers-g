@@ -15,7 +15,6 @@ func _on_pickup(body: Node3D):
 
 func response(what: Array):
 	if what[0] == false and what[1] == 0:
-		print('not enough')
 		picking_up = false
 		return
 	if what[1] > 0:

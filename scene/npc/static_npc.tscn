@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://jt22k1fvbp6e"]
 
 [ext_resource type="Script" path="res://script/npc/static_npc.gd" id="1_a84w6"]
-[ext_resource type="ArrayMesh" uid="uid://cwvpatf5wehx5" path="res://resources/meshes/char3_Cube_002.res" id="2_f5frt"]
+[ext_resource type="ArrayMesh" uid="uid://cwvpatf5wehx5" path="res://resources/meshes/char3.res" id="2_f5frt"]
 [ext_resource type="Animation" uid="uid://1b6jrq8g33xw" path="res://resources/other/attack_melee.res" id="3_dvvne"]
 [ext_resource type="Animation" uid="uid://cdoulg58l3ij2" path="res://resources/other/attack_null.res" id="4_lofv0"]
 [ext_resource type="Animation" uid="uid://c34ecfyywoslt" path="res://resources/other/eat.res" id="5_kr2wp"]
