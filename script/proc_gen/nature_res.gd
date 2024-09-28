@@ -7,15 +7,22 @@ enum ResType {
 	GRASS
 }
 
-@export var drop_count: int
-@export var res_type: ResType
+var res_type: ResType
+var drop_count := 0:
+	set(v):
+		drop_count = v
+		if v == 0: drop_count = randi_range(1, 7)
+var destr_phase := -1:
+	set(v):
+		destr_phase = v
+		if v == -1: destr_phase = 5
 @onready var tree_nodes = [$Tree1, $Tree2, $Tree3]
 @onready var stone_nodes = [$Stone1, $Stone2, $Stone3]
-@onready var grass_nodes = [$Grass]
+@onready var grass_nodes = [$Grass, $Grass2, $Grass3]
 
 func _ready():
-	var res_nodes: Array
-	var unused: Array = []
+	var res_nodes := []
+	var unused := []
 	match res_type:
 		ResType.TREE:
 			res_nodes = tree_nodes

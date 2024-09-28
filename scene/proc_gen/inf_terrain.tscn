@@ -1,45 +1,67 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqdx5p1o0hwn"]
+[gd_scene load_steps=17 format=3 uid="uid://cqdx5p1o0hwn"]
 
 [ext_resource type="Script" path="res://script/proc_gen/inf_terrain.gd" id="1_p8tn8"]
-[ext_resource type="PackedScene" uid="uid://uneaudxdm1pl" path="res://scene/proc_gen/nature_res.tscn" id="2_ui4y8"]
+[ext_resource type="Script" path="res://script/proc_gen/biome.gd" id="2_nh44a"]
 [ext_resource type="Resource" uid="uid://kmd802qco8jv" path="res://resources/biomes/forest.res" id="6_006gr"]
-[ext_resource type="PackedScene" uid="uid://byj76dhk8wahd" path="res://scene/proc_gen/objects/stone3.tscn" id="6_g84yq"]
-[ext_resource type="PackedScene" uid="uid://buifubrrxkuc6" path="res://scene/proc_gen/objects/stone2.tscn" id="7_2cffw"]
 [ext_resource type="Resource" uid="uid://hnbijd65ulh8" path="res://resources/biomes/grassland.res" id="7_xtg3d"]
-[ext_resource type="PackedScene" uid="uid://ce0wxqqwxnrgu" path="res://scene/proc_gen/objects/stone1.tscn" id="8_l6xt5"]
 [ext_resource type="Resource" uid="uid://4hes1g74wkap" path="res://resources/biomes/high_mountains.res" id="8_we18u"]
 [ext_resource type="Resource" uid="uid://c71b2wycmn2kr" path="res://resources/biomes/hills.res" id="9_xegen"]
 [ext_resource type="Resource" uid="uid://b41hd7qnwnpxf" path="res://resources/biomes/mountains.res" id="10_obvr2"]
 [ext_resource type="Resource" uid="uid://blqqcplx2amrh" path="res://resources/biomes/rocky.res" id="11_eib2w"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qaq4x"]
-frequency = 0.05
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ugnag"]
+frequency = 0.0005
+fractal_octaves = 3
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ew67h"]
-noise_type = 3
-domain_warp_enabled = true
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jrkin"]
+noise_type = 0
+frequency = 0.0005
+fractal_octaves = 3
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_v3i0g"]
-noise_type = 2
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_todas"]
+noise_type = 0
+frequency = 0.025
+fractal_type = 0
+fractal_octaves = 3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2gjys"]
+noise_type = 0
+frequency = 0.0025
+fractal_octaves = 4
 cellular_return_type = 0
-domain_warp_type = 2
+metadata/_preview_in_3d_space_ = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ra3a5"]
-noise_type = 4
-domain_warp_enabled = true
-domain_warp_type = 2
-domain_warp_fractal_type = 2
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0l8sk"]
+noise_type = 0
+frequency = 0.0025
+fractal_octaves = 4
+cellular_return_type = 0
+
+[sub_resource type="Curve" id="Curve_ibjd2"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.225191, 0), 0.0, 0.0, 0, 0, Vector2(0.30916, 70.1887), 0.0, 0.0, 0, 0, Vector2(0.538168, 76.2264), 0.0, 0.0, 0, 0, Vector2(0.599237, 172.83), 0.0, 0.0, 0, 0, Vector2(0.698473, 184.906), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="Curve" id="Curve_krkll"]
+max_value = 64.0
+_data = [Vector2(0.179389, 46.6113), 0.0, 0.0, 0, 0, Vector2(0.263359, 25.3585), 0.0, 0.0, 0, 0, Vector2(0.30916, 33.0868), 0.0, 0.0, 0, 0, Vector2(0.423664, 6.03773), 0.0, 0.0, 0, 0, Vector2(0.729008, 8.93584), 0.0, 0.0, 0, 0, Vector2(0.751908, 27.2906), 0.0, 0.0, 0, 0, Vector2(0.828244, 27.2906), 89.6, 0.0, 0, 0, Vector2(0.874046, 7.96981), 0.0, 0.0, 0, 0, Vector2(1, 0.241508), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="Curve" id="Curve_r228g"]
+_data = [Vector2(0.141221, 0), 0.0, 0.0, 0, 0, Vector2(0.225191, 0.2), 0.0, 0.0, 0, 0, Vector2(0.347328, 0.290566), 0.0, 0.0, 0, 0, Vector2(0.515267, 0.30566), 0.0, 0.0, 0, 0, Vector2(0.660305, 0.818868), 3.38976, 3.38976, 0, 0, Vector2(0.843511, 1), 0.0, 0.0, 0, 0]
+point_count = 6
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_p8tn8")
-terrain_height = 15
-small_noise = SubResource("FastNoiseLite_qaq4x")
-large_noise = SubResource("FastNoiseLite_ew67h")
-height_noise = SubResource("FastNoiseLite_v3i0g")
-height2_noise = SubResource("FastNoiseLite_ra3a5")
-tree_scene = ExtResource("2_ui4y8")
-stone_scenes = Array[PackedScene]([ExtResource("8_l6xt5"), ExtResource("7_2cffw"), ExtResource("6_g84yq")])
-color_test = Color(0.682353, 0.337255, 0, 1)
+biomes = Array[ExtResource("2_nh44a")]([ExtResource("8_we18u"), ExtResource("10_obvr2"), ExtResource("9_xegen"), ExtResource("6_006gr"), ExtResource("7_xtg3d"), ExtResource("11_eib2w")])
+cont_noise = SubResource("FastNoiseLite_ugnag")
+erosion_noise = SubResource("FastNoiseLite_jrkin")
+pv_noise = SubResource("FastNoiseLite_todas")
+temp_noise = SubResource("FastNoiseLite_2gjys")
+humid_noise = SubResource("FastNoiseLite_0l8sk")
+cont_sps = SubResource("Curve_ibjd2")
+erosion_sps = SubResource("Curve_krkll")
+pv_sps = SubResource("Curve_r228g")
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -47,8 +69,5 @@ color_test = Color(0.682353, 0.337255, 0, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
-
-[node name="Biomes" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("1", "2", "3", "4", "5", "6"), [ExtResource("11_eib2w"), ExtResource("7_xtg3d"), ExtResource("6_006gr"), ExtResource("9_xegen"), ExtResource("10_obvr2"), ExtResource("8_we18u")]]
 
 [connection signal="timeout" from="Timer" to="." method="process"]

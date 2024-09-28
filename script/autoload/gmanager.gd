@@ -25,6 +25,7 @@ var connected_to_server := false:
 		connected_to_server = val
 		if val == true:
 			main_menu.stop_connection_timer()
+var vertex_count := 0
 
 @rpc("any_peer")
 func send_player_info(id, uuid, player_name, color):

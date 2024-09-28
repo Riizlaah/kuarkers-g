@@ -18,6 +18,7 @@ const dummy_world_texture = preload("res://resources/texture/main-menu/dummy-wor
 @onready var rand_seed = $"../../mkworld_view/Vbox/Scont/Hbox/Vbox/Hbox/rand_seed"
 @onready var del_confirmation = $"../../../../del_confirmation"
 @onready var tmb_info = $"../../mkworld_view/Vbox/Scont/Hbox/Vbox2/Label"
+@onready var loading: CanvasLayer = $"../../../../Loading"
 
 var selected_world: WorldItf:
 	set(val):
@@ -90,6 +91,9 @@ func _on_continue_mkworld_pressed():
 		save_edited_world()
 		return
 	if !validate(): return
+	$"../../../..".hide()
+	loading.show()
+	await get_tree().create_timer(0.05).timeout
 	var seed_text = world_seed.text
 	var data = {
 		'name': world_name.text,
@@ -98,6 +102,7 @@ func _on_continue_mkworld_pressed():
 		'type': world_type.selected,
 		'save_dir': str((randf() * randf_range(1, 2)) + randf()).sha1_text().substr(0, 12)
 	}
+	#loading.show()
 	GManager.new_world = true
 	GManager.world_data = data
 	start_server(world_name.text)

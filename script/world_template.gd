@@ -1,7 +1,6 @@
 class_name WorldTemplate
 extends Node3D
 
-signal world_loaded
 
 func players_added():
 	pass

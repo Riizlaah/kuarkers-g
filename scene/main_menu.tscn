@@ -91,6 +91,9 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcywg"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o842t"]
 content_margin_left = 15.0
 content_margin_top = 10.0
@@ -117,9 +120,6 @@ content_margin_bottom = 10.0
 bg_color = Color(0.27451, 0.27451, 0.27451, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcywg"]
-bg_color = Color(0.152941, 0.152941, 0.152941, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ns10p"]
 content_margin_left = 15.0
@@ -305,13 +305,6 @@ content_margin_right = 7.0
 content_margin_bottom = 7.0
 bg_color = Color(0.384314, 0.384314, 0.384314, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5si6"]
-content_margin_left = 7.0
-content_margin_top = 7.0
-content_margin_right = 7.0
-content_margin_bottom = 7.0
-bg_color = Color(0.32549, 0.32549, 0.32549, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n231l"]
 content_margin_left = 7.0
 content_margin_top = 7.0
@@ -319,18 +312,18 @@ content_margin_right = 7.0
 content_margin_bottom = 7.0
 bg_color = Color(0.247059, 0.247059, 0.247059, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5si6"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iom0s"]
 bg_color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov2bm"]
 bg_color = Color(0.299547, 0.299547, 0.299547, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ks1u"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.266667, 0.266667, 0.266667, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_176dl"]
 content_margin_left = 10.0
@@ -338,6 +331,13 @@ content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ks1u"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgakk"]
 content_margin_left = 7.0
@@ -362,6 +362,13 @@ bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 border_width_top = 4
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vy34"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8562g"]
 content_margin_left = 15.0
 content_margin_top = 15.0
@@ -378,20 +385,6 @@ content_margin_bottom = 15.0
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vy34"]
-content_margin_left = 30.0
-content_margin_top = 30.0
-content_margin_right = 30.0
-content_margin_bottom = 30.0
-bg_color = Color(0.109804, 0.109804, 0.109804, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2to0"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdhb7"]
 content_margin_left = 15.0
 content_margin_top = 15.0
@@ -399,6 +392,13 @@ content_margin_right = 15.0
 content_margin_bottom = 15.0
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
 border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2to0"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4fn2"]
 content_margin_left = 10.0
@@ -498,9 +498,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_y2r43")
 theme_override_styles/hover = SubResource("StyleBoxFlat_y2r43")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_21pdn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2r43")
 shortcut = SubResource("Shortcut_8lr4p")
 text = "Keluar"
 expand_icon = true
@@ -510,9 +510,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_056qq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_056qq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_uqom0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_056qq")
 text = "Pengaturan"
 expand_icon = true
 
@@ -521,9 +521,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_p2sy7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p2sy7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i4hnh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_p2sy7")
 text = "Main"
 expand_icon = true
 
@@ -545,14 +545,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/side_margin = 0
 theme_override_constants/outline_size = 0
+theme_override_constants/side_margin = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 42
+theme_override_styles/panel = SubResource("StyleBoxFlat_hcywg")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o842t")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_2aabq")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_yv7uc")
-theme_override_styles/panel = SubResource("StyleBoxFlat_hcywg")
+current_tab = 0
 tab_focus_mode = 0
 
 [node name="Dunia" type="MarginContainer" parent="Mcont/PlayMenu/TabContainer"]
@@ -562,6 +563,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("10_jmlv7")
+metadata/_tab_index = 0
 
 [node name="Vbox" type="VBoxContainer" parent="Mcont/PlayMenu/TabContainer/Dunia"]
 layout_mode = 2
@@ -576,9 +578,9 @@ size_flags_vertical = 0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_ns10p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ns10p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_osr3j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ns10p")
 text = "Buat Dunia"
 
 [node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox"]
@@ -596,9 +598,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_6j40t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6j40t")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pd8l8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6j40t")
 text = "Main"
 
 [node name="edit_w" type="Button" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox"]
@@ -606,9 +608,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_8mm8d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8mm8d")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_6sb0l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mm8d")
 text = "Edit"
 
 [node name="del_w" type="Button" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox/Hbox/Hbox"]
@@ -616,9 +618,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_ce6wk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ce6wk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2roub")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ce6wk")
 text = "Hapus"
 
 [node name="HSeparator" type="HSeparator" parent="Mcont/PlayMenu/TabContainer/Dunia/Vbox"]
@@ -645,6 +647,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("12_4mlk8")
+metadata/_tab_index = 1
 
 [node name="Hbox" type="HBoxContainer" parent="Mcont/PlayMenu/TabContainer/Multiplayer"]
 layout_mode = 2
@@ -680,9 +683,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_feemb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_feemb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4eoi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_feemb")
 text = "Join Secara Langsung"
 
 [node name="Vsep" type="VSeparator" parent="Mcont/PlayMenu/TabContainer/Multiplayer/Hbox"]
@@ -737,9 +740,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_u8jdu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_u8jdu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_o1g2u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u8jdu")
 text = "<="
 expand_icon = true
 
@@ -758,9 +761,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_fa0a4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fa0a4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_intj4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fa0a4")
 text = "Buat Dunia"
 expand_icon = true
 
@@ -817,8 +820,8 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_ojxwx")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ojxwx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ojxwx")
 text = "Dunia."
 placeholder_text = "Nama Dunia..."
 
@@ -831,17 +834,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_ojxwx")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ojxwx")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_bgp4d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ojxwx")
 placeholder_text = "Seed..."
 
 [node name="rand_seed" type="Button" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox/Hbox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_2yui3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2yui3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_75lu6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yui3")
 text = "ACAK"
 
 [node name="Label2" type="Label" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
@@ -855,22 +858,21 @@ text = "Mode:"
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 focus_mode = 0
-theme_override_constants/arrow_margin = 15
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/normal = SubResource("StyleBoxFlat_c5si6")
-theme_override_styles/hover = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_n231l")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c5si6")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_a4tls")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_n231l")
-item_count = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n231l")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c5si6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c5si6")
+theme_override_constants/arrow_margin = 15
 selected = 0
+item_count = 1
 popup/item_0/text = "Mode Survival"
-popup/item_0/id = 0
 
 [node name="Label" type="Label" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
 layout_mode = 2
@@ -882,22 +884,21 @@ text = "Tipe Dunia:"
 [node name="world_type" type="OptionButton" parent="Mcont/PlayMenu/mkworld_view/Vbox/Scont/Hbox/Vbox"]
 layout_mode = 2
 focus_mode = 0
-theme_override_constants/arrow_margin = 15
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/normal = SubResource("StyleBoxFlat_c5si6")
-theme_override_styles/hover = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_n231l")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c5si6")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_a4tls")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_a4tls")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_n231l")
-item_count = 4
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n231l")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a4tls")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c5si6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c5si6")
+theme_override_constants/arrow_margin = 15
 selected = 0
+item_count = 4
 popup/item_0/text = "Tak Terbatas"
-popup/item_0/id = 0
 popup/item_1/text = "Datar, Tak terbatas"
 popup/item_1/id = 1
 popup/item_2/text = "Pegunungan(terbatas)"
@@ -918,9 +919,9 @@ offset_left = -64.0
 offset_bottom = 64.0
 grow_horizontal = 0
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_iom0s")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iom0s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ov2bm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_iom0s")
 icon = ExtResource("5_7iitw")
 expand_icon = true
 
@@ -968,8 +969,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ks1u")
 theme_override_styles/focus = SubResource("StyleBoxFlat_176dl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ks1u")
 placeholder_text = "Alamat Game..."
 
 [node name="Label" type="Label" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox"]
@@ -993,9 +994,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kgakk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bkcvn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
 text = "Batal"
 
 [node name="Button2" type="Button" parent="Mcont/PlayMenu/direct_join_window/Confirm/Vbox/Hbox"]
@@ -1003,9 +1004,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kgakk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bkcvn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgakk")
 disabled = true
 text = "OK"
 
@@ -1022,24 +1023,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/side_margin = 0
 theme_override_font_sizes/font_size = 28
+theme_override_styles/tab_focus = SubResource("StyleBoxFlat_o4gow")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_8vy34")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8vy34")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o4gow")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_8562g")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_qrhnp")
-theme_override_styles/tab_focus = SubResource("StyleBoxFlat_o4gow")
-theme_override_styles/panel = SubResource("StyleBoxFlat_8vy34")
-theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_8vy34")
+current_tab = 0
 script = ExtResource("15_57gnj")
 
 [node name="Umum" type="VBoxContainer" parent="Mcont/SettingsMenu/TabCont"]
 layout_mode = 2
 theme_override_constants/separation = 30
+metadata/_tab_index = 0
 
 [node name="LineEdit" type="LineEdit" parent="Mcont/SettingsMenu/TabCont/Umum"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_i2to0")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pdhb7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i2to0")
 placeholder_text = "Nama Pemain...(Heker)"
 
 [node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Umum"]
@@ -1076,9 +1079,9 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_k4fn2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h1hhj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_k4fn2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h1hhj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k4fn2")
 color = Color(1, 1, 1, 1)
 edit_alpha = false
 
@@ -1086,6 +1089,7 @@ edit_alpha = false
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
+metadata/_tab_index = 1
 
 [node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Grafik"]
 layout_mode = 2
@@ -1102,10 +1106,10 @@ horizontal_alignment = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-min_value = 0.05
+min_value = 0.25
 max_value = 2.0
-step = 0.05
-value = 1.0
+step = 0.25
+value = 0.75
 
 [node name="Hbox2" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Grafik"]
 layout_mode = 2
@@ -1123,7 +1127,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 min_value = 2.0
-max_value = 64.0
+max_value = 8.0
 value = 2.0
 
 [node name="Hbox3" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Grafik"]
@@ -1139,10 +1143,9 @@ horizontal_alignment = 3
 
 [node name="sky_graphic" type="OptionButton" parent="Mcont/SettingsMenu/TabCont/Grafik/Hbox3"]
 layout_mode = 2
-item_count = 3
 selected = 0
+item_count = 3
 popup/item_0/text = "Rendah"
-popup/item_0/id = 0
 popup/item_1/text = "Sedang"
 popup/item_1/id = 1
 popup/item_2/text = "Bagus"
@@ -1151,6 +1154,7 @@ popup/item_2/id = 2
 [node name="Info" type="VBoxContainer" parent="Mcont/SettingsMenu/TabCont"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="Hbox" type="HBoxContainer" parent="Mcont/SettingsMenu/TabCont/Info"]
 layout_mode = 2
@@ -1215,9 +1219,9 @@ offset_left = -64.0
 offset_bottom = 64.0
 grow_horizontal = 0
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_bww0u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bww0u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f4llo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bww0u")
 icon = ExtResource("5_7iitw")
 expand_icon = true
 
@@ -1273,6 +1277,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_sj1e0")
 theme_override_font_sizes/font_size = 76
+text = "Loading..."
+
+[node name="Loading" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="Control" type="Panel" parent="Loading"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Loading/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_sj1e0")
+theme_override_font_sizes/font_size = 64
 text = "Loading..."
 
 [connection signal="gui_input" from="Mcont" to="Mcont/PlayMenu/TabContainer/Dunia" method="_on_mcont_gui_input"]

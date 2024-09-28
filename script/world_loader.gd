@@ -87,7 +87,7 @@ func send_data(world_data):
 	load_world()
 
 func world_loaded():
-	$Loading.hide()
+	GManager.main_menu.get_node("Loading").hide()
 	w_added.emit()
 	world_added = true
 	if multiplayer.is_server():
@@ -172,6 +172,9 @@ func load_items():
 		items[res] = item
 
 func configure_graphics():
+	var r_dist = Settings.render_distance * Settings.CHUNK_SIZE
+	w_env.environment.fog_depth_begin = r_dist * 0.75
+	w_env.environment.fog_depth_end = r_dist
 	if Settings.sky_graphic == Settings.SkyGraphics.Low:
 		w_env.environment.background_mode = Environment.BG_COLOR
 	else:

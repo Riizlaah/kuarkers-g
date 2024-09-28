@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ciadt50wmpngo"]
+[gd_scene load_steps=34 format=3 uid="uid://ciadt50wmpngo"]
 
 [ext_resource type="Script" path="res://script/world_loader.gd" id="1_ulbhy"]
 [ext_resource type="PackedScene" uid="uid://d2egsd8cal7nn" path="res://scene/player.tscn" id="2_7xhgf"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cqdx5p1o0hwn" path="res://scene/proc_gen/inf_terrain.tscn" id="5_66tax"]
 [ext_resource type="Resource" uid="uid://na7phkq2anfv" path="res://resources/items/awm.tres" id="6_kpsen"]
 [ext_resource type="Resource" uid="uid://b3iaejqugv5rb" path="res://resources/items/kapak.tres" id="6_rjjr2"]
-[ext_resource type="FontFile" uid="uid://b1m2j2q6ex2ie" path="res://resources/UbuntuMono-R.ttf" id="6_wvknk"]
 [ext_resource type="Resource" uid="uid://cwynwawaa05a0" path="res://resources/items/botol_air.tres" id="7_aqmec"]
 [ext_resource type="Resource" uid="uid://ghtpampw0p4t" path="res://resources/items/bullet_ammo.tres" id="8_luikt"]
 [ext_resource type="Resource" uid="uid://b0i3imimwbxvy" path="res://resources/items/donat.tres" id="9_vfu6w"]
@@ -67,6 +66,10 @@ background_color = Color(0.4, 0.568627, 1, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.776471, 0.776471, 0.776471, 1)
 reflected_light_source = 1
+fog_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_depth_curve = 2.0
 
 [node name="WorldLoader" type="Node3D"]
 script = ExtResource("1_ulbhy")
@@ -128,6 +131,7 @@ offset_bottom = 160.0
 metadata/_edit_use_anchors_ = true
 
 [node name="SCont" type="ScrollContainer" parent="CanvasLayer/Control/Panel"]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,6 +140,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Vbox" type="VBoxContainer" parent="CanvasLayer/Control/Panel/SCont"]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -179,11 +184,12 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Sc" type="ScrollContainer" parent="DialogueLayer/Control/Panel/Hbox"]
+[node name="Scont" type="ScrollContainer" parent="DialogueLayer/Control/Panel/Hbox"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Vbox" type="VBoxContainer" parent="DialogueLayer/Control/Panel/Hbox/Sc"]
+[node name="Vbox" type="VBoxContainer" parent="DialogueLayer/Control/Panel/Hbox/Scont"]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -201,45 +207,6 @@ one_shot = true
 [node name="ChatManager" type="Node" parent="." node_paths=PackedStringArray("world_node")]
 script = ExtResource("21_hdmeu")
 world_node = NodePath("..")
-
-[node name="Loading" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="Loading"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Loading/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Loading/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("6_wvknk")
-theme_override_font_sizes/font_size = 64
-text = "Loading..."
 
 [node name="players" type="Node3D" parent="."]
 

@@ -40,6 +40,7 @@ var tghud := false
 var world_node: WorldLoader
 var curr_anim := ""
 var is_immune := false
+var flying := false
 @export var gradient_hp: Gradient
 
 @onready var head = $Armature/Skeleton3D/Head
@@ -86,7 +87,7 @@ var cam: Camera3D
 func _enter_tree():
 	uniqid = name.to_int()
 	set_multiplayer_authority(uniqid)
-	print('name: ', name, ' on: ', multiplayer.get_unique_id())
+	#print('name: ', name, ' on: ', multiplayer.get_unique_id())
 
 func _ready():
 	onready()
@@ -164,12 +165,13 @@ func _process(_delta):
 		take_damage.rpc(999999999)
 
 func _physics_process(delta: float):
-	if Input.is_action_just_pressed("jump") and is_on_floor() and !paused:
-		if !chat_layer.visible: 
-			velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !paused and !chat_visib and !flying: velocity.y = JUMP_VELOCITY
 	var input_dir = Input.get_vector("a", "d", "w", "s")
 	if paused or chat_layer.visible or inv_opened: input_dir = Vector2.ZERO
-	if !is_on_floor(): velocity.y -= gravity * delta
+	if Input.is_key_pressed(KEY_SPACE) and flying: velocity.y = 20
+	elif Input.is_key_pressed(KEY_SHIFT) and flying: velocity.y = -20
+	if !Input.is_key_pressed(KEY_SHIFT) and !Input.is_key_pressed(KEY_SPACE) and flying: velocity.y = 0
+	if !is_on_floor() and !flying: velocity.y -= gravity * delta
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if dont_walk.has(curr_anim): direction = Vector3.ZERO
 	if direction:
@@ -186,7 +188,7 @@ func _physics_process(delta: float):
 	velocity = velocity
 	if old_velo < 0:
 		var diff = velocity.y - old_velo
-		if diff > gravity_thres: take_damage(roundi(diff - gravity_thres))
+		if diff > gravity_thres and !flying: take_damage(roundi(diff - gravity_thres))
 	old_velo = velocity.y
 
 func _input(event: InputEvent):
@@ -208,6 +210,7 @@ func _input(event: InputEvent):
 	if Input.is_action_pressed("rc"): right_click()
 	if Input.is_action_pressed("tg_run"): _on_run_toggled(!running)
 	if Input.is_action_pressed("tg_hud"): tg_hud()
+	if Input.is_key_pressed(KEY_F): flying = !flying
 
 func _unhandled_input(_event: InputEvent):
 	if chat_visib: return
@@ -233,7 +236,7 @@ func heal(healed_hp: int):
 	hp = ceil(clamp(hp + healed_hp, 0, MAX_HP))
 	update_hp()
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer")
 func take_damage(dmg: int):
 	if is_immune: return
 	hp = floor(clamp(hp - dmg, 0, MAX_HP))
