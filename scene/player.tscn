@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://d2egsd8cal7nn"]
+[gd_scene load_steps=56 format=3 uid="uid://d2egsd8cal7nn"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_neciv"]
 [ext_resource type="Texture2D" uid="uid://b7ym4d3jrfsyw" path="res://resources/texture/hud/crosshair.png" id="3_guvdv"]
@@ -24,6 +24,7 @@
 [ext_resource type="Animation" uid="uid://c34ecfyywoslt" path="res://resources/other/eat.res" id="14_uwwfv"]
 [ext_resource type="Animation" uid="uid://cdfcr0f0nwseu" path="res://resources/other/idle.res" id="15_om47w"]
 [ext_resource type="Texture2D" uid="uid://dguutk7g17w0x" path="res://resources/texture/hud/ch_pov.png" id="16_afvbi"]
+[ext_resource type="Script" path="res://resources/script_inv/slot_data.gd" id="16_kir45"]
 [ext_resource type="Animation" uid="uid://dfmlwiakyuevv" path="res://resources/other/reset.res" id="16_vt8wm"]
 [ext_resource type="Animation" uid="uid://nwfgm5syg8io" path="res://resources/other/walk.res" id="17_yw400"]
 [ext_resource type="AudioStream" uid="uid://dogcuf2eye2qa" path="res://resources/music/sound_eff/shoot.ogg" id="25_36rbj"]
@@ -134,7 +135,7 @@ radius = 50.0
 
 [sub_resource type="Resource" id="Resource_bs58t"]
 script = ExtResource("7_n6v8v")
-slot_datas = Array[Resource("res://resources/script_inv/slot_data.gd")]([])
+slot_datas = Array[ExtResource("16_kir45")]([])
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrwcx"]
 bg_color = Color(0.258824, 0.258824, 0.258824, 1)
@@ -223,6 +224,7 @@ script = ExtResource("1_neciv")
 gradient_hp = SubResource("Gradient_43lep")
 
 [node name="Armature" type="Node3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -391,7 +393,7 @@ bone_name = "Bone.002"
 bone_idx = 2
 
 [node name="Hand" type="BoneAttachment3D" parent="Armature/Skeleton3D/Handup"]
-transform = Transform3D(0.999088, 0.0426921, -4.47035e-07, -0.0426921, 0.999088, 2.65427e-08, 4.48897e-07, -7.10133e-09, 1, 0, 1.0375, 0)
+transform = Transform3D(0.999088, 0.0426921, -4.48897e-07, -0.0426921, 0.999088, 2.6077e-08, 4.45172e-07, -7.21775e-09, 1, -5.96046e-08, 1.0375, -3.72529e-09)
 bone_name = "Bone.003"
 bone_idx = 3
 use_external_skeleton = true
@@ -410,7 +412,7 @@ transform = Transform3D(0.68912, -0.721524, -0.0672097, 0.721736, 0.675089, 0.15
 mesh = SubResource("BoxMesh_6vbl8")
 
 [node name="Colls" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.95, 0)
 shape = SubResource("BoxShape3D_iga3g")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -689,9 +691,9 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_vertical = 4
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_jrwcx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jrwcx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kb5go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jrwcx")
 icon = ExtResource("8_jpht3")
 expand_icon = true
 
@@ -724,9 +726,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_f12iw")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_o67mn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_o67mn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ea4ds")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o67mn")
 text = "Lanjutkan Permainan"
 
 [node name="save_game" type="Button" parent="Layer1/Control/PausePanel/Vbox"]
@@ -734,9 +736,9 @@ layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_f12iw")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_o67mn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_o67mn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ea4ds")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o67mn")
 text = "Simpan Dan Keluar"
 
 [node name="game_addr" type="Label" parent="Layer1/Control/PausePanel/Vbox"]
@@ -808,9 +810,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_f12iw")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_jgqc1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jgqc1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dw1k4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jgqc1")
 text = "Respawn"
 
 [node name="MSync" type="MultiplayerSynchronizer" parent="."]

@@ -1,8 +1,8 @@
 extends Node
 
-signal new_player_connected(id: int)
+#signal new_player_connected(id: int)
 
-const limited_worlds = {
+var limited_worlds = {
 	1: preload("res://scene/proc_gen/inf_terrain.tscn"),
 	2: preload("res://scene/worlds/mountain.tscn"),
 	3: preload("res://scene/worlds/city.tscn")

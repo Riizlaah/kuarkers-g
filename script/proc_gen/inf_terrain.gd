@@ -3,15 +3,20 @@ extends WorldTemplate
 
 const CHUNK_SIZE := Settings.CHUNK_SIZE
 @export var terrain_height := 20
-@export var small_noise: FastNoiseLite
-@export var large_noise: FastNoiseLite
-@export var height_noise: FastNoiseLite
-@export var height2_noise: FastNoiseLite
-#@export var temp_noise: FastNoiseLite
-#@export var humid_noise: FastNoiseLite
 @export var tree_scene: PackedScene
 @export var stone_scenes: Array[PackedScene]
 @export var color_test: Color
+@export var biomes: Array[Biome]
+@export_group("Noises")
+@export var small_noise: FastNoiseLite
+@export var large_noise: FastNoiseLite
+@export var height_noise: FastNoiseLite
+@export var temp_noise: FastNoiseLite
+@export var humid_noise: FastNoiseLite
+@export_group("Curves")
+@export var small_curve: Curve
+@export var large_curve: Curve
+@export var height_curve: Curve
 var viewer: Node3D
 var view_dist: int
 var noises: Array[FastNoiseLite]
@@ -24,21 +29,16 @@ var lfd := true
 var is_flat := false
 var visible_chunks_count: Array
 var chunk_initiated := false
-var biomes: Dictionary
 var packed_chunk := {}
-@onready var biomes_res: ResourcePreloader = $Biomes
 
 func _ready():
-	for res_name in biomes_res.get_resource_list():
-		biomes[res_name] = biomes_res.get_resource(res_name)
 	chunk_visible = Settings.render_distance
 	view_dist = chunk_visible * CHUNK_SIZE
-	var world_seed = GManager.world_data.seed
+	var world_seed : int = GManager.world_data.seed
 	large_noise.seed = world_seed
-	small_noise.seed = world_seed
-	height_noise.seed = world_seed
-	height2_noise.seed = world_seed
-	noises = [large_noise, small_noise, height_noise, height2_noise]
+	small_noise.seed = world_seed + 1
+	height_noise.seed = world_seed - 1
+	noises = [large_noise, small_noise, height_noise]
 	check_world_method()
 	set_physics_process(false)
 
@@ -62,7 +62,7 @@ func load_data():
 		get_tree().quit()
 		return
 	for chunk in c_datas:
-		var new_chunk := TerrainChunk.new(stone_scenes, noises)
+		var new_chunk := TerrainChunk.new()
 		var vcc: Vector2 = chunk.chunk_coord / CHUNK_SIZE
 		new_chunk.adj_terrain_h = terrain_height
 		add_child(new_chunk)
@@ -85,11 +85,11 @@ func update_visible_chunk():
 			var view_chunk_coord := Vector2(curr_x - x_offset, curr_y - y_offset)
 			if chunks.has(view_chunk_coord):
 				chunks[view_chunk_coord].update_chunk(viewer_pos, view_dist)
-				if chunks[view_chunk_coord].update_lod(viewer_pos):
-					chunks[view_chunk_coord].gen_mesh(view_chunk_coord, CHUNK_SIZE, true, lfd, is_flat)
+				#if chunks[view_chunk_coord].update_lod(viewer_pos):
+					#chunks[view_chunk_coord].gen_mesh(view_chunk_coord, CHUNK_SIZE, true, lfd, is_flat)
 				if chunks[view_chunk_coord].visible: last_visible_chunks.append(chunks[view_chunk_coord])
 			else:
-				var chunk := TerrainChunk.new(stone_scenes, noises)
+				var chunk := TerrainChunk.new()
 				var pos := view_chunk_coord * CHUNK_SIZE
 				var world_pos := Vector3(pos.x, 0, pos.y)
 				add_child(chunk)
@@ -115,6 +115,7 @@ func save_world():
 	return saved_chunks
 
 func process():
+	#if !last_viewer_pos.is_equal_approx(viewer_pos):
 	viewer_pos.x = viewer.position.x
 	viewer_pos.y = viewer.position.z
 	update_visible_chunk()

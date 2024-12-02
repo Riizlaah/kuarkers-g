@@ -39,7 +39,7 @@ var current_saved_data := {}
 var saved_player_datas := {}
 var world_added := false
 
-@export_category("Other")
+@export_group("Other")
 @export var texture_t: Texture2D
 @export var player_s : PackedScene
 @export var musuh: PackedScene
@@ -48,7 +48,7 @@ var world_added := false
 @export var output_lb: PackedScene
 @export var proc_gen: PackedScene
 
-@export_category("Sky")
+@export_group("Sky")
 @export var sky_grad: Gradient
 @export var sky_mat: ProceduralSkyMaterial
 @export var day_length = 800.0
@@ -124,7 +124,7 @@ func load_world():
 		OS.alert("apa kamu modder?", "?")
 		get_tree().quit()
 		return
-	world = GManager.limited_worlds[world_type].instantiate()
+	world = (GManager.limited_worlds[world_type]).instantiate()
 	add_child(world)
 
 func get_save_data():

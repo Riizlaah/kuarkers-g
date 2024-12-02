@@ -11,8 +11,8 @@ const renderer_alias = {
 	'mobile': 'Vulkan',
 	'forward_plus': 'Vulkan'
 }
-const CHUNK_SIZE = 64
-const lods = [2, 4, 8]
+const CHUNK_SIZE = 32
+const lods = [4, 8, 16]
 const lods_dist = [8192, 4096, 1024]
 const GAME_VERSION := "1.3.1"
 

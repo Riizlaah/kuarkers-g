@@ -233,7 +233,7 @@ func heal(healed_hp: int):
 	hp = ceil(clamp(hp + healed_hp, 0, MAX_HP))
 	update_hp()
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer")
 func take_damage(dmg: int):
 	if is_immune: return
 	hp = floor(clamp(hp - dmg, 0, MAX_HP))

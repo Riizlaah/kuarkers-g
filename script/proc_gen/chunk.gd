@@ -12,26 +12,26 @@ class Tile extends Object:
 
 const nature_res = preload("res://scene/proc_gen/nature_res.tscn")
 const ctr_offset = 0.5
-var resolution: int
+var resolution := Settings.lods[2]
 var adj_terrain_h := 20
-var chunk_size
+var chunk_size: int
 var lods = Settings.lods
 var lods_dist = Settings.lods_dist
 var coord = Vector2()
 var set_colls = false
 var vertexes = []
 var objects_loaded = false
-var stone_scenes : Array[PackedScene]
 var occupied_pos = {}
 var texture_created := false
 var tiles: Array[Tile]
 var large_noise: FastNoiseLite
 var small_noise: FastNoiseLite
 var height_noise: FastNoiseLite
-var height2_noise: FastNoiseLite
+var load_fd := false
 #var temperature_noise: FastNoiseLite
 #var humidity_noise: FastNoiseLite
-var biomes := {}
+var biomes: Array[Biome]
+var parent: TerrainGenerator
 
 #objects in chunk
 var trees = []
@@ -39,17 +39,20 @@ var grasses = []
 var stones = []
 var o_objs = []
 
-func _init(stones2, noises):
-	stone_scenes = stones2
-	large_noise = noises[0]
-	small_noise = noises[1]
-	height_noise = noises[2]
-	height2_noise = noises[3]
-	#var mat = StandardMaterial3D.new()
+func _init():
+	#large_noise = noises[0]
+	#small_noise = noises[1]
+	#height_noise = noises[2]
+	var mat = StandardMaterial3D.new()
 	#mat.albedo_color = Color.WEB_GREEN
-	#material_overlay = mat
+	mat.vertex_color_use_as_albedo = true
+	material_overlay = mat
 
 func _ready():
+	parent = get_parent()
+	large_noise = parent.large_noise
+	small_noise = parent.small_noise
+	height_noise = parent.height_noise
 	biomes = get_parent().biomes
 	lods = Settings.lods
 	lods_dist = Settings.lods_dist
@@ -63,11 +66,12 @@ func _ready():
 	#RenderingServer.set_debug_generate_wireframes(true)
 	#RenderingServer.viewport_set_debug_draw(get_viewport().get_viewport_rid(), RenderingServer.VIEWPORT_DEBUG_DRAW_WIREFRAME)
 
-func gen_mesh(pos: Vector2, size: float, init_visible: bool, _load_from_data: bool, flat: bool):
-	var arr_mesh : ArrayMesh
+#lfd = load from data
+func gen_mesh(pos: Vector2, size: int, init_visible: bool, lfd: bool, flat: bool):
 	var surf_tool = SurfaceTool.new()
 	chunk_size = size
 	coord = pos * size
+	load_fd = lfd
 	surf_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for z in resolution + 1:
 		for x in resolution + 1:
@@ -77,8 +81,9 @@ func gen_mesh(pos: Vector2, size: float, init_visible: bool, _load_from_data: bo
 			var global_pos = Vector2(coord.x + vertex.x, coord.y + vertex.z)
 			if is_nan(global_pos.x) or is_nan(global_pos.y): continue
 			var biome = identify_biome(global_pos)
-			if !flat: vertex.y = get_biome_height_blended(global_pos, biome)
+			if !flat: vertex.y = snappedf(get_biome_height_blended(global_pos), 1)
 			if is_nan(vertex.y): continue
+			surf_tool.set_color(biome.color)
 			surf_tool.set_uv(percent)
 			surf_tool.add_vertex(vertex)
 			if !vertexes.has(vertex): vertexes.append(vertex)
@@ -95,12 +100,11 @@ func gen_mesh(pos: Vector2, size: float, init_visible: bool, _load_from_data: bo
 			surf_tool.add_index(vert + resolution + 2)
 			vert += 1
 		vert += 1
-	if !flat: surf_tool.generate_normals()
-	arr_mesh = surf_tool.commit()
-	mesh = arr_mesh
-	if set_colls: create_colls()
+	surf_tool.generate_normals()
+	mesh = surf_tool.commit()
+	create_colls()
 	set_chunk_visible(init_visible)
-	if resolution > 0: create_texture()
+	#if resolution > 0: create_texture()
 
 func create_texture():
 	var img = Image.create(resolution, resolution, true, Image.FORMAT_RGB8)
@@ -127,31 +131,33 @@ func vert_to_pix(vert: Vector3) -> Vector2:
 #var large = height2_noise.get_noise2dv(pos) * 16
 # (small + large + height) * 8
 #
-func get_biome_height_blended(pos: Vector2, biome: Biome) -> float:
-	#var height = height2_noise.get_noise_2dv(pos) * adj_terrain_h
-	var height1 = height_noise.get_noise_2dv(pos) * 2
-	#var small = small_noise.get_noise_2dv(pos)
-	var large = large_noise.get_noise_2dv(pos)
-	var base_height = (height1) * adj_terrain_h
-	return reduce_slope(biome.calc_hieght(base_height) + large, 0.4)
+func get_biome_height_blended(pos: Vector2) -> float:
+	var base_height := 0.0
+	var large = (large_noise.get_noise_2dv(pos) + 1) / 2
+	base_height += parent.large_curve.sample(large)
+	if large < 0.7: return base_height
+	base_height *= 0.9
+	var height := (height_noise.get_noise_2dv(pos) + 1) / 2
+	base_height += parent.height_curve.sample(height)
+	if height < 0.4: return base_height
+	base_height *= 0.9
+	var small = (small_noise.get_noise_2dv(pos) + 1) / 2
+	return base_height + parent.small_curve.sample(small)
 
 func identify_biome(pos: Vector2) -> Biome:
-	var noise_val := height_noise.get_noise_2dv(pos)
-	#noise_val += large_noise.get_noise_2dv(pos)
-	#noise_val += small_noise.get_noise_2dv(pos)
-	#noise_val += height2_noise.get_noise_2dv(pos)
-	for biome in biomes.values():
-		if noise_val < biome.height:
-			return biome
-	return biomes['2']
+	var noise_val := large_noise.get_noise_2dv(pos)
+	#print(noise_val)
+	for biome in biomes:
+		if biome.is_req_valid(noise_val): return biome
+	return biomes[4]
 
 func create_tile(pos: Vector3, biome: Biome):
 	var tile = Tile.new(pos, biome)
 	tiles.append(tile)
-	place_objects_in_tile(tile)
+	if !load_fd: place_objects_in_tile(tile)
 
 func place_objects_in_tile(tile: Tile):
-	var percentage = randi() % 500 + 1
+	var percentage = randi_range(0, 1500)
 	match tile.biome.name:
 		'rocky': if percentage < 30: _spawn_stone(tile.pos)
 		'grassland': if percentage < 90: _spawn_grass(tile.pos)
@@ -232,7 +238,8 @@ func _spawn_tree(spawn_pos: Vector3, height: int = 0) -> void:
 	trees.append(new_tree)
 
 func _spawn_stone(spawn_pos: Vector3, drop_count: int = 0):
-	var pos_key = Vector2(spawn_pos.x, spawn_pos.z)
+	@warning_ignore("narrowing_conversion")
+	var pos_key = Vector2i(spawn_pos.x, spawn_pos.z)
 	if occupied_pos.has(pos_key): return
 	occupied_pos[pos_key] = true
 	var new_stone = nature_res.instantiate()
@@ -244,7 +251,8 @@ func _spawn_stone(spawn_pos: Vector3, drop_count: int = 0):
 	stones.append(new_stone)
 
 func _spawn_grass(spawn_pos: Vector3):
-	var pos_key = Vector2(spawn_pos.x, spawn_pos.z)
+	@warning_ignore("narrowing_conversion")
+	var pos_key = Vector2i(spawn_pos.x, spawn_pos.z)
 	if occupied_pos.has(pos_key): return
 	occupied_pos[pos_key] = true
 	var new_grass = nature_res.instantiate()
